@@ -1,0 +1,47 @@
+{
+  "canvas": {
+    "width": 1600,
+    "height": 1000,
+    "ratio": "16:10"
+  },
+  "colors": {
+    "background": "#F7F5F0",
+    "text": "#141414",
+    "red": "#C94C3B",
+    "muted": "#776F68",
+    "stage": "#141414"
+  },
+  "fonts": {
+    "title": "EB Garamond",
+    "interface": "Barlow Condensed",
+    "body": "Lora"
+  },
+  "type": {
+    "cover_title": 76,
+    "lesson_title": 52,
+    "section_header": 28,
+    "body": 30,
+    "question": 44,
+    "answer": 30,
+    "footer": 20
+  },
+  "layout": {
+    "margin_x": 104,
+    "header_y": 62,
+    "content_y": 150,
+    "footer_y": 926,
+    "content_height": 690
+  },
+  "pagination": {
+    "final_marker": "et fin",
+    "global_format": "%{current} of %{total}",
+    "content_sections": {
+      "max_items": 3,
+      "max_characters": 850
+    },
+    "exceptions": {
+      "questions": "one_question_per_slide",
+      "discussion": "one_question_state_then_one_answer_state"
+    }
+  }
+}

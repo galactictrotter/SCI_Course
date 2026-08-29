@@ -1,0 +1,1082 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="generator" content="sci-course-slides/1.0.0">
+  <meta name="content-sha256" content="f32eab7f37014577562dbd399530a47b07b0bec86771fba07077d702d5aa31e2">
+  <title>Les Sept États de Conscience</title>
+  <style>
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("assets/fonts/barlow-condensed-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("assets/fonts/barlow-condensed-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("assets/fonts/lora-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("assets/fonts/lora-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --canvas-width: 1600px;
+  --canvas-height: 1000px;
+  --background: #F7F5F0;
+  --text: #141414;
+  --red: #C94C3B;
+  --muted: #776F68;
+  --stage: #141414;
+  --margin-x: 104px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--stage);
+  color: var(--text);
+}
+
+body {
+  font-family: "Lora", serif;
+}
+
+.deck-stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--canvas-width);
+  height: var(--canvas-height);
+  transform-origin: center center;
+  background: var(--background);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  width: var(--canvas-width);
+  height: var(--canvas-height);
+  padding: 0 var(--margin-x);
+  overflow: hidden;
+  background: var(--background);
+}
+
+.slide.is-active {
+  display: block;
+}
+
+.slide-header {
+  position: absolute;
+  top: 62px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  height: 44px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--red);
+}
+
+.lesson-title {
+  position: absolute;
+  top: 150px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1.04;
+  color: var(--text);
+  height: 86px;
+  overflow: hidden;
+  white-space: normal;
+}
+
+.lesson-title--long {
+  font-size: 39px;
+  line-height: 1;
+}
+
+.slide-content {
+  position: absolute;
+  top: 242px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  height: 690px;
+  overflow: hidden;
+  font-family: "Lora", serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.34;
+}
+
+.slide-content.compact {
+  font-size: 27px;
+  line-height: 1.31;
+}
+
+.numbered-item {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 4px;
+  margin: 0 0 26px;
+}
+
+.numbered-item:last-child {
+  margin-bottom: 0;
+}
+
+.item-number {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.9em;
+  line-height: 1.45;
+  color: var(--red);
+}
+
+.continuation-label {
+  display: block;
+  margin-top: -2px;
+  font-size: 0.55em;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.item-body p {
+  margin: 0;
+}
+
+.item-body ul {
+  margin: 10px 0 0 1.08em;
+  padding: 0;
+}
+
+.item-body li {
+  margin: 3px 0;
+  padding-left: 0.22em;
+}
+
+.question-layout {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.question-number {
+  padding-top: 4px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 38px;
+  color: var(--red);
+}
+
+.question-text {
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.14;
+}
+
+.answer {
+  margin: 38px 0 0 78px;
+  padding-top: 28px;
+  border-top: 2px solid rgba(201, 76, 59, 0.32);
+  font-size: 30px;
+  line-height: 1.36;
+}
+
+.answer-label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.slide-footer {
+  position: absolute;
+  top: 926px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.course-footer {
+  color: var(--red);
+}
+
+.global-pagination {
+  color: var(--muted);
+}
+
+.cover-title {
+  position: absolute;
+  top: 252px;
+  left: var(--margin-x);
+  right: 250px;
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 76px;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.018em;
+}
+
+.cover-rule {
+  position: absolute;
+  left: var(--margin-x);
+  top: 190px;
+  width: 154px;
+  height: 6px;
+  background: var(--red);
+}
+
+.overflow-warning {
+  outline: 8px solid #ff00cc;
+  outline-offset: -8px;
+}
+
+.presenter-hint {
+  position: fixed;
+  right: 16px;
+  bottom: 12px;
+  z-index: 20;
+  font-family: sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+body:hover .presenter-hint {
+  opacity: 1;
+}
+
+@media print {
+  @page {
+    size: 16in 10in;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: auto;
+    height: auto;
+    overflow: visible;
+    background: #fff;
+  }
+
+  .deck-stage {
+    position: static;
+    width: auto;
+    height: auto;
+    transform: none !important;
+    box-shadow: none;
+  }
+
+  .slide,
+  .slide.is-active {
+    position: relative;
+    display: block;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .presenter-hint {
+    display: none;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <main class="deck-stage" aria-label="Cours de SIC — Leçon 23">
+<article class="slide is-active" id="slide-001" data-slide-id="slide-001" data-slide-title="Les Sept États de Conscience" aria-hidden="false">
+  <div class="cover-rule" aria-hidden="true"></div>
+<h1 class="cover-title">Les Sept États de Conscience</h1>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">1 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-002" data-slide-id="slide-002" data-slide-title="Points principaux · 1" aria-hidden="true">
+  <header class="slide-header">Points principaux · 1</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>Qualités spécifiques: quatrième état: illimité, intelligence pure, repos vigilant, conscience transcendantale. Cinquième état: activité ou repos avec le quatrième état. Sixième état: cinquième état glorifié, une conscience qui perçoit le relatif suprême avec la conscience du soi absolu. Septième état: conscience unifiée qui perçoit toute chose en termes du soi absolu.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>Comment la conscience se développe du quatrième au septième état: le cinquième: en alternant l&#39;expérience du quatrième état avec l&#39;activité (MT et activité). Le sixième: en accomplissant des activités d&#39;une qualité plus fine, partant d&#39;une impulsion du coeur. Le septième: la valeur relative suprême de la perception, dans le sixième état, s&#39;élève spontanément à la valeur infinie.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">2 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-003" data-slide-id="slide-003" data-slide-title="Points principaux · 2 et fin" aria-hidden="true">
+  <header class="slide-header">Points principaux · 2 et fin</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>Tout homme peut, grâce à la SIC, s&#39;élever jusqu&#39;au septième état de conscience et jouir ainsi de la valeur infinie de la vie.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">3 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-004" data-slide-id="slide-004" data-slide-title="Résumé long · 1" aria-hidden="true">
+  <header class="slide-header">Résumé long · 1</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>Maintenant que nous avons établi le quatrième état de conscience, il sera
+
+intéressant de voir s&#39;il est possible de vivre d&#39;autres états de conscience. L&#39;analyse intellectuelle, la recherche scientifique et l&#39;expérience directe nous montrent que le quatrième état enrichit les états de veille, rêve et sommeil. Il semblerait que le quatrième état puisse être développé de manière à coexister avec les trois autres. Cela pourrait se produire en raffinant le système nerveux de telle manière qu&#39;il devienne capable de maintenir l&#39;état de repos plus profond que le sommeil en même temps que le quatrième état déjà établi. Le système nerveux pourrait ainsi s&#39;habituer à maintenir cet état de repos profond et l&#39;esprit garder une vigilance totale, de sorte que le quatrième état puisse persister pendant la veille, le rêve et le sommeil.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">4 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-005" data-slide-id="slide-005" data-slide-title="Résumé long · 2" aria-hidden="true">
+  <header class="slide-header">Résumé long · 2</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>Nous savons par expérience que la conscience pure est la nature du
+
+quatrième état. Nous avons vu qu&#39;elle est non-manifestée, c&#39;est-à-dire qu&#39;elle n&#39;a pas de limite; c&#39;est une conscience non-limitée. La conscience objective du monde des limites caractérise l&#39;état de veille; ainsi lorsque le quatrième état l&#39;accompagne, la conscience des limites et l&#39;illimité coexistent. La conscience de l&#39;illimité et la conscience des limites, le premier plan de la conscience illimitée soutenant la perception des objets, la conscience pure faisant l&#39;expérience de la rose: telle est la nature de la coexistence du quatrième état et de l&#39;état de veille de la conscience.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">5 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-006" data-slide-id="slide-006" data-slide-title="Résumé long · 3" aria-hidden="true">
+  <header class="slide-header">Résumé long · 3</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">2.<span class="continuation-label">suite</span></div>
+  <div class="item-body"><p>Avant que nous ne commencions à méditer, la conscience pure était voilée sous l&#39;influence de l&#39;état de veille; mais lorsqu&#39;elle se maintient dans l&#39;esprit alors que celui-ci fait l&#39;expérience des limites du monde objectif, un cinquième état de conscience apparaît naturellement et spontanément, et il est complètement différent des quatre autres. On développe ce cinquième état par l&#39;alternance du quatrième avec l&#39;état de veille. Le cinquième état de conscience consiste en la coexistence du quatrième état avec la veille, le rêve ou le sommeil,</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">6 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-007" data-slide-id="slide-007" data-slide-title="Résumé long · 4" aria-hidden="true">
+  <header class="slide-header">Résumé long · 4</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>La physique a montré que la réalité matérielle se présente en couches. Chaque couche (molécules, atomes, particules, etc.) se trouve à l&#39;intérieur d&#39;une autre et possède sa propre nature spécifique, ses propres lois. Chaque couche possède son propre niveau d&#39;intelligence et de conscience.
+
+Un objectif grand angle permet de voir non seulement les limites de l&#39;objet, mais encore l&#39;arrière-plan qui le révèle. Ainsi en est-il de la perception dans le cinquième état de conscience, en vertu du caractère illimité de la conscience de celui qui perçoit. Cela se produit tout aussi bien vers
+
+l&#39;intérieur que vers l&#39;extérieur, aux deux niveaux vertical et horizontal de la connaissance.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">7 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-008" data-slide-id="slide-008" data-slide-title="Résumé long · 5" aria-hidden="true">
+  <header class="slide-header">Résumé long · 5</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">4.</div>
+  <div class="item-body"><p>Une conscience non restreinte et illimitée, telle qu&#39;elle apparaît dans le cinquième état de conscience, peut atteindre des valeurs de perception beaucoup plus profondes et plus fines. et ceci jusqu&#39;à ce que la valeur relative la plus fine de l&#39;objet soit incluse dans la perception. Ces niveaux plus fins sont caches à la vue qui ne voit que la valeur de surface des objets. Une telle vision ne saisit que la surface des choses et ne dévoile des qualités de l&#39;objet que celles qui le distinguent de tout son environnement; par conséquent, ces limites de l&#39;objet restent rigides. bien définies et spécifiques.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">8 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-009" data-slide-id="slide-009" data-slide-title="Résumé long · 6" aria-hidden="true">
+  <header class="slide-header">Résumé long · 6</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">4.<span class="continuation-label">suite</span></div>
+  <div class="item-body"><p>Une fois que l&#39;on a stabilisé le cinquième état, la conscience illimitée étant établie au niveau de l&#39;esprit conscient, la perception commence graduellement à s&#39;approfondir jusqu&#39;à ce qu&#39;elle pénètre la valeur relative la plus fine des objets. Ce sera une valeur distincte de perception où l&#39;aspect relatif le plus fin sera perçu spontanément à la surface même du relatif grossier. La sève dépourvue de couleur qui demeure cachée sous la surface des couleurs de la fleur est maintenant connue comme ce qui structure tout élément de couleur que manifeste la fleur. La sève incolore est perçue réalisée - à la surface de la fleur, mais, comme elle est transparente, elle demeure là sans cacher la couleur et lui permet de garder le premier plan, sans pour autant que ladite couleur fasse ombrage à la sève incolore.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">9 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-010" data-slide-id="slide-010" data-slide-title="Résumé long · 7" aria-hidden="true">
+  <header class="slide-header">Résumé long · 7</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">5.</div>
+  <div class="item-body"><p>Dans le cinquième état de conscience, où le quatrième coexiste avec la veille, on perçoit la valeur de surface des objets. Lorsque la perception devient si raffinée qu&#39;elle saisit le relatif le plus fin à la surface du relatif grossier, alors nous sommes en présence d&#39;un nouvel état de conscience distinct du cinquième. C&#39;est pourquoi nous l&#39;appelons le sixième. H se développe grâce à l&#39;alternance de l&#39;expérience du quatrième avec une activité plus raffinée guidée par l&#39;impulsion du coeur: l&#39;activité est davantage dirigée par le sentiment. Son caractère spécifique consiste en une perception tellement raffinée qu&#39;elle est capable de saisir la valeur relative La plus fine à la surface de tout objet de perception.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">10 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-011" data-slide-id="slide-011" data-slide-title="Résumé long · 8" aria-hidden="true">
+  <header class="slide-header">Résumé long · 8</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">6.</div>
+  <div class="item-body"><p>Dans les cinquième et sixième états de conscience, la conscience illimitée est établie de façon permanente pendant la veille, le rêve et le sommeil. Dans le sixième état, nous pouvons en plus percevoir l&#39;aspect le plus fin de l&#39;existence relative; il semble ainsi qu&#39;aucune évolution ne soit encore possible en terme de perception. Cependant, dans notre examen du quatrième état de conscience, nous avons découvert que c&#39;est une réalité transcendantale et absolue. Cela veut dire qu&#39;il est non relatif, et qu&#39;on peut en faire l&#39;expérience. Nous pouvons donc nous demander s&#39;il serait possible
+
+de faire l&#39;expérience de la réalité transcendantale située au-delà du relatif le plus fin, au plan de la cognition, tout en restant établi dans le quatrième état au plan de la conscience.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">11 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-012" data-slide-id="slide-012" data-slide-title="Résumé long · 9" aria-hidden="true">
+  <header class="slide-header">Résumé long · 9</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">6.<span class="continuation-label">suite</span></div>
+  <div class="item-body"><p>La perception ne peut atteindre cet état, car elle implique qu&#39;il y ait un objet de perception aussi bien qu&#39;un sujet qui perçoive, et comme la valeur absolue de la vie est non manifestée, elle est donc non perceptible. Cependant, lorsque la conscience illimitée, non manifestée, est devenue la nature même de l&#39;esprit conscient (cinquième état), et lorsque cet esprit conscient saisit lui-même le relatif le plus fin (sixième état), alors la valeur non manifestée qui imprègne le relatif le plus fin sera animée. Cette animation de la valeur transcendantale de l&#39;objectivité n&#39;est pas autre chose que l&#39;animation de l&#39;esprit conscient dans sa valeur illimitée. Cette similitude, ou identité, anime les objets de perception de telle sorte que leur valeur non-manifestée, jusque là diffuse et fermée à la conscience, commence à respirer la vie.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">12 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-013" data-slide-id="slide-013" data-slide-title="Résumé long · 10" aria-hidden="true">
+  <header class="slide-header">Résumé long · 10</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">6.<span class="continuation-label">suite</span></div>
+  <div class="item-body"><p>L&#39;état de la cognition prend soudain un caractère différent de celui qui saisit le relatif le plus fin. Ce nouvel état de cognition s&#39;anime dans l&#39;absolu infini, éternel. Tout ceci n&#39;est possible que lorsque l&#39;esprit conscient vibre avec cette valeur infinie jusqu&#39;au point où la perception s&#39;élève à sa valeur infinie, qu&#39;elle s&#39;anime transcendantalement, l&#39;esprit saisissant l&#39;aspect relatif le plus fin de l&#39;existence. Ceci mérite de s&#39;appeler le septième état de conscience. Au-delà, il ne semble pas y avoir d&#39;autres possibilité de développement. Nous pouvons parler de l&#39;état unifié de la conscience.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">13 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-014" data-slide-id="slide-014" data-slide-title="Résumé long · 11" aria-hidden="true">
+  <header class="slide-header">Résumé long · 11</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">7.</div>
+  <div class="item-body"><p>Dans ce septième état, la valeur ultime, non-manifestée, infinie de l&#39;objectivité s&#39;anime et devient connue en termes de la pure valeur subjective de la conscience illimitée, non-manifestée. Elle est en effet ultime parce que les expériences, l&#39;objectivité, la perception et l&#39;action ont toutes été élevées au même niveau d&#39;illimité, La connaissance a établi un pont entre le sujet connaissant et l&#39;objet connu. L&#39;objet est saisi dans sa réalité totale lorsque son caractère infini, caché jusqu&#39;alors, est apprécié en surface.
+
+Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devient totale; celui qui perçoit devient capable de saisir l&#39;objet dans sa complétion, et l&#39;on acquiert ainsi la pleine valeur de la connaissance.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">14 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-015" data-slide-id="slide-015" data-slide-title="Résumé long · 12 et fin" aria-hidden="true">
+  <header class="slide-header">Résumé long · 12 et fin</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">7.<span class="continuation-label">suite</span></div>
+  <div class="item-body"><p>La connaissance est pleine, la réalité infinie structure chaque petit élément du fini, et la perception pénètre jusqu&#39;à la profondeur illimitée de la vérité, évaluant chaque objet en termes d&#39;infini Cet état de conscience, le plus élevé, devient réalité vivante grâce au processus qui ouvre l&#39;esprit conscient au quatrième état, puis, le combinant à l&#39;activité, l&#39;élève au cinquième, au sixième, jusqu&#39;à atteindre cet accomplissement ultime du septième état. Vivre cet état suprême de vie, telle est la perspective ouverte par la connaissance et la pratique de la SIC.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">15 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-016" data-slide-id="slide-016" data-slide-title="Questions · 1" aria-hidden="true">
+  <header class="slide-header">Questions · 1</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Qu&#39;est-ce qui caractérise le cinquième état de conscience?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">16 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-017" data-slide-id="slide-017" data-slide-title="Questions · 2" aria-hidden="true">
+  <header class="slide-header">Questions · 2</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Que peut-on dire de la perception dans le cinquième état de conscience ”?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">17 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-018" data-slide-id="slide-018" data-slide-title="Questions · 3" aria-hidden="true">
+  <header class="slide-header">Questions · 3</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Quel exemple, tire de la physique, nous conduit à envisager l&#39;existence d&#39;un sixième état de conscience?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">18 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-019" data-slide-id="slide-019" data-slide-title="Questions · 4" aria-hidden="true">
+  <header class="slide-header">Questions · 4</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Que peut-on dire de la perception dans le sixième état de conscience?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">19 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-020" data-slide-id="slide-020" data-slide-title="Questions · 5" aria-hidden="true">
+  <header class="slide-header">Questions · 5</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Qu&#39;est-ce qui rend possible d&#39;avoir un septième état de conscience?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">20 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-021" data-slide-id="slide-021" data-slide-title="Questions · 6" aria-hidden="true">
+  <header class="slide-header">Questions · 6</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Pourquoi donnons-nous différents noms à ces états de conscience?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">21 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-022" data-slide-id="slide-022" data-slide-title="Questions · 7 et fin" aria-hidden="true">
+  <header class="slide-header">Questions · 7 et fin</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">Comment l&#39;état le plus élevé de la conscience devient-il réalité vivante?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">22 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-023" data-slide-id="slide-023" data-slide-title="Discussion · 1" aria-hidden="true">
+  <header class="slide-header">Discussion · 1</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Qu&#39;est-ce qui caractérise le cinquième état de conscience?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">23 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-024" data-slide-id="slide-024" data-slide-title="Discussion · réponse · 1" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 1</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Qu&#39;est-ce qui caractérise le cinquième état de conscience?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>La conscience pure que l&#39;on expérimenté en même temps que l&#39;objet d&#39;expérience.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">24 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-025" data-slide-id="slide-025" data-slide-title="Discussion · 2" aria-hidden="true">
+  <header class="slide-header">Discussion · 2</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Que peut-on dire de la perception dans le cinquième état de conscience ”?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">25 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-026" data-slide-id="slide-026" data-slide-title="Discussion · réponse · 2" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 2</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Que peut-on dire de la perception dans le cinquième état de conscience ”?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Dans le cinquième état de conscience, où la le quatrième coexiste avec l&#39;état de veille de la conscience, la perception atteint la surface de l&#39;objet.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">26 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-027" data-slide-id="slide-027" data-slide-title="Discussion · 3" aria-hidden="true">
+  <header class="slide-header">Discussion · 3</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Quel exemple, tire de la physique, nous conduit à envisager l&#39;existence d&#39;un sixième état de conscience?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">27 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-028" data-slide-id="slide-028" data-slide-title="Discussion · réponse · 3" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 3</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Quel exemple, tire de la physique, nous conduit à envisager l&#39;existence d&#39;un sixième état de conscience?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>La physique nous enseigne qu&#39;il y a diverses couches d&#39;existence: molécules, atomes, électrons, particules élémentaires, particules à haute énergie, etc. Ces couches d&#39;existence, imbriquées les unes à l&#39;intérieur des autres, ont chacune leur propre nature et leur propre niveau d&#39;intelligence.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">28 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-029" data-slide-id="slide-029" data-slide-title="Discussion · 4" aria-hidden="true">
+  <header class="slide-header">Discussion · 4</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Que peut-on dire de la perception dans le sixième état de conscience?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">29 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-030" data-slide-id="slide-030" data-slide-title="Discussion · réponse · 4" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 4</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Que peut-on dire de la perception dans le sixième état de conscience?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Lorsque la perception est raffinée au point de permettre l&#39;expérience du plus fin relatif à la surface du relatif grossier, nous sommes en présence d&#39;un autre état de conscience, distinct du cinquième par ses caractéristiques propres: la capacité de percevoir le relatif le plus fin jointe à la conscience illimitée. Le plus fin relatif est alors perçu en tant que valeur la plus raffinée de la perception. Lorsque la conscience illimitée devient en trait permanent de notre esprit conscient, et que la perception est des plus raffinées, capable de saisir partout la valeur relative la plus fine, nous avons là un état nouveau, qui porte un nom différent: sixième état de Conscience.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">30 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-031" data-slide-id="slide-031" data-slide-title="Discussion · 5" aria-hidden="true">
+  <header class="slide-header">Discussion · 5</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Qu&#39;est-ce qui rend possible d&#39;avoir un septième état de conscience?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">31 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-032" data-slide-id="slide-032" data-slide-title="Discussion · réponse · 5" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 5</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Qu&#39;est-ce qui rend possible d&#39;avoir un septième état de conscience?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Cela n&#39;est possible que lorsque l&#39;esprit conscient vibre dans la valeur infinie et se trouve avoir été raffiné au point de saisir Spontanément la valeur relative la plus fine; et de là, il s&#39;élève directement à la valeur infinie de la perception au niveau de l&#39;esprit conscient. Telle est la caractéristique qui mérite bien le nom de septième état de conscience.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">32 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-033" data-slide-id="slide-033" data-slide-title="Discussion · 6" aria-hidden="true">
+  <header class="slide-header">Discussion · 6</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Pourquoi donnons-nous différents noms à ces états de conscience?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">33 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-034" data-slide-id="slide-034" data-slide-title="Discussion · réponse · 6" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 6</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Pourquoi donnons-nous différents noms à ces états de conscience?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Nous donnons un nom - Septième, Sixième, cinquième, quatrième... simplement du fait que les caractéristiques de chacun d&#39;eux sont différentes de celles des autres.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">34 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-035" data-slide-id="slide-035" data-slide-title="Discussion · 7" aria-hidden="true">
+  <header class="slide-header">Discussion · 7</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">Comment l&#39;état le plus élevé de la conscience devient-il réalité vivante?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">35 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-036" data-slide-id="slide-036" data-slide-title="Discussion · réponse · 7 et fin" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 7 et fin</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">Comment l&#39;état le plus élevé de la conscience devient-il réalité vivante?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Grace au processus qui ouvre l&#39;esprit conscient à l&#39;existence valide du quatrième état de conscience combiné à l&#39;activité.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">36 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-037" data-slide-id="slide-037" data-slide-title="Place de la leçon · 1" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 1</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>A ce point du cours, nous avons établi la nature, l&#39;étendue et les moyens de développement de l&#39;IC. La leçon 23 met en lumière toutes les valeurs possibles de la conscience et révèle aussi l&#39;aspect pratique de l&#39;épanouissement de la valeur suprême de l&#39;IC au niveau de notre propre conscience.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">37 of 38</span>
+  </footer>
+</article>
+<article class="slide" id="slide-038" data-slide-id="slide-038" data-slide-title="Place de la leçon · 2 et fin" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 2 et fin</header>
+<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>Cette leçon nous fait connaître les mécanismes par lesquels la demeure de toute connaissance se structure au sein de notre conscience; elle nous montre donc comment tout individu peut s&#39;élever à un niveau d&#39;existence où tout aspect de la vie recevra un soutien spontané, direct et complet de la part de la valeur infinie de l&#39;IC. On peut évidemment dire que cette leçon incarne la vie du cours tout entier, puisqu&#39;elle étudie systématiquement, et contribue scientifiquement au développement de la conscience, à partir des limites des états relatifs jusqu&#39;à l&#39;illimité de la conscience suprême, ceci grâce à la connaissance et la pratique de la Science de l&#39;Intelligence Créatrice.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 23</span>
+    <span class="global-pagination">38 of 38</span>
+  </footer>
+</article>
+
+  </main>
+  <div class="presenter-hint" aria-hidden="true">← → naviguer · F plein écran</div>
+  <script>
+(() => {
+  const stage = document.querySelector('.deck-stage');
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let index = 0;
+
+  const clamp = (value) => Math.max(0, Math.min(slides.length - 1, value));
+
+  const indexFromHash = () => {
+    const match = window.location.hash.match(/^#\/(\d+)$/);
+    return match ? clamp(Number(match[1]) - 1) : 0;
+  };
+
+  const scaleStage = () => {
+    const scale = Math.min(window.innerWidth / 1600, window.innerHeight / 1000);
+    stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+  };
+
+  const checkOverflow = () => {
+    const failures = [];
+    document.querySelectorAll('[data-overflow-check]').forEach((element) => {
+      const overflow = element.scrollHeight > element.clientHeight + 1 ||
+        element.scrollWidth > element.clientWidth + 1;
+      element.classList.toggle('overflow-warning', overflow);
+      if (overflow) failures.push(element.closest('.slide')?.dataset.slideId || 'unknown');
+    });
+    return failures;
+  };
+
+  const show = (nextIndex, updateHash = true) => {
+    index = clamp(nextIndex);
+    slides.forEach((slide, slideIndex) => {
+      const active = slideIndex === index;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+    });
+    if (updateHash) history.replaceState(null, '', `#/${index + 1}`);
+    document.title = `${slides[index].dataset.slideTitle} — ${index + 1}/${slides.length}`;
+  };
+
+  const toggleFullscreen = async () => {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+    } else {
+      await document.documentElement.requestFullscreen();
+    }
+  };
+
+  window.addEventListener('resize', scaleStage);
+  window.addEventListener('hashchange', () => show(indexFromHash(), false));
+  window.addEventListener('keydown', (event) => {
+    if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(event.key)) {
+      event.preventDefault();
+      show(index + 1);
+    } else if (['ArrowLeft', 'ArrowUp', 'Backspace', 'PageUp'].includes(event.key)) {
+      event.preventDefault();
+      show(index - 1);
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      show(0);
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      show(slides.length - 1);
+    } else if (event.key.toLowerCase() === 'f') {
+      event.preventDefault();
+      toggleFullscreen();
+    }
+  });
+
+  window.deckQA = {
+    slideCount: slides.length,
+    currentSlide: () => index + 1,
+    overflows: checkOverflow,
+    show: (slideNumber) => show(slideNumber - 1)
+  };
+
+  scaleStage();
+  show(indexFromHash(), false);
+  document.fonts.ready.then(checkOverflow);
+})();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,1152 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="generator" content="sci-course-slides/1.0.0">
+  <meta name="content-sha256" content="85bb5a5b114a4b526f1d5fb62fe701d8bfb19ad704722fae085fff075adcad4a">
+  <title>La SIC et l&#39;idéal de l&#39;éducation</title>
+  <style>
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("assets/fonts/barlow-condensed-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("assets/fonts/barlow-condensed-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("assets/fonts/lora-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("assets/fonts/lora-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --canvas-width: 1600px;
+  --canvas-height: 1000px;
+  --background: #F7F5F0;
+  --text: #141414;
+  --red: #C94C3B;
+  --muted: #776F68;
+  --stage: #141414;
+  --margin-x: 104px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--stage);
+  color: var(--text);
+}
+
+body {
+  font-family: "Lora", serif;
+}
+
+.deck-stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--canvas-width);
+  height: var(--canvas-height);
+  transform-origin: center center;
+  background: var(--background);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  width: var(--canvas-width);
+  height: var(--canvas-height);
+  padding: 0 var(--margin-x);
+  overflow: hidden;
+  background: var(--background);
+}
+
+.slide.is-active {
+  display: block;
+}
+
+.slide-header {
+  position: absolute;
+  top: 62px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  height: 44px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--red);
+}
+
+.lesson-title {
+  position: absolute;
+  top: 150px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1.04;
+  color: var(--text);
+  height: 86px;
+  overflow: hidden;
+  white-space: normal;
+}
+
+.lesson-title--long {
+  font-size: 39px;
+  line-height: 1;
+}
+
+.slide-content {
+  position: absolute;
+  top: 242px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  height: 690px;
+  overflow: hidden;
+  font-family: "Lora", serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.34;
+}
+
+.slide-content.compact {
+  font-size: 27px;
+  line-height: 1.31;
+}
+
+.numbered-item {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 4px;
+  margin: 0 0 26px;
+}
+
+.numbered-item:last-child {
+  margin-bottom: 0;
+}
+
+.item-number {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.9em;
+  line-height: 1.45;
+  color: var(--red);
+}
+
+.continuation-label {
+  display: block;
+  margin-top: -2px;
+  font-size: 0.55em;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.item-body p {
+  margin: 0;
+}
+
+.item-body ul {
+  margin: 10px 0 0 1.08em;
+  padding: 0;
+}
+
+.item-body li {
+  margin: 3px 0;
+  padding-left: 0.22em;
+}
+
+.question-layout {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.question-number {
+  padding-top: 4px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 38px;
+  color: var(--red);
+}
+
+.question-text {
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.14;
+}
+
+.answer {
+  margin: 38px 0 0 78px;
+  padding-top: 28px;
+  border-top: 2px solid rgba(201, 76, 59, 0.32);
+  font-size: 30px;
+  line-height: 1.36;
+}
+
+.answer-label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.slide-footer {
+  position: absolute;
+  top: 926px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.course-footer {
+  color: var(--red);
+}
+
+.global-pagination {
+  color: var(--muted);
+}
+
+.cover-title {
+  position: absolute;
+  top: 252px;
+  left: var(--margin-x);
+  right: 250px;
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 76px;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.018em;
+}
+
+.cover-rule {
+  position: absolute;
+  left: var(--margin-x);
+  top: 190px;
+  width: 154px;
+  height: 6px;
+  background: var(--red);
+}
+
+.overflow-warning {
+  outline: 8px solid #ff00cc;
+  outline-offset: -8px;
+}
+
+.presenter-hint {
+  position: fixed;
+  right: 16px;
+  bottom: 12px;
+  z-index: 20;
+  font-family: sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+body:hover .presenter-hint {
+  opacity: 1;
+}
+
+@media print {
+  @page {
+    size: 16in 10in;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: auto;
+    height: auto;
+    overflow: visible;
+    background: #fff;
+  }
+
+  .deck-stage {
+    position: static;
+    width: auto;
+    height: auto;
+    transform: none !important;
+    box-shadow: none;
+  }
+
+  .slide,
+  .slide.is-active {
+    position: relative;
+    display: block;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .presenter-hint {
+    display: none;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <main class="deck-stage" aria-label="Cours de SIC — Leçon 26">
+<article class="slide is-active" id="slide-001" data-slide-id="slide-001" data-slide-title="La SIC et l&#39;idéal de l&#39;éducation" aria-hidden="false">
+  <div class="cover-rule" aria-hidden="true"></div>
+<h1 class="cover-title">La SIC et l&#39;idéal de l&#39;éducation</h1>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">1 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-002" data-slide-id="slide-002" data-slide-title="Points principaux · 1 et fin" aria-hidden="true">
+  <header class="slide-header">Points principaux · 1 et fin</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>L&#39;idéal de l&#39;éducation consiste à créer un homme pleinement développé, qui soit:</p><ul><li>un homme de connaissance</li><li>un homme plein de ressources</li><li>D un homme responsable</li><li>un homme qui ait du succès</li><li>&gt; un homme de plénitude</li><li>un homme qui soit au maximum utile à lui-même et aux autres</li></ul></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>Le but de l&#39;éducation sera réalisé lorsque les méthodes subjectives et objectives pour acquérir la connaissance seront toutes deux utilisées.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>La SIC crée un homme pleinement développé, et réalise ainsi le but le plus élevé de l&#39;éducation. Elle construit la demeure de toute connaissance dans l&#39;esprit individuel.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">2 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-003" data-slide-id="slide-003" data-slide-title="Résumé long · 1" aria-hidden="true">
+  <header class="slide-header">Résumé long · 1</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>Nous avons déjà vu que la connaissance doit être complète, si nous voulons que la plénitude soit vaste et durable: nous avons vu également que la SIC réalise cette complétion de connaissance en utilisant tout à la fois les moyens objectifs et subjectifs de gagner la connaissance. Grâce aux moyens subjectifs de gagner la connaissance, notre conscience s&#39;étend jusqu&#39;à ce que la conscience illimitée soit établie au plan de l&#39;esprit conscient. Sur la base de cette conscience illimitée, les moyens objectifs, scientifiques, de gagner la connaissance nous fournissent une connaissance très précise, non-variable, digne de foi, des limites, des domaines spécifiques de la vie relative.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">3 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-004" data-slide-id="slide-004" data-slide-title="Résumé long · 2" aria-hidden="true">
+  <header class="slide-header">Résumé long · 2</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.<span class="continuation-label">suite</span></div>
+  <div class="item-body"><p>En utilisant ensemble les moyens subjectifs et objectifs de gagner la connaissance, la SIC satisfait à l&#39;aspiration de l&#39;éducation: créer des êtres de connaissance, pleinement développés.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>Un homme de connaissance est un homme qui sait faire le meilleur usage de lui-même et de son environnement. Il a un esprit plein de ressources. Pour réaliser son but, l&#39;éducation a développé des méthodes qui placent les étudiants dans un environnement tel que diverses informations venant de disciplines différentes soient nécessaires dans le but de réaliser une tâche spécifique. De cette manière, l&#39;étudiant apprend à utiliser ses ressources intérieures et gagne confiance dans la vie.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">4 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-005" data-slide-id="slide-005" data-slide-title="Résumé long · 3" aria-hidden="true">
+  <header class="slide-header">Résumé long · 3</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>L&#39;éducation voudrait faire de tout homme un membre de la société qui soit plein de ressources, responsable, juste et puissant. Un homme dont les ressources sont pleinement développées depuis l&#39;intérieur est d&#39;utilité maximum et à lui-même et aux autres. Grâce à la SIC, l&#39;éducation développe tout à la fois les ressources intérieures et extérieures. Elle déploie pleinement la réserve d&#39;IC latente en tout homme; du même coup, elle donne à l&#39;homme la connaissance de tous les aspects de la vie.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">5 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-006" data-slide-id="slide-006" data-slide-title="Résumé long · 4" aria-hidden="true">
+  <header class="slide-header">Résumé long · 4</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">4.</div>
+  <div class="item-body"><p>Les différentes branches d&#39;étude sont là pour que l&#39;homme puisse connaître les différents domaines de la vie, mais la capacité de gagner la connaissance doit aussi être améliorée. Le “conteneur” de la connaissance doit augmenter sa capacité en même temps qu&#39;il se remplit; il doit être assez vaste pour contenir l&#39;océan de la connaissance tout entier. La pratique de la SIC dilate l&#39;esprit jusqu&#39;à son potentiel infini d&#39;une manière spontanée, naturelle et sans effort.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">6 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-007" data-slide-id="slide-007" data-slide-title="Résumé long · 5" aria-hidden="true">
+  <header class="slide-header">Résumé long · 5</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">5.</div>
+  <div class="item-body"><p>L&#39;éducation devrait développer l&#39;étudiant de telle sorte quil soit un bon membre de la société, qu&#39;il ait du succès et qu&#39;il progresse en toute phase de la vie, quelle que soit sa connaissance du domaine relatif, quelle que soit sa capacité d&#39;action. S&#39;il demeure incapable d&#39;utiliser son plein potentiel, il est un boulet pour la société. Toute société qui intègre la SIC à son système d&#39;éducation sera capable de réaliser l&#39;idéal de l&#39;éducation: tout étudiant deviendra profond dans sa pensée, dans son action, dans son accomplissement et dans sa plénitude, ceci en utilisant ensemble les moyens subjectifs et objectifs pour gamer la connaissance.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">7 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-008" data-slide-id="slide-008" data-slide-title="Résumé long · 6" aria-hidden="true">
+  <header class="slide-header">Résumé long · 6</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">6.</div>
+  <div class="item-body"><p>En dépit des grands progrès accomplis par l&#39;homme moderne en science et en technologie, en dépit de sa capacité à connaître les vastes galaxies et le monde de l&#39;atome, le système d&#39;éducation actuel ne fournit pas une connaissance complète. La soif de connaître n&#39;est pas étanchée. Un homme sait quelque chose en histoire, quelque chose en économie, quelque chose en physique et quelque chose encore dans les autres domaines d&#39;étude: mais le champ de la connaissance est tellement vaste qu&#39;il n&#39;est pas possible de connaître toute chose en se contentant d&#39;étudier les différentes disciplines. La valeur totale de la connaissance peut cependant être acquise au plan de notre conscience.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">8 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-009" data-slide-id="slide-009" data-slide-title="Résumé long · 7" aria-hidden="true">
+  <header class="slide-header">Résumé long · 7</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">6.<span class="continuation-label">suite</span></div>
+  <div class="item-body"><p>En étendant la capacité consciente de l&#39;esprit, il est possible de construire la demeure de toute connaissance dans notre conscience, et donc de structurer la plénitude dans nos coeurs et dans nos esprits. Telle est l&#39;accomplissement de l&#39;éducation offerte par la SIC.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">9 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-010" data-slide-id="slide-010" data-slide-title="Résumé long · 8" aria-hidden="true">
+  <header class="slide-header">Résumé long · 8</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">7.</div>
+  <div class="item-body"><p>Dans le présent système d&#39;éducation, plus nous étudions un sujet, plus nous prenons conscience d&#39;un plus grand domaine d&#39;inconnu devant nous. Le champ de l&#39;ignorance grandit plus rapidement que le champ de la connaissance. L&#39;homme est abandonné au désespoir puisqu&#39;il ne peut satisfaire sa soif de connaissance. Quand l&#39;existence désire progresser et évoluer jusqu&#39;à sa valeur infinie, la connaissance aussi désire croître jusqu&#39;à sa valeur infinie. Mais lorsqu&#39;en grandissant dans la connaissance d&#39;un petit domaine, nous grandissons en même temps dans l&#39;ignorance d&#39;un domaine encore plus vaste, il y a de la cruauté. Un tel système d&#39;éducation sabote la vie.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">10 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-011" data-slide-id="slide-011" data-slide-title="Résumé long · 9" aria-hidden="true">
+  <header class="slide-header">Résumé long · 9</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">8.</div>
+  <div class="item-body"><p>En intégrant la SIC aux systèmes d&#39;éducation du monde entier grâce au Plan Mondial, nous rendrons l&#39;éducation capable de présenter la fleur de la connaissance sans les épines de l&#39;ignorance. Quel que soit le sujet d&#39;étude, on y incorporera également la pratique du développement de la conscience, c&#39;est-à-dire les moyens subjectifs de gagner la connaissance.
+
+Quand l&#39;esprit conscient deviendra demeure de toute connaissance, toute pensée jaillira alors du domaine de toute connaissance et embrassera tout, et toute action deviendra profonde et facteur de progrès, aboutissant à un accomplissement et une plénitude maximums.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">11 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-012" data-slide-id="slide-012" data-slide-title="Résumé long · 10" aria-hidden="true">
+  <header class="slide-header">Résumé long · 10</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">9.</div>
+  <div class="item-body"><p>Le développement physique de chaque étudiant vers la maturité adulte devrait s&#39;accompagner de la croissance de l&#39;esprit et de la conscience. Parce que la nature de la vie est de croitre, le désir de grandir en connaissance pousse les gens à continuer à étudier tout au long de leur vie. Le domaine entier de la vie est le domaine de l&#39;éducation.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">12 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-013" data-slide-id="slide-013" data-slide-title="Résumé long · 11" aria-hidden="true">
+  <header class="slide-header">Résumé long · 11</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">10.</div>
+  <div class="item-body"><p>L&#39;étude doit se fonder sur des étapes de progrès, sur le succès et non l&#39;échec. On a pensé que souffrance, échec et ignorance étaient nécessaires, parce que la vie humaine n&#39;avait ni plan ni direction appropriés. L&#39;éducation doit satisfaire son but et donner à la vie une direction de progrès, puisse être vécue dans la plénitude. Ce que le présent système d&#39;éducation ne fournit pas, c&#39;est la connaissance de la source de la pensée, du siège de l&#39;IC. Si nous ne savons comment localiser le réservoir de l&#39;C, nous ne savons pas non plus d&#39;où tirer la plénitude de la ie,</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">13 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-014" data-slide-id="slide-014" data-slide-title="Résumé long · 12 et fin" aria-hidden="true">
+  <header class="slide-header">Résumé long · 12 et fin</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">11.</div>
+  <div class="item-body"><p>La bénédiction de la SIC tient en ce qu&#39;elle déroule le tapis de la connaissance au sein de toutes les différentes disciplines, édifiant la demeure de toutes les branches d&#39;étude, le champ pur de l&#39;IC, dans notre propre conscience. Ensuite, où que nous allions, quoi que nous voyions, nous sommes établis dans la demeure de toute connaissance d&#39;où s&#39;élèvent de profondes inspirations, lesquelles vont se traduire en actions utiles et efficaces, en vue d&#39;un maximum d&#39;accomplissement et de plénitude. Ainsi, utilisant à la fois les moyens objectifs et subjectifs pour gagner la connaissance, la SIC produit des individus pleinement éduqués et développés; elle réalise donc l&#39;idéal de l&#39;éducation.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">14 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-015" data-slide-id="slide-015" data-slide-title="Questions · 1" aria-hidden="true">
+  <header class="slide-header">Questions · 1</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Qu&#39;est-ce qui est nécessaire, dans le domaine de l&#39;éducation, pour que la plénitude englobe tout?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">15 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-016" data-slide-id="slide-016" data-slide-title="Questions · 2" aria-hidden="true">
+  <header class="slide-header">Questions · 2</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Comment définissons-nous un homme de connaissance?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">16 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-017" data-slide-id="slide-017" data-slide-title="Questions · 3" aria-hidden="true">
+  <header class="slide-header">Questions · 3</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Qu&#39;est-ce que l&#39;éducation accomplit grâce à la SIC?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">17 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-018" data-slide-id="slide-018" data-slide-title="Questions · 4" aria-hidden="true">
+  <header class="slide-header">Questions · 4</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Quand l&#39;idéal de l&#39;éducation est-il réalisé?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">18 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-019" data-slide-id="slide-019" data-slide-title="Questions · 5" aria-hidden="true">
+  <header class="slide-header">Questions · 5</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Que manque-t-il à l&#39;éducation contemporaine?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">19 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-020" data-slide-id="slide-020" data-slide-title="Questions · 6" aria-hidden="true">
+  <header class="slide-header">Questions · 6</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Quel est donc le domaine vital dont le développement a manqué jusqu&#39;ici?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">20 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-021" data-slide-id="slide-021" data-slide-title="Questions · 7" aria-hidden="true">
+  <header class="slide-header">Questions · 7</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">Qu&#39;est-ce qui a causé ce manque de développement?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">21 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-022" data-slide-id="slide-022" data-slide-title="Questions · 8 et fin" aria-hidden="true">
+  <header class="slide-header">Questions · 8 et fin</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">8.</div>
+    <p class="question-text">Qu&#39;est-ce qui est mis à disposition par l&#39;étude de la SIC - en termes de connaissance - et comment l&#39;éducation en est-elle affectée?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">22 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-023" data-slide-id="slide-023" data-slide-title="Discussion · 1" aria-hidden="true">
+  <header class="slide-header">Discussion · 1</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Qu&#39;est-ce qui est nécessaire, dans le domaine de l&#39;éducation, pour que la plénitude englobe tout?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">23 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-024" data-slide-id="slide-024" data-slide-title="Discussion · réponse · 1" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 1</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Qu&#39;est-ce qui est nécessaire, dans le domaine de l&#39;éducation, pour que la plénitude englobe tout?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Pour que la plénitude englobe tout et qu&#39;elle dure, il est nécessaire que la connaissance sou complète.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">24 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-025" data-slide-id="slide-025" data-slide-title="Discussion · 2" aria-hidden="true">
+  <header class="slide-header">Discussion · 2</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Comment définissons-nous un homme de connaissance?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">25 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-026" data-slide-id="slide-026" data-slide-title="Discussion · réponse · 2" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 2</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Comment définissons-nous un homme de connaissance?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Un homme de connaissance est un homme dont l&#39;esprit est plein de ressources; il sait foire le meilleur usage de lui-même et de son environnement.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">26 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-027" data-slide-id="slide-027" data-slide-title="Discussion · 3" aria-hidden="true">
+  <header class="slide-header">Discussion · 3</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Qu&#39;est-ce que l&#39;éducation accomplit grâce à la SIC?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">27 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-028" data-slide-id="slide-028" data-slide-title="Discussion · réponse · 3" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 3</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Qu&#39;est-ce que l&#39;éducation accomplit grâce à la SIC?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Grâce à la SIC, l&#39;éducation développe en l&#39;homme les ressources de son Intelligence Créatrice intérieure, latente: elle en fait en même temps un connaisseur de son propre environnement, du passé et des possibilités de l&#39;avenir.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">28 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-029" data-slide-id="slide-029" data-slide-title="Discussion · 4" aria-hidden="true">
+  <header class="slide-header">Discussion · 4</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Quand l&#39;idéal de l&#39;éducation est-il réalisé?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">29 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-030" data-slide-id="slide-030" data-slide-title="Discussion · réponse · 4" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 4</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Quand l&#39;idéal de l&#39;éducation est-il réalisé?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Lorsque les pensées, sentiments, actions, accomplissements et la plénitude qui en résulte sont profonds et maximums.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">30 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-031" data-slide-id="slide-031" data-slide-title="Discussion · 5" aria-hidden="true">
+  <header class="slide-header">Discussion · 5</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Que manque-t-il à l&#39;éducation contemporaine?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">31 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-032" data-slide-id="slide-032" data-slide-title="Discussion · réponse · 5" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 5</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Que manque-t-il à l&#39;éducation contemporaine?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>À l&#39;éducation présente manque la technique qui donnerait satisfaction dans le domaine de la connaissance. C&#39;est le but de l&#39;éducation qui est manqué.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">32 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-033" data-slide-id="slide-033" data-slide-title="Discussion · 6" aria-hidden="true">
+  <header class="slide-header">Discussion · 6</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Quel est donc le domaine vital dont le développement a manqué jusqu&#39;ici?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">33 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-034" data-slide-id="slide-034" data-slide-title="Discussion · réponse · 6" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 6</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Quel est donc le domaine vital dont le développement a manqué jusqu&#39;ici?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Le champ de la conscience et de l&#39;intelligence.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">34 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-035" data-slide-id="slide-035" data-slide-title="Discussion · 7" aria-hidden="true">
+  <header class="slide-header">Discussion · 7</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">Qu&#39;est-ce qui a causé ce manque de développement?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">35 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-036" data-slide-id="slide-036" data-slide-title="Discussion · réponse · 7" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 7</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">Qu&#39;est-ce qui a causé ce manque de développement?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>L&#39;ignorance du siège de l&#39;IC, du réservoir de l&#39;IC, et le fait de ne pas savoir comment en tirer la pleine valeur de la vie.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">36 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-037" data-slide-id="slide-037" data-slide-title="Discussion · 8" aria-hidden="true">
+  <header class="slide-header">Discussion · 8</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">8.</div>
+    <p class="question-text">Qu&#39;est-ce qui est mis à disposition par l&#39;étude de la SIC - en termes de connaissance - et comment l&#39;éducation en est-elle affectée?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">37 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-038" data-slide-id="slide-038" data-slide-title="Discussion · réponse · 8 et fin" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 8 et fin</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">8.</div>
+    <p class="question-text">Qu&#39;est-ce qui est mis à disposition par l&#39;étude de la SIC - en termes de connaissance - et comment l&#39;éducation en est-elle affectée?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>La possibilité d&#39;édifier la demeure de toute connaissance au plan de notre esprit conscient La SIC fournit la connaissance du pur champ de l&#39;IC à toutes les disciplines et branches d&#39;étude. Elle amène à maturité l&#39;ensemble des moyens subjectifs et objectifs pour gagner la connaissance, de sorte que l&#39;éducation puisse réaliser son idéal le plus élevé: former des hommes et des femmes pleinement développés et pleinement éduqués.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">38 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-039" data-slide-id="slide-039" data-slide-title="Place de la leçon · 1" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 1</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>Jusqu&#39;ici les leçons du cours ont développé en profondeur les bénéfices fantastiques qu&#39;individu et société peuvent tirer de l&#39;étude et l&#39;apprentissage de la SIC.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>Nous avons vu que la totalité de la connaissance est nécessaire pour une plénitude tout-englobante et durable. En outre, la SIC fournit cette connaissance complète en développant la connaissance subjective en parallèle avec la connaissance objective.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>De la même manière, dans cette leçon - la SIC et l&#39;idéal de l&#39;Education nous verrons que les moyens subjectifs et objectifs pour gagner la connaissance doivent être tous deux développés pour que l&#39;éducation soit complète et satisfaisante. C&#39;est-à-dire: la croissance de la connaissance dans tous les différents domaines d&#39;étude doit aller de pair avec la croissance de la conscience chez les étudiants eux-mêmes.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">39 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-040" data-slide-id="slide-040" data-slide-title="Place de la leçon · 2" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 2</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">4.</div>
+  <div class="item-body"><p>On doit constamment jouir du fruit de l&#39;éducation tout en gagnant la connaissance. Dès le départ, l&#39;éducation doit structurer la demeure de toute connaissance dans notre conscience. C&#39;est sur cette base, la demeure de toute connaissance, que nous pouvons être vraiment éduqué. Tel est l&#39;idéal de l&#39;éducation.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">5.</div>
+  <div class="item-body"><p>Cette leçon met le doigt sur ie manque de développement de la connaissance subjective; cela explique l&#39;échec du système d&#39;éducation actuel dans la réalisation de cet idéal et dans la création de citogens responsables, pleins de ressources et de succès. Cette leçon présente la SIC comme le moyen de rendre l&#39;éducation complète, en fournissant le développement et la compréhension de la conscience.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">40 of 41</span>
+  </footer>
+</article>
+<article class="slide" id="slide-041" data-slide-id="slide-041" data-slide-title="Place de la leçon · 3 et fin" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 3 et fin</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et l&#39;idéal de l&#39;éducation</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">6.</div>
+  <div class="item-body"><p>En donnant les grandes lignes de l&#39;éducation, cette leçon offre au monde, pour la première fois, un moyen de créer des citogens productifs ei créatifs, qui vivent dans la plénitude, et ceci pour toutes les générations à venir.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">7.</div>
+  <div class="item-body"><p>En quelques mois seulement, l&#39;introduction de la SIC dans les systèmes d&#39;éducation, partout sur terre, fournira une méthode pratique pour changer rapidement et de façon permanente la face du monde - de la souffrance et du manque de satisfaction à la paix, au progrès et à la plénitude durable.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">8.</div>
+  <div class="item-body"><p>Mettant en lumière l&#39;idéal de l&#39;éducation, cette leçon réalise l&#39;un des principaux objectifs du cours tout entier et promet la plénitude à toutes ses aspirations.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 26</span>
+    <span class="global-pagination">41 of 41</span>
+  </footer>
+</article>
+
+  </main>
+  <div class="presenter-hint" aria-hidden="true">← → naviguer · F plein écran</div>
+  <script>
+(() => {
+  const stage = document.querySelector('.deck-stage');
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let index = 0;
+
+  const clamp = (value) => Math.max(0, Math.min(slides.length - 1, value));
+
+  const indexFromHash = () => {
+    const match = window.location.hash.match(/^#\/(\d+)$/);
+    return match ? clamp(Number(match[1]) - 1) : 0;
+  };
+
+  const scaleStage = () => {
+    const scale = Math.min(window.innerWidth / 1600, window.innerHeight / 1000);
+    stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+  };
+
+  const checkOverflow = () => {
+    const failures = [];
+    document.querySelectorAll('[data-overflow-check]').forEach((element) => {
+      const overflow = element.scrollHeight > element.clientHeight + 1 ||
+        element.scrollWidth > element.clientWidth + 1;
+      element.classList.toggle('overflow-warning', overflow);
+      if (overflow) failures.push(element.closest('.slide')?.dataset.slideId || 'unknown');
+    });
+    return failures;
+  };
+
+  const show = (nextIndex, updateHash = true) => {
+    index = clamp(nextIndex);
+    slides.forEach((slide, slideIndex) => {
+      const active = slideIndex === index;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+    });
+    if (updateHash) history.replaceState(null, '', `#/${index + 1}`);
+    document.title = `${slides[index].dataset.slideTitle} — ${index + 1}/${slides.length}`;
+  };
+
+  const toggleFullscreen = async () => {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+    } else {
+      await document.documentElement.requestFullscreen();
+    }
+  };
+
+  window.addEventListener('resize', scaleStage);
+  window.addEventListener('hashchange', () => show(indexFromHash(), false));
+  window.addEventListener('keydown', (event) => {
+    if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(event.key)) {
+      event.preventDefault();
+      show(index + 1);
+    } else if (['ArrowLeft', 'ArrowUp', 'Backspace', 'PageUp'].includes(event.key)) {
+      event.preventDefault();
+      show(index - 1);
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      show(0);
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      show(slides.length - 1);
+    } else if (event.key.toLowerCase() === 'f') {
+      event.preventDefault();
+      toggleFullscreen();
+    }
+  });
+
+  window.deckQA = {
+    slideCount: slides.length,
+    currentSlide: () => index + 1,
+    overflows: checkOverflow,
+    show: (slideNumber) => show(slideNumber - 1)
+  };
+
+  scaleStage();
+  show(indexFromHash(), false);
+  document.fonts.ready.then(checkOverflow);
+})();
+
+  </script>
+</body>
+</html>

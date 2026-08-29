@@ -1,0 +1,1038 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="generator" content="sci-course-slides/1.0.0">
+  <meta name="content-sha256" content="89118bb5f50416b0888b8b2473eb76108a6b2915011c0924b2076c99f0941fd1">
+  <title>Introduction à la Science de l&#39;Intelligence Créatrice</title>
+  <style>
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("assets/fonts/barlow-condensed-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("assets/fonts/barlow-condensed-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("assets/fonts/lora-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("assets/fonts/lora-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --canvas-width: 1600px;
+  --canvas-height: 1000px;
+  --background: #F7F5F0;
+  --text: #141414;
+  --red: #C94C3B;
+  --muted: #776F68;
+  --stage: #141414;
+  --margin-x: 104px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--stage);
+  color: var(--text);
+}
+
+body {
+  font-family: "Lora", serif;
+}
+
+.deck-stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--canvas-width);
+  height: var(--canvas-height);
+  transform-origin: center center;
+  background: var(--background);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  width: var(--canvas-width);
+  height: var(--canvas-height);
+  padding: 0 var(--margin-x);
+  overflow: hidden;
+  background: var(--background);
+}
+
+.slide.is-active {
+  display: block;
+}
+
+.slide-header {
+  position: absolute;
+  top: 62px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  height: 44px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--red);
+}
+
+.lesson-title {
+  position: absolute;
+  top: 150px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1.04;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.slide-content {
+  position: absolute;
+  top: 242px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  height: 690px;
+  overflow: hidden;
+  font-family: "Lora", serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.34;
+}
+
+.slide-content.compact {
+  font-size: 27px;
+  line-height: 1.31;
+}
+
+.numbered-item {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 4px;
+  margin: 0 0 26px;
+}
+
+.numbered-item:last-child {
+  margin-bottom: 0;
+}
+
+.item-number {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.9em;
+  line-height: 1.45;
+  color: var(--red);
+}
+
+.item-body p {
+  margin: 0;
+}
+
+.item-body ul {
+  margin: 10px 0 0 1.08em;
+  padding: 0;
+}
+
+.item-body li {
+  margin: 3px 0;
+  padding-left: 0.22em;
+}
+
+.question-layout {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.question-number {
+  padding-top: 4px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 38px;
+  color: var(--red);
+}
+
+.question-text {
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.14;
+}
+
+.answer {
+  margin: 38px 0 0 78px;
+  padding-top: 28px;
+  border-top: 2px solid rgba(201, 76, 59, 0.32);
+  font-size: 30px;
+  line-height: 1.36;
+}
+
+.answer-label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.slide-footer {
+  position: absolute;
+  top: 926px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.course-footer {
+  color: var(--red);
+}
+
+.global-pagination {
+  color: var(--muted);
+}
+
+.cover-title {
+  position: absolute;
+  top: 252px;
+  left: var(--margin-x);
+  right: 250px;
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 76px;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.018em;
+}
+
+.cover-rule {
+  position: absolute;
+  left: var(--margin-x);
+  top: 190px;
+  width: 154px;
+  height: 6px;
+  background: var(--red);
+}
+
+.overflow-warning {
+  outline: 8px solid #ff00cc;
+  outline-offset: -8px;
+}
+
+.presenter-hint {
+  position: fixed;
+  right: 16px;
+  bottom: 12px;
+  z-index: 20;
+  font-family: sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+body:hover .presenter-hint {
+  opacity: 1;
+}
+
+@media print {
+  @page {
+    size: 16in 10in;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: auto;
+    height: auto;
+    overflow: visible;
+    background: #fff;
+  }
+
+  .deck-stage {
+    position: static;
+    width: auto;
+    height: auto;
+    transform: none !important;
+    box-shadow: none;
+  }
+
+  .slide,
+  .slide.is-active {
+    position: relative;
+    display: block;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .presenter-hint {
+    display: none;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <main class="deck-stage" aria-label="Cours de SIC — Leçon 6">
+<article class="slide is-active" id="slide-001" data-slide-id="slide-001" data-slide-title="Introduction à la Science de l&#39;Intelligence Créatrice" aria-hidden="false">
+  <div class="cover-rule" aria-hidden="true"></div>
+<h1 class="cover-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">1 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-002" data-slide-id="slide-002" data-slide-title="Points principaux · 1 et fin" aria-hidden="true">
+  <header class="slide-header">Points principaux · 1 et fin</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>Parce que la réussite dans l&#39;action dépend directement de la connaissance, celle-ci doit être vraie, englobante, juste, utile - scientifique.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>L&#39;étude de l&#39;Intelligence Créatrice est scientifique parce que :</p><ul><li>L&#39;Intelligence Créatrice peut être expliquée logiquement pour satisfaire toute quête intellectuelle.</li><li>L&#39;Intelligence Créatrice peut être expérimentée directement, dans son état pur.</li><li>L&#39;Intelligence Créatrice peut être vérifiée objectivement à partir d&#39;expériences reproductibles.</li><li>L&#39;Intelligence Créatrice peut être exprimée artistiquement dans sa pleine valeur.</li><li>L&#39;Intelligence Créatrice peut être totalement développée et appliquée par quiconque, dans tous les domaines d&#39;activité.</li></ul></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>La Science de l&#39;Intelligence Créatrice offre une connaissance et une expérience :</p><ul><li>profondes</li><li>complètes</li><li>utiles</li><li>sources de plénitude</li><li>universelles</li></ul></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">2 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-003" data-slide-id="slide-003" data-slide-title="Résumé long · 1" aria-hidden="true">
+  <header class="slide-header">Résumé long · 1</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>La connaissance de l&#39;Intelligence Créatrice tirée de l&#39;observation de la création et de l&#39;expérience directe au cours de la MT, peut être vérifiée à tous les plans de la vie. C&#39;est ce qui nous permet d&#39;affirmer que nous étudions la Science de l&#39;Intelligence Créatrice.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>La connaissance est la base de l&#39;action, l&#39;action est la base de l&#39;accomplissement, l&#39;accomplissement est la base de la plénitude. Par conséquent, puisque la réussite dans l&#39;action dépend directement de la connaissance, il est essentiel que celle-ci soit correcte et vraie.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>Toute connaissance issue de l&#39;observation peut être trompeuse et illusoire.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">3 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-004" data-slide-id="slide-004" data-slide-title="Résumé long · 2" aria-hidden="true">
+  <header class="slide-header">Résumé long · 2</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">4.</div>
+  <div class="item-body"><p>À notre époque, le critère principal de justesse de la connaissance est son caractère scientifique. La connaissance scientifique est systématique. Elle se veut une connaissance vérifiable, obtenue au moyen d&#39;expérimentations répétables.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">5.</div>
+  <div class="item-body"><p>Deux attributs confèrent à la connaissance un caractère scientifique : le caractère systématique du procédé par lequel cette connaissance est obtenue, et la possibilité de vérifier la connaissance ainsi obtenue.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">4 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-005" data-slide-id="slide-005" data-slide-title="Résumé long · 3" aria-hidden="true">
+  <header class="slide-header">Résumé long · 3</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">6.</div>
+  <div class="item-body"><p>L&#39;étude de l&#39;Intelligence Créatrice est scientifique parce que :</p><ul><li>L&#39;Intelligence Créatrice peut être expliquée logiquement pour satisfaire toute quête intellectuelle.</li><li>L&#39;Intelligence Créatrice peut être expérimentée directement, dans son état pur.</li><li>L&#39;Intelligence Créatrice peut être vérifiée objectivement au moyen d&#39;expériences reproductibles.</li><li>L&#39;Intelligence Créatrice peut être exprimée artistiquement dans sa pleine valeur.</li><li>L&#39;Intelligence Créatrice peut être développée pleinement et appliquée par quiconque, dans tous les domaines d&#39;activité.</li></ul></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">7.</div>
+  <div class="item-body"><p>La connaissance de l&#39;Intelligence Créatrice, obtenue par l&#39;observation de la création et par l&#39;expérience directe, peut être vérifiée sur un plan subjectif par n&#39;importe qui.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">5 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-006" data-slide-id="slide-006" data-slide-title="Résumé long · 4" aria-hidden="true">
+  <header class="slide-header">Résumé long · 4</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">8.</div>
+  <div class="item-body"><p>Les changements physiologiques, psychologiques et sociologiques produits par la MT possèdent un caractère systématique. Il est possible de les reproduire et ils sont ainsi scientifiquement mesurables. La connaissance de l&#39;Intelligence Créatrice peut donc être vérifiée objectivement par une expérimentation scientifique répétable.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">9.</div>
+  <div class="item-body"><p>La pratique de la MT est ouverte à l&#39;investigation scientifique en raison de la reproductibilité de l&#39;expérience. En effet, n&#39;importe qui peut faire l&#39;expérience et vérifier la connaissance de l&#39;Intelligence Créatrice ainsi obtenue.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">10.</div>
+  <div class="item-body"><p>Étant donné que la SIC est une science, les différentes branches du savoir peuvent vérifier et confirmer les connaissances qu&#39;elle apporte.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">6 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-007" data-slide-id="slide-007" data-slide-title="Résumé long · 5" aria-hidden="true">
+  <header class="slide-header">Résumé long · 5</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">11.</div>
+  <div class="item-body"><p>La méthode scientifique est universelle. Elle appartient à tous. La Science de l&#39;Intelligence Créatrice démontre que la connaissance de l&#39;Intelligence Créatrice est profonde, complète, utile, et source de plénitude.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">12.</div>
+  <div class="item-body"><p>La connaissance de l&#39;Intelligence Créatrice est universelle : elle demeure vraie pour tous les hommes de tous les temps. On peut par ailleurs la vérifier à tous les niveaux de l&#39;existence : l&#39;environnement, le corps, les sens, l&#39;esprit, l&#39;intellect, les émotions, l&#39;ego, l&#39;Être individuel.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">13.</div>
+  <div class="item-body"><p>Le sommet suprême de la connaissance est atteint lorsqu&#39;on accède à un état de la vie dans lequel on agit dans le champ des limites, tout en demeurant établi dans la conscience illimitée du champ pur de l&#39;Intelligence Créatrice.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">7 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-008" data-slide-id="slide-008" data-slide-title="Résumé long · 6 et fin" aria-hidden="true">
+  <header class="slide-header">Résumé long · 6 et fin</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">14.</div>
+  <div class="item-body"><p>Dans cet état, la connaissance se suffit à elle-même, se prouve elle-même et se valide elle-même. La valeur suprême de la connaissance de l&#39;Intelligence Créatrice possède ainsi un caractère scientifique.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">15.</div>
+  <div class="item-body"><p>La connaissance de l&#39;Intelligence Créatrice est scientifique. Elle est la connaissance suprême du fait qu&#39;elle est vérifiable à tous les niveaux de la vie. C&#39;est ce qui nous permet d&#39;affirmer que c&#39;est une Science de l&#39;Intelligence Créatrice.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">8 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-009" data-slide-id="slide-009" data-slide-title="Questions · 1" aria-hidden="true">
+  <header class="slide-header">Questions · 1</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Quels attributs rendent une connaissance scientifique ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">9 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-010" data-slide-id="slide-010" data-slide-title="Questions · 2" aria-hidden="true">
+  <header class="slide-header">Questions · 2</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Quels sont les moyens de la connaissance scientifique ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">10 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-011" data-slide-id="slide-011" data-slide-title="Questions · 3" aria-hidden="true">
+  <header class="slide-header">Questions · 3</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Comment les méthodes de la connaissance scientifique se retrouvent-elles au niveau de la SIC ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">11 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-012" data-slide-id="slide-012" data-slide-title="Questions · 4" aria-hidden="true">
+  <header class="slide-header">Questions · 4</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">À quels différents niveaux de l&#39;existence, les effets de la pratique se font-ils sentir ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">12 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-013" data-slide-id="slide-013" data-slide-title="Questions · 5" aria-hidden="true">
+  <header class="slide-header">Questions · 5</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Comment chaque niveau est-il influencé par la pratique régulière de la MT ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">13 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-014" data-slide-id="slide-014" data-slide-title="Questions · 6" aria-hidden="true">
+  <header class="slide-header">Questions · 6</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Quelle affirmation simple exprime le mieux la connaissance du champ pur de l&#39;Intelligence Créatrice ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">14 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-015" data-slide-id="slide-015" data-slide-title="Questions · 7" aria-hidden="true">
+  <header class="slide-header">Questions · 7</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">En quoi la connaissance du champ pur de l&#39;Intelligence Créatrice diffère‑t‑elle fondamentalement de l&#39;expérience du champ pur de l&#39;Intelligence Créatrice ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">15 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-016" data-slide-id="slide-016" data-slide-title="Questions · 8 et fin" aria-hidden="true">
+  <header class="slide-header">Questions · 8 et fin</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">8.</div>
+    <p class="question-text">À quelle condition la connaissance suprême est-elle sa propre preuve et sa propre validation ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">16 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-017" data-slide-id="slide-017" data-slide-title="Discussion · 1" aria-hidden="true">
+  <header class="slide-header">Discussion · 1</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Quels attributs rendent une connaissance scientifique ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">17 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-018" data-slide-id="slide-018" data-slide-title="Discussion · réponse · 1" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 1</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Quels attributs rendent une connaissance scientifique ?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Sa véracité, son infaillibilité, son caractère pratique, le fait qu&#39;elle soit fiable et systématique.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">18 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-019" data-slide-id="slide-019" data-slide-title="Discussion · 2" aria-hidden="true">
+  <header class="slide-header">Discussion · 2</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Quels sont les moyens de la connaissance scientifique ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">19 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-020" data-slide-id="slide-020" data-slide-title="Discussion · réponse · 2" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 2</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Quels sont les moyens de la connaissance scientifique ?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>L&#39;observation objective, l&#39;expérimentation répétable, la vérification par les tests.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">20 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-021" data-slide-id="slide-021" data-slide-title="Discussion · 3" aria-hidden="true">
+  <header class="slide-header">Discussion · 3</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Comment les méthodes de la connaissance scientifique se retrouvent-elles au niveau de la SIC ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">21 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-022" data-slide-id="slide-022" data-slide-title="Discussion · réponse · 3" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 3</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Comment les méthodes de la connaissance scientifique se retrouvent-elles au niveau de la SIC ?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <ul><li>Les effets sont l&#39;objet d&#39;observations objectives.</li><li>Il y a répétabilité du processus de l&#39;expérience du contact avec la pure nature de l&#39;Intelligence Créatrice.</li><li>Les résultats de cette pratique ont été vérifiés sur un grand nombre de méditants différents.</li></ul>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">22 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-023" data-slide-id="slide-023" data-slide-title="Discussion · 4" aria-hidden="true">
+  <header class="slide-header">Discussion · 4</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">À quels différents niveaux de l&#39;existence, les effets de la pratique se font-ils sentir ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">23 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-024" data-slide-id="slide-024" data-slide-title="Discussion · réponse · 4" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 4</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">À quels différents niveaux de l&#39;existence, les effets de la pratique se font-ils sentir ?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Aux niveaux du corps, des sens, de l&#39;esprit, de l&#39;intellect, des sentiments, de l&#39;ego individuel et de l&#39;ego universel.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">24 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-025" data-slide-id="slide-025" data-slide-title="Discussion · 5" aria-hidden="true">
+  <header class="slide-header">Discussion · 5</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Comment chaque niveau est-il influencé par la pratique régulière de la MT ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">25 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-026" data-slide-id="slide-026" data-slide-title="Discussion · réponse · 5" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 5</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Comment chaque niveau est-il influencé par la pratique régulière de la MT ?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Le taux métabolique du corps diminue, les sens se tournent vers l&#39;intérieur et leur fonctionnement se raffine, atteignant des niveaux plus subtils de la conscience, les sentiments deviennent plus stables et sont satisfaits, l&#39;intellect devient plus vigilant et augmente son aptitude à discriminer, l&#39;ego individuel perd ses limites et s&#39;épanouit. Enfin, l&#39;ego universel émerge dans la valeur individuelle, au moment où l&#39;on fait l&#39;expérience de l&#39;Être individuel dans l&#39;état transcendantal de la conscience.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">26 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-027" data-slide-id="slide-027" data-slide-title="Discussion · 6" aria-hidden="true">
+  <header class="slide-header">Discussion · 6</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Quelle affirmation simple exprime le mieux la connaissance du champ pur de l&#39;Intelligence Créatrice ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">27 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-028" data-slide-id="slide-028" data-slide-title="Discussion · réponse · 6" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 6</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Quelle affirmation simple exprime le mieux la connaissance du champ pur de l&#39;Intelligence Créatrice ?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Je suis.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">28 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-029" data-slide-id="slide-029" data-slide-title="Discussion · 7" aria-hidden="true">
+  <header class="slide-header">Discussion · 7</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">En quoi la connaissance du champ pur de l&#39;Intelligence Créatrice diffère‑t‑elle fondamentalement de l&#39;expérience du champ pur de l&#39;Intelligence Créatrice ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">29 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-030" data-slide-id="slide-030" data-slide-title="Discussion · réponse · 7" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 7</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">En quoi la connaissance du champ pur de l&#39;Intelligence Créatrice diffère‑t‑elle fondamentalement de l&#39;expérience du champ pur de l&#39;Intelligence Créatrice ?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>La connaissance s&#39;élargit alors que l&#39;expérience ne change pas.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">30 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-031" data-slide-id="slide-031" data-slide-title="Discussion · 8" aria-hidden="true">
+  <header class="slide-header">Discussion · 8</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">8.</div>
+    <p class="question-text">À quelle condition la connaissance suprême est-elle sa propre preuve et sa propre validation ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">31 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-032" data-slide-id="slide-032" data-slide-title="Discussion · réponse · 8 et fin" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 8 et fin</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">8.</div>
+    <p class="question-text">À quelle condition la connaissance suprême est-elle sa propre preuve et sa propre validation ?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Lorsqu&#39;elle est vérifiable à partir de tous les niveaux de la vie, demeurant illimitée tout en s&#39;exprimant à travers les limites.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">32 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-033" data-slide-id="slide-033" data-slide-title="Place de la leçon · 1" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 1</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>Une introduction donne un aperçu général du sujet. Cette leçon - Introduction à la Science de l&#39;Intelligence Créatrice - ne fait pas exception à la règle en offrant une vision générale de la SIC. Mais cette leçon s&#39;attache surtout à démontrer la fiabilité de la connaissance et de l&#39;expérience de l&#39;Intelligence Créatrice obtenue au travers d&#39;une Science de l&#39;Intelligence Créatrice. Elle vise à éliminer les doutes et le scepticisme au sujet de la fiabilité et de l&#39;utilité de cette connaissance.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">33 of 34</span>
+  </footer>
+</article>
+<article class="slide" id="slide-034" data-slide-id="slide-034" data-slide-title="Place de la leçon · 2 et fin" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 2 et fin</header>
+<h1 class="lesson-title">Introduction à la Science de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>Maharishi analyse dans cette leçon les caractéristiques de la connaissance de l&#39;Intelligence Créatrice. Il en montre la nature scientifique tant sur le plan des méthodes d&#39;observation que sur celui de l&#39;expérience sur laquelle on s&#39;appuie pour établir cette connaissance. Ainsi cette connaissance s&#39;avère-t-elle correcte, fiable, vérifiable, et par conséquent scientifique. La Science de l&#39;Intelligence Créatrice satisfait le critère fondamental d&#39;une science, qui est la possibilité de vérifier l&#39;expérience subjective par une expérimentation reproductible.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>La connaissance de la Science de l&#39;Intelligence Créatrice repose ainsi sur une base sûre et fiable qui garantit la réussite dans l&#39;action et une satisfaction profonde dans la vie. Il est évident que cette leçon est fondamentale pour l&#39;ensemble de ce cours.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 6</span>
+    <span class="global-pagination">34 of 34</span>
+  </footer>
+</article>
+
+  </main>
+  <div class="presenter-hint" aria-hidden="true">← → naviguer · F plein écran</div>
+  <script>
+(() => {
+  const stage = document.querySelector('.deck-stage');
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let index = 0;
+
+  const clamp = (value) => Math.max(0, Math.min(slides.length - 1, value));
+
+  const indexFromHash = () => {
+    const match = window.location.hash.match(/^#\/(\d+)$/);
+    return match ? clamp(Number(match[1]) - 1) : 0;
+  };
+
+  const scaleStage = () => {
+    const scale = Math.min(window.innerWidth / 1600, window.innerHeight / 1000);
+    stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+  };
+
+  const checkOverflow = () => {
+    const failures = [];
+    document.querySelectorAll('[data-overflow-check]').forEach((element) => {
+      const overflow = element.scrollHeight > element.clientHeight + 1 ||
+        element.scrollWidth > element.clientWidth + 1;
+      element.classList.toggle('overflow-warning', overflow);
+      if (overflow) failures.push(element.closest('.slide')?.dataset.slideId || 'unknown');
+    });
+    return failures;
+  };
+
+  const show = (nextIndex, updateHash = true) => {
+    index = clamp(nextIndex);
+    slides.forEach((slide, slideIndex) => {
+      const active = slideIndex === index;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+    });
+    if (updateHash) history.replaceState(null, '', `#/${index + 1}`);
+    document.title = `${slides[index].dataset.slideTitle} — ${index + 1}/${slides.length}`;
+  };
+
+  const toggleFullscreen = async () => {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+    } else {
+      await document.documentElement.requestFullscreen();
+    }
+  };
+
+  window.addEventListener('resize', scaleStage);
+  window.addEventListener('hashchange', () => show(indexFromHash(), false));
+  window.addEventListener('keydown', (event) => {
+    if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(event.key)) {
+      event.preventDefault();
+      show(index + 1);
+    } else if (['ArrowLeft', 'ArrowUp', 'Backspace', 'PageUp'].includes(event.key)) {
+      event.preventDefault();
+      show(index - 1);
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      show(0);
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      show(slides.length - 1);
+    } else if (event.key.toLowerCase() === 'f') {
+      event.preventDefault();
+      toggleFullscreen();
+    }
+  });
+
+  window.deckQA = {
+    slideCount: slides.length,
+    currentSlide: () => index + 1,
+    overflows: checkOverflow,
+    show: (slideNumber) => show(slideNumber - 1)
+  };
+
+  scaleStage();
+  show(indexFromHash(), false);
+  document.fonts.ready.then(checkOverflow);
+})();
+
+  </script>
+</body>
+</html>

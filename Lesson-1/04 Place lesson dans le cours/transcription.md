@@ -1,0 +1,7 @@
+# Cette leçon dans le contexte du cours
+
+Ce message du déploiement du plein potentiel de l’esprit, du corps, du comportement et de l’environnement réalisé par la pratique de la SIC, c’est à dire la MT, ouvre des perspectives. Et la vision de ces possibilités fournit au cours tout entier une fondation solide. Permettre à cette vision de s’épanouir en réalité concrète, tel est le but de ce cours de SIC.
+
+Le fait évident que la connaissance soit la base de l’action, l’action la base de l’accomplissement, l’accomplissement la base de la plénitude, met en lumière le rôle vital que joue la connaissance pour apporter la plénitude à la vie. Il est capital d’avoir une bonne connaissance de ce qu’est la SIC avant d’en aborder la pratique. Mais l’homme ne pourrait rien faire d’une science dont l’aspect théorique n’aboutirait pas à des implications pratiques. La connaissance de cette leçon nous entraîne dans une action orientée vers l’accomplissement et la plénitude, du fait que la SIC est la plus pratique de toutes les sciences.
+
+Nous devons garder à l’esprit cette vision de possibilités. Cette leçon est une inspiration pour le cours tout entier, auquel elle donne sa vitalité. Elle est comme une torche que l’on tient en main : elle éclaire le chemin au fur et à mesure que nous avançons. Nous ne tâtonnons pas dans les ténèbres, nous avons la lumière, et cette vision de possibilités nouvelles. Cette vision crée la confiance, et éclaire le cours tout entier de la lumière de la plénitude offerte à toute l’humanité.

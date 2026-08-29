@@ -1,0 +1,1182 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="generator" content="sci-course-slides/1.0.0">
+  <meta name="content-sha256" content="9fa32d30679bf2c6e64af046663d4c3f6cd30918533bf1c09b054a109ab9a2f6">
+  <title>La SIC et les moyens d&#39;acquérir la connaissance</title>
+  <style>
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("assets/fonts/barlow-condensed-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("assets/fonts/barlow-condensed-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("assets/fonts/lora-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("assets/fonts/lora-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --canvas-width: 1600px;
+  --canvas-height: 1000px;
+  --background: #F7F5F0;
+  --text: #141414;
+  --red: #C94C3B;
+  --muted: #776F68;
+  --stage: #141414;
+  --margin-x: 104px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--stage);
+  color: var(--text);
+}
+
+body {
+  font-family: "Lora", serif;
+}
+
+.deck-stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--canvas-width);
+  height: var(--canvas-height);
+  transform-origin: center center;
+  background: var(--background);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  width: var(--canvas-width);
+  height: var(--canvas-height);
+  padding: 0 var(--margin-x);
+  overflow: hidden;
+  background: var(--background);
+}
+
+.slide.is-active {
+  display: block;
+}
+
+.slide-header {
+  position: absolute;
+  top: 62px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  height: 44px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--red);
+}
+
+.lesson-title {
+  position: absolute;
+  top: 150px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1.04;
+  color: var(--text);
+  height: 86px;
+  overflow: hidden;
+  white-space: normal;
+}
+
+.lesson-title--long {
+  font-size: 39px;
+  line-height: 1;
+}
+
+.slide-content {
+  position: absolute;
+  top: 242px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  height: 690px;
+  overflow: hidden;
+  font-family: "Lora", serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.34;
+}
+
+.slide-content.compact {
+  font-size: 27px;
+  line-height: 1.31;
+}
+
+.numbered-item {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 4px;
+  margin: 0 0 26px;
+}
+
+.numbered-item:last-child {
+  margin-bottom: 0;
+}
+
+.item-number {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.9em;
+  line-height: 1.45;
+  color: var(--red);
+}
+
+.continuation-label {
+  display: block;
+  margin-top: -2px;
+  font-size: 0.55em;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.item-body p {
+  margin: 0;
+}
+
+.item-body ul {
+  margin: 10px 0 0 1.08em;
+  padding: 0;
+}
+
+.item-body li {
+  margin: 3px 0;
+  padding-left: 0.22em;
+}
+
+.question-layout {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.question-number {
+  padding-top: 4px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 38px;
+  color: var(--red);
+}
+
+.question-text {
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.14;
+}
+
+.answer {
+  margin: 38px 0 0 78px;
+  padding-top: 28px;
+  border-top: 2px solid rgba(201, 76, 59, 0.32);
+  font-size: 30px;
+  line-height: 1.36;
+}
+
+.answer-label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.slide-footer {
+  position: absolute;
+  top: 926px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.course-footer {
+  color: var(--red);
+}
+
+.global-pagination {
+  color: var(--muted);
+}
+
+.cover-title {
+  position: absolute;
+  top: 252px;
+  left: var(--margin-x);
+  right: 250px;
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 76px;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.018em;
+}
+
+.cover-rule {
+  position: absolute;
+  left: var(--margin-x);
+  top: 190px;
+  width: 154px;
+  height: 6px;
+  background: var(--red);
+}
+
+.overflow-warning {
+  outline: 8px solid #ff00cc;
+  outline-offset: -8px;
+}
+
+.presenter-hint {
+  position: fixed;
+  right: 16px;
+  bottom: 12px;
+  z-index: 20;
+  font-family: sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+body:hover .presenter-hint {
+  opacity: 1;
+}
+
+@media print {
+  @page {
+    size: 16in 10in;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: auto;
+    height: auto;
+    overflow: visible;
+    background: #fff;
+  }
+
+  .deck-stage {
+    position: static;
+    width: auto;
+    height: auto;
+    transform: none !important;
+    box-shadow: none;
+  }
+
+  .slide,
+  .slide.is-active {
+    position: relative;
+    display: block;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .presenter-hint {
+    display: none;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <main class="deck-stage" aria-label="Cours de SIC — Leçon 24">
+<article class="slide is-active" id="slide-001" data-slide-id="slide-001" data-slide-title="La SIC et les moyens d&#39;acquérir la connaissance" aria-hidden="false">
+  <div class="cover-rule" aria-hidden="true"></div>
+<h1 class="cover-title">La SIC et les moyens d&#39;acquérir la connaissance</h1>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">1 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-002" data-slide-id="slide-002" data-slide-title="Points principaux · 1 et fin" aria-hidden="true">
+  <header class="slide-header">Points principaux · 1 et fin</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>Les moyens objectifs pour acquérir la connaissance:</p><ul><li>s&#39;utilisent dans la recherche scientifique</li><li>excluent la relativité toujours changeante</li><li>s&#39;adressent à des niveaux spécifiques d&#39;existence - la connaissance ainsi acquise ne sera ni complète, ni totalement satisfaisante.</li></ul></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>Les moyens subjectifs pour gagner la connaissance dans le septième état de conscience:</p><ul><li>sont non-variables; ainsi la connaissance acquise sera elle-même non-</li><li>variable et digne de foi,</li><li>saisissent la valeur totale de l&#39;objet,</li><li>ouvrent le niveau infini de l&#39;objet à la conscience du &quot;connaisseur&quot;; ainsi</li><li>la connaissance gagnée sera-t-elle complète et source de plénitude.</li></ul></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>La SIC inclut tout à la fois les methodes subjectives et objectives pour gagner la connaissance. La connaissance qu&#39;elle offre est donc doublement digne de foi, utile et source de plénitude.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">2 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-003" data-slide-id="slide-003" data-slide-title="Résumé long · 1" aria-hidden="true">
+  <header class="slide-header">Résumé long · 1</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>Considérant la SIC et les moyens d&#39;acquérir la connaissance, nous envisageons en fait deux domaines. Le premier est la SIC elle-même, laquelle inclut l&#39;étendue tout entière de l&#39;infini et nous apprend à l&#39;incorporer à notre propre conscience. L&#39;autre, ce sont les différents moyens d&#39;acquérir la connaissance.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>Les moyens d&#39;acquérir la connaissance sont les canaux par lesquels la connaissance nous vient. Les sens, les sentiments, l&#39;esprit, l&#39;intellect et l&#39;égo sont les moyens subjectifs pour acquérir la connaissance. Le connaisseur (le sujet connaissant), à savoir le “je” dépend de ces moyens pour connaître quoi que ce soit.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">3 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-004" data-slide-id="slide-004" data-slide-title="Résumé long · 2" aria-hidden="true">
+  <header class="slide-header">Résumé long · 2</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>Nous acquérons la connaissance par la perception directe, par l&#39;analyse intellectuelle, l&#39;inférence et la comparaison Dans le monde objectif également, nous avons des moyens d&#39;acquérir la connaissance, tels la radio, la télévision, les journaux et les livres.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">4.</div>
+  <div class="item-body"><p>La science réclame des moyens de connaissance qui empêchent la connaissance de varier, de telle sorte qu&#39;elle restera vraie en tout temps et en tout lieu: on pourra s&#39;appuyer dessus, elle sera digne de foi sur le plan pratique en vue du progrès et de l&#39;évolution. La connaissance ainsi acquise par des moyens non variables sera systématique, vraie, fiable, et utile.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">5.</div>
+  <div class="item-body"><p>Nous pouvons classer les moyens d&#39;acquérir la connaissance en deux catégories: objectifs et subjectifs.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">4 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-005" data-slide-id="slide-005" data-slide-title="Résumé long · 3" aria-hidden="true">
+  <header class="slide-header">Résumé long · 3</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">6.</div>
+  <div class="item-body"><p>La science utilise les moyens objectifs pour gagner la connaissance. Elle met complètement de côté la subjectivité du connaisseur parce que la subjectivité change en permanence. Dans les étapes clairement définies du progrès, il doit y avoir une direction spécifique, qui exclue la variabilité de direction qu&#39;impliquent les états de veille, rêve et sommeil.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">7.</div>
+  <div class="item-body"><p>Les moyens subjectifs d&#39;acquérir la connaissance sont non-variables dans le septième état de conscience, état dans lequel la subjectivité elle-même est non-changeante. La connaissance acquise dans cet état est absolument non-variable, digne de foi, sans faille et complète. Tous les aspects de la connaissance sont alors ouverts à notre conscience.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">5 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-006" data-slide-id="slide-006" data-slide-title="Résumé long · 4" aria-hidden="true">
+  <header class="slide-header">Résumé long · 4</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">8.</div>
+  <div class="item-body"><p>La connaissance est entièrement satisfaisante dans cet état de conscience qui est non-variable et ne nécessite pas non plus de développement ultérieur. Seule une connaissance complète peut être source de plénitude, et rien de moins. Si un quelconque domaine demeure encore inconnu, alors la
+
+quête continuera, et il n&#39;y aura pas de plénitude dans cet état d&#39;ignorance. À moins que le sujet ne soit complètement développé, à moins que le connaisseur n&#39;acquière la connaissance au niveau de la conscience pure, la connaissance ne sera pas complète; elle ne sera donc pas non plus source de plénitude.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">6 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-007" data-slide-id="slide-007" data-slide-title="Résumé long · 5" aria-hidden="true">
+  <header class="slide-header">Résumé long · 5</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">9.</div>
+  <div class="item-body"><p>Les moyens objectifs d&#39;acquérir la connaissance s&#39;adressent à un seul niveau d&#39;existence de l&#39;objet - niveau moléculaire, par exemple. La connaissance ainsi acquise sera non-variable, mais elle ne le sera qu&#39;à ce niveau-là. A un autre niveau, tel le niveau atomique, la connaissance sera différente. Ainsi, les moyens objectifs d&#39;acquérir la connaissance ne s&#39;appliquent pas à la valeur totale de l&#39;objet d&#39;investigation. Ils s&#39;appliquent seulement à des domaines spécifiques. La connaissance acquise sera donc spécifique, c&#39;est-à-dire propre à tel domaine: elle variera lorsqu&#39;on passera à un autre. La connaissance acquise grâce aux moyens objectifs ne sera donc jamais entièrement satisfaisante. Il y aura toujours d&#39;autres domaines de connaissance qui ne seront pas ouverts à notre conscience.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">7 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-008" data-slide-id="slide-008" data-slide-title="Résumé long · 6" aria-hidden="true">
+  <header class="slide-header">Résumé long · 6</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">10.</div>
+  <div class="item-body"><p>Le maximum que puisse tirer le connaisseur des moyens objectifs de connaissance, c&#39;est la connaissance du relatif le plus fin, parce que c&#39;est là la limite de l&#39;objectivité, Aucun moyen objectif de connaissance ne peut saisir le niveau non-manifesté, infini de l&#39;objet. Par conséquent, aucun moyen objectif de connaissance ne peut donner la plénitude.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">11.</div>
+  <div class="item-body"><p>Inversement, dans le septième état de conscience, les moyens subjectifs de connaissance ouvrent le niveau infini, illimité de l&#39;objet à la cognition directe du connaisseur; la connaissance ainsi fournie est complète, elle se suffit à elle-même et donne la plénitude.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">8 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-009" data-slide-id="slide-009" data-slide-title="Résumé long · 7" aria-hidden="true">
+  <header class="slide-header">Résumé long · 7</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">12.</div>
+  <div class="item-body"><p>Le but de la connaissance est l&#39;action efficace; le but de l&#39;action efficace est l&#39;accomplissement et le but de l&#39;accomplissement est la plénitude. La plénitude constitue donc le but ultime de la connaissance. Ce but n&#39;est pleinement réalisable, de façon permanente, que dans le septième état de conscience. C&#39;est d&#39;ailleurs l&#39;état normal de la conscience: chacun peut le vivre en éliminant les obstacles, les tensions et la fatigue qui empêchent la conscience de fonctionner librement.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">9 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-010" data-slide-id="slide-010" data-slide-title="Résumé long · 8" aria-hidden="true">
+  <header class="slide-header">Résumé long · 8</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">13.</div>
+  <div class="item-body"><p>«La connaissance est structurée dans la conscience ». Comment pourrait-on avoir une connaissance tout-englobante, si l&#39;on ne connaît pas la conscience pure, laquelle est tout-englobante? Une telle connaissance ne serait que la connaissance d&#39;une avenue particulière du savoir, non celle de la totalité de la vie. Dans ce cas, on cherchera toujours la connaissance, ici et là, et
+
+jamais on n&#39;accédera à cette abondance de connaissance, celle qui réside dans l&#39;état de toute connaissance, à savoir le champ pur de l&#39;IC.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">14.</div>
+  <div class="item-body"><p>La SIC vise à développer directement le champ pur de l&#39;IC au niveau de la conscience individuelle; ce développement en lui-même constitue d&#39;ailleurs le moyen d&#39;acquérir la connaissance la plus directe et la lus profonde.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">10 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-011" data-slide-id="slide-011" data-slide-title="Résumé long · 9" aria-hidden="true">
+  <header class="slide-header">Résumé long · 9</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">15.</div>
+  <div class="item-body"><p>Nous ne dévalorisons pas les moyens objectifs de connaissance. Nous devons en effet toujours agir à l&#39;intérieur des limites, et il est donc souhaitable d&#39;avoir une connaissance des limites. La SIC inclut les deux manières d&#39;acquérir la connaissance: objective, grâce à la méthode scientifique, et subjective, grâce à la pratique quotidienne de la Méditation Transcendantale.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">11 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-012" data-slide-id="slide-012" data-slide-title="Résumé long · 10 et fin" aria-hidden="true">
+  <header class="slide-header">Résumé long · 10 et fin</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">16.</div>
+  <div class="item-body"><p>La SIC allie ainsi les bienfaits obtenus grâce aux moyens de connaissance orientaux et occidentaux. La connaissance qu&#39;elle offre est donc doublement digne de foi, doublement utile et doublement satisfaisante - elle nous donne une valeur de vie de 200 %! C&#39;est pourquoi nous désirons que toute personne au monde puisse acquérir la connaissance de la SIC. Chaque étape de progrès sera ainsi source de plénitude jusqu&#39;à ce que le but de tout progrès - la plénitude éternelle, infinie - soit accompli.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">12 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-013" data-slide-id="slide-013" data-slide-title="Questions · 1" aria-hidden="true">
+  <header class="slide-header">Questions · 1</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Comment l&#39;IC est-elle décrite dans la SIC?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">13 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-014" data-slide-id="slide-014" data-slide-title="Questions · 2" aria-hidden="true">
+  <header class="slide-header">Questions · 2</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Quelle qualité doit avoir la connaissance pour être considérée comme digne de foi?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">14 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-015" data-slide-id="slide-015" data-slide-title="Questions · 3" aria-hidden="true">
+  <header class="slide-header">Questions · 3</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Quels sont les deux moyens majeurs pour gagner la connaissance, et sur quel genre d&#39;invariabilité reposent-ils?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">15 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-016" data-slide-id="slide-016" data-slide-title="Questions · 4" aria-hidden="true">
+  <header class="slide-header">Questions · 4</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Pourquoi la connaissance acquise dans le septième état de conscience est-elle digne de foi?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">16 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-017" data-slide-id="slide-017" data-slide-title="Questions · 5" aria-hidden="true">
+  <header class="slide-header">Questions · 5</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">À quel niveau doit-on acquérir une connaissance qui soit source de plénitude?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">17 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-018" data-slide-id="slide-018" data-slide-title="Questions · 6" aria-hidden="true">
+  <header class="slide-header">Questions · 6</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Quelles sont les limites des moyens objectifs de connaissance?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">18 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-019" data-slide-id="slide-019" data-slide-title="Questions · 7" aria-hidden="true">
+  <header class="slide-header">Questions · 7</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">Quel est le but de la connaissance ? À quelles conclusions la définition de ce but nous mène-t-elle en ce qui concerne les divers moyens d&#39;acquérir la connaissance ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">19 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-020" data-slide-id="slide-020" data-slide-title="Questions · 8" aria-hidden="true">
+  <header class="slide-header">Questions · 8</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">8.</div>
+    <p class="question-text">Que signifie notre devise: « La connaissance est structurée dans la conscience », à l&#39;égard à la totalité de la vie?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">20 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-021" data-slide-id="slide-021" data-slide-title="Questions · 9 et fin" aria-hidden="true">
+  <header class="slide-header">Questions · 9 et fin</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">9.</div>
+    <p class="question-text">Parmi les divers moyens de connaissance, quels sont les plus louables?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">21 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-022" data-slide-id="slide-022" data-slide-title="Discussion · 1" aria-hidden="true">
+  <header class="slide-header">Discussion · 1</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Comment l&#39;IC est-elle décrite dans la SIC?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">22 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-023" data-slide-id="slide-023" data-slide-title="Discussion · réponse · 1" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 1</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Comment l&#39;IC est-elle décrite dans la SIC?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>La SIC décrit la nature de l&#39;IC comme étant non-manifestée et manifestée. Sa nature manifestée se dirige vers l&#39;infini dans tous les différents domaines de la création: nous pouvons la développer en nous-mêmes en incorporant dans notre conscience individuelle sa nature non-manifestée.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">23 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-024" data-slide-id="slide-024" data-slide-title="Discussion · 2" aria-hidden="true">
+  <header class="slide-header">Discussion · 2</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Quelle qualité doit avoir la connaissance pour être considérée comme digne de foi?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">24 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-025" data-slide-id="slide-025" data-slide-title="Discussion · réponse · 2" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 2</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Quelle qualité doit avoir la connaissance pour être considérée comme digne de foi?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Elle doit être non-variable.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">25 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-026" data-slide-id="slide-026" data-slide-title="Discussion · 3" aria-hidden="true">
+  <header class="slide-header">Discussion · 3</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Quels sont les deux moyens majeurs pour gagner la connaissance, et sur quel genre d&#39;invariabilité reposent-ils?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">26 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-027" data-slide-id="slide-027" data-slide-title="Discussion · réponse · 3" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 3</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Quels sont les deux moyens majeurs pour gagner la connaissance, et sur quel genre d&#39;invariabilité reposent-ils?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Les moyens objectifs de connaissance sont non-variables parce qu&#39;ils excluent la variabilité du sujet: les moyens subjectifs de connaissance reposent sur la non-variabilité du sujet dans le septième état de conscience.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">27 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-028" data-slide-id="slide-028" data-slide-title="Discussion · 4" aria-hidden="true">
+  <header class="slide-header">Discussion · 4</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Pourquoi la connaissance acquise dans le septième état de conscience est-elle digne de foi?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">28 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-029" data-slide-id="slide-029" data-slide-title="Discussion · réponse · 4" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 4</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Pourquoi la connaissance acquise dans le septième état de conscience est-elle digne de foi?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Parce que cet état est non-variable, non-changeant, toujours le même, et fidèle à lui-même dans sa nature.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">29 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-030" data-slide-id="slide-030" data-slide-title="Discussion · 5" aria-hidden="true">
+  <header class="slide-header">Discussion · 5</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">À quel niveau doit-on acquérir une connaissance qui soit source de plénitude?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">30 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-031" data-slide-id="slide-031" data-slide-title="Discussion · réponse · 5" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 5</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">À quel niveau doit-on acquérir une connaissance qui soit source de plénitude?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>En acquérant la connaissance au niveau de la pure conscience individuelle. La connaissance ne sera ni complète ni source de plénitude si elle n&#39;est pas gagnée à ce niveau-là.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">31 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-032" data-slide-id="slide-032" data-slide-title="Discussion · 6" aria-hidden="true">
+  <header class="slide-header">Discussion · 6</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Quelles sont les limites des moyens objectifs de connaissance?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">32 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-033" data-slide-id="slide-033" data-slide-title="Discussion · réponse · 6" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 6</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Quelles sont les limites des moyens objectifs de connaissance?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Les moyens objectifs de connaissance ne s&#39;appliquent pas à la valeur totale de l&#39;objet: ils ne s&#39;appliquent qu&#39;à des domaines spécifiques: moléculaire, atomique, subatomique, etc. Ces moyens ne donnent pas une abondance de plénitude, laquelle découle d&#39;une connaissance complète, du fait qu&#39;ils ne peuvent saisir la valeur infinie de l&#39;objet.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">33 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-034" data-slide-id="slide-034" data-slide-title="Discussion · 7" aria-hidden="true">
+  <header class="slide-header">Discussion · 7</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">Quel est le but de la connaissance ? À quelles conclusions la définition de ce but nous mène-t-elle en ce qui concerne les divers moyens d&#39;acquérir la connaissance ?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">34 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-035" data-slide-id="slide-035" data-slide-title="Discussion · réponse · 7" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 7</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">Quel est le but de la connaissance ? À quelles conclusions la définition de ce but nous mène-t-elle en ce qui concerne les divers moyens d&#39;acquérir la connaissance ?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Le but de la connaissance, c&#39;est l&#39;action efficace. Mais puisque le but de l&#39;action efficace est l&#39;accomplissement, et le but de l&#39;accomplissement la plénitude, il s&#39;ensuit que la plénitude ultime constitue, pour le connaisseur, le but de la connaissance. Les moyens subjectifs de connaissance permettent le mieux d&#39;atteindre ce but.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">35 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-036" data-slide-id="slide-036" data-slide-title="Discussion · 8" aria-hidden="true">
+  <header class="slide-header">Discussion · 8</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">8.</div>
+    <p class="question-text">Que signifie notre devise: « La connaissance est structurée dans la conscience », à l&#39;égard à la totalité de la vie?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">36 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-037" data-slide-id="slide-037" data-slide-title="Discussion · réponse · 8" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 8</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">8.</div>
+    <p class="question-text">Que signifie notre devise: « La connaissance est structurée dans la conscience », à l&#39;égard à la totalité de la vie?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Comment pourrait-on acquérir une connaissance vaste sans connaître le caractère vaste de la conscience? Si la connaissance n&#39;était pas étendue, quel serait son but? Ce pourrait être une illusion. Une connaissance non-vaste, c&#39;est la connaissance d&#39;une avenue particulière du savoir, et non la connaissance de la totalité de la vie.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">37 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-038" data-slide-id="slide-038" data-slide-title="Discussion · 9" aria-hidden="true">
+  <header class="slide-header">Discussion · 9</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">9.</div>
+    <p class="question-text">Parmi les divers moyens de connaissance, quels sont les plus louables?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">38 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-039" data-slide-id="slide-039" data-slide-title="Discussion · réponse · 9 et fin" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 9 et fin</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">9.</div>
+    <p class="question-text">Parmi les divers moyens de connaissance, quels sont les plus louables?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Le développement du champ pur de l&#39;IC au niveau de la conscience individuelle, le développement de la conscience par la pratique régulière de la SIC, tel est le moyen le plus direct pour gagner la connaissance.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">39 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-040" data-slide-id="slide-040" data-slide-title="Place de la leçon · 1" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 1</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>La vie comprend des valeurs subjectives et objectives - esprit et corps. Elle possède une structure subjective et objective. Si l&#39;on trouve un moyen de vérifier la vie par les deux types de moyens, on aura alors une connaissance complète. Lorsque la vérification objective se confirme subjectivement, et lorsque l&#39;expérience subjective se vérifie objectivement, la connaissance est complète. Grâce à une telle connaissance, la structure de l&#39;activité est toujours en progrès et toujours satisfaisante. Cette leçon donne à tout homme la possibilité de se sentir à l&#39;aise en ce qui concerne son état présent d&#39;existence et toute évolution ultérieure. Elle élimine toute possibilité de doute et toute quête inaboutie dans le domaine de la connaissance.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">40 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-041" data-slide-id="slide-041" data-slide-title="Place de la leçon · 2" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 2</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>Vue sous cet angle, cette leçon donne une valeur d&#39;accomplissement à tout le cours. La connaissance de l&#39;IC est complète, profonde et parfaite. Cette leçon constitue un sceau de perfection qui authentifie la nature tout-englobante de la connaissance de la SIC.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>Il est important de relever ceci: la valeur tout-englobante du cours se révèle dans la compréhension profonde que cette leçon nous apporte sur les moyens subjectifs et objectifs de connaissance. Mais les moyens ne sont que des moyens. Ils ne peuvent produire des résultats que s&#39;ils sont utilisés. En tant qu&#39;étudiants de la Science de l&#39;Intelligence Créatrice, nous utiliserons donc les deux types de moyens de connaissance pour cultiver la pleine valeur de la connaissance et tirer le maximum de ce que la vie nous offre.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">41 of 42</span>
+  </footer>
+</article>
+<article class="slide" id="slide-042" data-slide-id="slide-042" data-slide-title="Place de la leçon · 3 et fin" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 3 et fin</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et les moyens d&#39;acquérir la connaissance</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">4.</div>
+  <div class="item-body"><p>Nous nous habituerons à être systématique, méthodique et scientifique dans toute entreprise. Les moyens objectifs et subjectifs de connaissance se développeront ainsi ensemble dans notre nature; et nous nous en servirons spontanément dans tous les domaines de pensée, d&#39;action et de comportement. C&#39;est ainsi que nous déploierons une créativité maximum dans notre vie quotidienne. Ce résultat à lui seul justifie notre étude de la SIC.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">5.</div>
+  <div class="item-body"><p>Comme elle est complète et de valeur pratique, la connaissance de la SIC a quelque chose à apporter dans chaque phase de notre vie. Cette leçon éclaire vraiment le cours tout entier; elle est comme une lampe.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 24</span>
+    <span class="global-pagination">42 of 42</span>
+  </footer>
+</article>
+
+  </main>
+  <div class="presenter-hint" aria-hidden="true">← → naviguer · F plein écran</div>
+  <script>
+(() => {
+  const stage = document.querySelector('.deck-stage');
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let index = 0;
+
+  const clamp = (value) => Math.max(0, Math.min(slides.length - 1, value));
+
+  const indexFromHash = () => {
+    const match = window.location.hash.match(/^#\/(\d+)$/);
+    return match ? clamp(Number(match[1]) - 1) : 0;
+  };
+
+  const scaleStage = () => {
+    const scale = Math.min(window.innerWidth / 1600, window.innerHeight / 1000);
+    stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+  };
+
+  const checkOverflow = () => {
+    const failures = [];
+    document.querySelectorAll('[data-overflow-check]').forEach((element) => {
+      const overflow = element.scrollHeight > element.clientHeight + 1 ||
+        element.scrollWidth > element.clientWidth + 1;
+      element.classList.toggle('overflow-warning', overflow);
+      if (overflow) failures.push(element.closest('.slide')?.dataset.slideId || 'unknown');
+    });
+    return failures;
+  };
+
+  const show = (nextIndex, updateHash = true) => {
+    index = clamp(nextIndex);
+    slides.forEach((slide, slideIndex) => {
+      const active = slideIndex === index;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+    });
+    if (updateHash) history.replaceState(null, '', `#/${index + 1}`);
+    document.title = `${slides[index].dataset.slideTitle} — ${index + 1}/${slides.length}`;
+  };
+
+  const toggleFullscreen = async () => {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+    } else {
+      await document.documentElement.requestFullscreen();
+    }
+  };
+
+  window.addEventListener('resize', scaleStage);
+  window.addEventListener('hashchange', () => show(indexFromHash(), false));
+  window.addEventListener('keydown', (event) => {
+    if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(event.key)) {
+      event.preventDefault();
+      show(index + 1);
+    } else if (['ArrowLeft', 'ArrowUp', 'Backspace', 'PageUp'].includes(event.key)) {
+      event.preventDefault();
+      show(index - 1);
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      show(0);
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      show(slides.length - 1);
+    } else if (event.key.toLowerCase() === 'f') {
+      event.preventDefault();
+      toggleFullscreen();
+    }
+  });
+
+  window.deckQA = {
+    slideCount: slides.length,
+    currentSlide: () => index + 1,
+    overflows: checkOverflow,
+    show: (slideNumber) => show(slideNumber - 1)
+  };
+
+  scaleStage();
+  show(indexFromHash(), false);
+  document.fonts.ready.then(checkOverflow);
+})();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="generator" content="sci-course-slides/1.0.0">
+  <meta name="content-sha256" content="8dd007428b4737f8fb7e31d8caa55d20ea5b8fd901d8f14c87205d863c672fdc">
+  <title>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</title>
+  <style>
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("assets/fonts/barlow-condensed-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("assets/fonts/barlow-condensed-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("assets/fonts/lora-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("assets/fonts/lora-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --canvas-width: 1600px;
+  --canvas-height: 1000px;
+  --background: #F7F5F0;
+  --text: #141414;
+  --red: #C94C3B;
+  --muted: #776F68;
+  --stage: #141414;
+  --margin-x: 104px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--stage);
+  color: var(--text);
+}
+
+body {
+  font-family: "Lora", serif;
+}
+
+.deck-stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--canvas-width);
+  height: var(--canvas-height);
+  transform-origin: center center;
+  background: var(--background);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  width: var(--canvas-width);
+  height: var(--canvas-height);
+  padding: 0 var(--margin-x);
+  overflow: hidden;
+  background: var(--background);
+}
+
+.slide.is-active {
+  display: block;
+}
+
+.slide-header {
+  position: absolute;
+  top: 62px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  height: 44px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--red);
+}
+
+.lesson-title {
+  position: absolute;
+  top: 150px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1.04;
+  color: var(--text);
+  height: 86px;
+  overflow: hidden;
+  white-space: normal;
+}
+
+.lesson-title--long {
+  font-size: 39px;
+  line-height: 1;
+}
+
+.slide-content {
+  position: absolute;
+  top: 242px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  height: 690px;
+  overflow: hidden;
+  font-family: "Lora", serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.34;
+}
+
+.slide-content.compact {
+  font-size: 27px;
+  line-height: 1.31;
+}
+
+.numbered-item {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 4px;
+  margin: 0 0 26px;
+}
+
+.numbered-item:last-child {
+  margin-bottom: 0;
+}
+
+.item-number {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.9em;
+  line-height: 1.45;
+  color: var(--red);
+}
+
+.continuation-label {
+  display: block;
+  margin-top: -2px;
+  font-size: 0.55em;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.item-body p {
+  margin: 0;
+}
+
+.item-body ul {
+  margin: 10px 0 0 1.08em;
+  padding: 0;
+}
+
+.item-body li {
+  margin: 3px 0;
+  padding-left: 0.22em;
+}
+
+.question-layout {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.question-number {
+  padding-top: 4px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 38px;
+  color: var(--red);
+}
+
+.question-text {
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.14;
+}
+
+.answer {
+  margin: 38px 0 0 78px;
+  padding-top: 28px;
+  border-top: 2px solid rgba(201, 76, 59, 0.32);
+  font-size: 30px;
+  line-height: 1.36;
+}
+
+.answer-label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.slide-footer {
+  position: absolute;
+  top: 926px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.course-footer {
+  color: var(--red);
+}
+
+.global-pagination {
+  color: var(--muted);
+}
+
+.cover-title {
+  position: absolute;
+  top: 252px;
+  left: var(--margin-x);
+  right: 250px;
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 76px;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.018em;
+}
+
+.cover-rule {
+  position: absolute;
+  left: var(--margin-x);
+  top: 190px;
+  width: 154px;
+  height: 6px;
+  background: var(--red);
+}
+
+.overflow-warning {
+  outline: 8px solid #ff00cc;
+  outline-offset: -8px;
+}
+
+.presenter-hint {
+  position: fixed;
+  right: 16px;
+  bottom: 12px;
+  z-index: 20;
+  font-family: sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+body:hover .presenter-hint {
+  opacity: 1;
+}
+
+@media print {
+  @page {
+    size: 16in 10in;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: auto;
+    height: auto;
+    overflow: visible;
+    background: #fff;
+  }
+
+  .deck-stage {
+    position: static;
+    width: auto;
+    height: auto;
+    transform: none !important;
+    box-shadow: none;
+  }
+
+  .slide,
+  .slide.is-active {
+    position: relative;
+    display: block;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .presenter-hint {
+    display: none;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <main class="deck-stage" aria-label="Cours de SIC — Leçon 15">
+<article class="slide is-active" id="slide-001" data-slide-id="slide-001" data-slide-title="Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice" aria-hidden="false">
+  <div class="cover-rule" aria-hidden="true"></div>
+<h1 class="cover-title">Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">1 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-002" data-slide-id="slide-002" data-slide-title="Points principaux · 1" aria-hidden="true">
+  <header class="slide-header">Points principaux · 1</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>SIC : Principe de la plongée : prendre un angle correct et laisser les choses se faire.</p><ul><li>Biologie : La structure héritée est la base sur laquelle l&#39;organisme s&#39;adapte aux stimuli extérieurs.</li></ul></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>SIC : Principe de la gravité : l&#39;esprit se dirige naturellement dans la direction d&#39;une croissance maximale.</p><ul><li>Biologie : La présence d&#39;une substance nécessaire pousse un organisme à s&#39;orienter vers celle-ci.</li></ul></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>SIC : Principe du charme croissant : une influence agréable s&#39;installe à mesure que l&#39;esprit se rapproche du champ pur de l&#39;Intelligence Créatrice.</p><ul><li>Biologie : L&#39;attraction est plus grande lorsque l&#39;organisme sent une forte concentration en substances vitales.</li></ul></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">2 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-003" data-slide-id="slide-003" data-slide-title="Points principaux · 2" aria-hidden="true">
+  <header class="slide-header">Points principaux · 2</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">4.</div>
+  <div class="item-body"><p>SIC : Principe du voyage confortable ou de l&#39;accroissement de la vitesse à proximité du but : le mantra permet à l&#39;esprit de faire un voyage confortable vers la conscience illimitée.</p><ul><li>Biologie : L&#39;enzyme est un catalyseur qui accélère les réactions chimiques à l&#39;intérieur des cellules.</li></ul></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">5.</div>
+  <div class="item-body"><p>SIC : Principe de l&#39;accroissement de l&#39;intelligence par le repos : après avoir fait l&#39;expérience directe du domaine silencieux de l&#39;Intelligence Créatrice, l&#39;esprit émerge avec des valeurs plus élevées d&#39;énergie et d&#39;intelligence.</p><ul><li>Biologie : Le gène non actif, s&#39;exprimant à travers son messager — l&#39;ARN — est la source de toute activité dans la cellule.</li></ul></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">3 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-004" data-slide-id="slide-004" data-slide-title="Points principaux · 3 et fin" aria-hidden="true">
+  <header class="slide-header">Points principaux · 3 et fin</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">6.</div>
+  <div class="item-body"><p>SIC : Principe de la purification du chemin : lorsque l&#39;activité mentale diminue, l&#39;activité physique diminue également et les stress se dissolvent grâce au repos obtenu.</p><ul><li>Biologie : Le gène, centre silencieux d&#39;intelligence, contient l&#39;information nécessaire à la cellule pour éliminer les impuretés.</li></ul></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">4 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-005" data-slide-id="slide-005" data-slide-title="Résumé long · 1" aria-hidden="true">
+  <header class="slide-header">Résumé long · 1</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>Dans cette leçon, nous allons analyser les principes responsables de l&#39;expérience de la pure nature la biologie. La biologie est l&#39;étude du vivant. Elle nous apporte la
+
+__ connaissance de la façon dont les systèmes biologiques préservent leur vie et évoluent. Pour la Science de l&#39;Intelligence Créatrice, le mouvement d&#39;intériorisation de l&#39;esprit vers la source de la pensée est une activité du vivant. Nous allons donc vérifier si les principes responsables du mouvement d&#39;intériorisation sont confirmés par les lois de la science biologique.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">5 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-006" data-slide-id="slide-006" data-slide-title="Résumé long · 2" aria-hidden="true">
+  <header class="slide-header">Résumé long · 2</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>Le premier principe agissant dans l&#39;expérience du champ pur de l&#39;Intelligence Créatrice est le principe de la plongée, le principe de la prise d&#39;un angle correct et du laisser faire. En biologie, “l&#39;angle” correspond aux conditions initiales déterminées par la structure héritée de chaque cellule et responsables de l&#39;apparition de l&#39;activité. “Laisser faire” correspond à la flexibilité des organismes vivants qui permet de fournir une réponse adaptée aux stimuli extérieurs en vue de faire face aux nécessités d&#39;existence et d&#39;évolution.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">6 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-007" data-slide-id="slide-007" data-slide-title="Résumé long · 3" aria-hidden="true">
+  <header class="slide-header">Résumé long · 3</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>La composante de gravité du principe de la plongée se retrouve à la fois dans les mécanismes de l&#39;esprit et dans ceux de la biologie. Chaque organisme vivant a tendance à se diriger naturellement en direction des substances nécessaires à sa croissance. La présence de substances vitales stimule l&#39;organisme à se mouvoir dans leur direction. L&#39;esprit est également spontanément attiré dans la direction qui lui permet une croissance infinie. Il se tourne donc vers l&#39;intérieur, là où il sent la possibilité de vivre la conscience illimitée.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">7 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-008" data-slide-id="slide-008" data-slide-title="Résumé long · 4" aria-hidden="true">
+  <header class="slide-header">Résumé long · 4</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">4.</div>
+  <div class="item-body"><p>A mesure que l&#39;esprit s&#39;enfonce dans le champ pur de l&#39;Intelligence Créatrice, le méditant ressent un effet agréable. Ce principe du charme croissant guide l&#39;esprit vers la pure nature de l&#39;Intelligence Créatrice. L&#39;esprit est attiré spontanément et sans effort vers le champ pur de l&#39;Intelligence Créatrice, dans lequel se trouve la plus grande possibilité</p><ul><li>de vivre la plénitude.</li></ul></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">5.</div>
+  <div class="item-body"><p>Un mécanisme similaire au principe du charme croissant peut être trouvé en biologie. Quand un organisme sent une concentration élevée de substances nécessaires, l&#39;attraction grandit. Et l&#39;organisme se hate dans cette direction car il ressent un bonheur croissant à mesure qu&#39;il se rapproche du but. Cette attraction plus grande crée un bonheur croissant, réduit la fatigue, et permet une utilisation plus efficace de l&#39;énergie.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">8 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-009" data-slide-id="slide-009" data-slide-title="Résumé long · 5" aria-hidden="true">
+  <header class="slide-header">Résumé long · 5</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">6.</div>
+  <div class="item-body"><p>À mesure que le charme augmente dans le cheminement vers le but, la vitesse s&#39;accroît également. C&#39;est le principe du voyage confortable. Quand le rythme de nos réalisations s&#39;accélère, nous ressentons une plus grande satisfaction et un plus grand confort. Le mantra permet un voyage confortable pour l&#39;esprit, si bien qu&#39;à chaque étape évolutive, il se réjouit de son progrès et de son expansion, jusqu&#39;à ce qu&#39;il atteigne la conscience illimitée à la source de la pensée.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">7.</div>
+  <div class="item-body"><p>Dans le domaine de la biologie, l&#39;enzyme permet un voyage confortable aux molécules en facilitant le progrès et le développement des cellules. Agissant en tant que catalyseur, l&#39;enzyme accélère la réaction des éléments à l&#39;intérieur de la cellule. Il permet à la cellule d&#39;évacuer rapidement ce qui n&#39;est pas nécessaire et d&#39;assimiler rapidement ce qui lui est nécessaire.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">9 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-010" data-slide-id="slide-010" data-slide-title="Résumé long · 6" aria-hidden="true">
+  <header class="slide-header">Résumé long · 6</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">8.</div>
+  <div class="item-body"><p>L&#39;intelligence qui construit l&#39;enzyme provient d&#39;un centre tranquille d&#39;intelligence à l&#39;intérieur de la cellule: le gène. Résidant au niveau silencieux, non actif de la cellule, le gène illustre le principe de l&#39;accroissement de l&#39;intelligence par le repos. Toute l&#39;activité des cellules est mise en œuvre sous l&#39;inspiration silencieuse du gène. Le
+
+messager ARN transmet l&#39;information visant à créer au niveau des structures cellulaires l&#39;effet désiré pour le maintien de l&#39;existence et de la croissance.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">10 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-011" data-slide-id="slide-011" data-slide-title="Résumé long · 7" aria-hidden="true">
+  <header class="slide-header">Résumé long · 7</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">9.</div>
+  <div class="item-body"><p>Ce centre silencieux et ordonné de l&#39;intelligence, qui est responsable de l&#39;existence de l&#39;enzyme, s&#39;apparente au champ infini de l&#39;Intelligence Créatrice, à la source de la pensée. A partir de ce domaine silencieux d&#39;énergie et d&#39;intelligence illimitées, l&#39;esprit tire toute la créativité qui lui permet d&#39;orchestrer les valeurs d&#39;ordre et d&#39;énergie dans l&#39;activité.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">11 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-012" data-slide-id="slide-012" data-slide-title="Résumé long · 8" aria-hidden="true">
+  <header class="slide-header">Résumé long · 8</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">10.</div>
+  <div class="item-body"><p>Pendant la MT, lorsque l&#39;activité mentale diminue et que le système nerveux gagne un profond repos, tous les stress et les tensions qui bloquent l&#39;esprit dans sa marche vers le but sont éliminés de manière spontanée. Ce principe de la purification du chemin a un parallèle en biologie. Les caractéristiques d&#39;intelligence et d&#39;énergie inhérentes à la structure du gène se manifestent à travers l&#39;activité de l&#39;ARN, qui à son tour oriente spontanément l&#39;activité des cellules de façon à éliminer les impuretés et tout ce qui ne favorise pas le maintien de l&#39;existence et de la croissance.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">12 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-013" data-slide-id="slide-013" data-slide-title="Résumé long · 9 et fin" aria-hidden="true">
+  <header class="slide-header">Résumé long · 9 et fin</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">11.</div>
+  <div class="item-body"><p>Nous voyons ainsi que les principes qui régissent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice se retrouvent dans les mécanismes responsables de l&#39;activité des systèmes vivants. Les lois de la nature qui soutiennent toute activité naturelle sont les mêmes. Que nous appréhendions ces lois sous l&#39;angle de la physique, de la biologie, de la chimie, ou de la Science de l&#39;Intelligence Créatrice, nous retrouvons les mêmes phénomènes naturels de soutien de l&#39;existence et de l&#39;évolution.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">12.</div>
+  <div class="item-body"><p>L&#39;expérience de la technique de Méditation Transcendantale montre qu&#39;en établissant l&#39;esprit dans le domaine illimité de l&#39;Intelligence Créatrice, nous favorisons l&#39;existence et la croissance de la vie. Il s&#39;agit d&#39;un phénomène naturel, soutenu par les lois de la nature.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">13 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-014" data-slide-id="slide-014" data-slide-title="Questions · 1" aria-hidden="true">
+  <header class="slide-header">Questions · 1</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Pourquoi pouvons nous affirmer que les principes responsables de l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice sont similaires aux lois qui régissent les processus naturels?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">14 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-015" data-slide-id="slide-015" data-slide-title="Questions · 2" aria-hidden="true">
+  <header class="slide-header">Questions · 2</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Dans quelle direction l&#39;esprit s&#39;oriente-t-il spontanément?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">15 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-016" data-slide-id="slide-016" data-slide-title="Questions · 3" aria-hidden="true">
+  <header class="slide-header">Questions · 3</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Comment le principe du charme croissant soutient-il l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">16 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-017" data-slide-id="slide-017" data-slide-title="Questions · 4" aria-hidden="true">
+  <header class="slide-header">Questions · 4</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Dans le processus de la plongée, pourquoi l&#39;esprit a-t-il besoin d&#39;un véhicule pour se mouvoir efficacement dans la direction qui offre une croissance maximale?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">17 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-018" data-slide-id="slide-018" data-slide-title="Questions · 5 et fin" aria-hidden="true">
+  <header class="slide-header">Questions · 5 et fin</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Quelle similitude voyez-vous entre le gène et le domaine infini de l&#39;Intelligence Créatrice à la source de la pensée?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">18 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-019" data-slide-id="slide-019" data-slide-title="Discussion · 1" aria-hidden="true">
+  <header class="slide-header">Discussion · 1</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Pourquoi pouvons nous affirmer que les principes responsables de l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice sont similaires aux lois qui régissent les processus naturels?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">19 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-020" data-slide-id="slide-020" data-slide-title="Discussion · réponse · 1" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 1</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Pourquoi pouvons nous affirmer que les principes responsables de l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice sont similaires aux lois qui régissent les processus naturels?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Tous deux sont des phénomènes naturels. Les mêmes lois de la nature sont responsables de toutes les activités naturelles.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">20 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-021" data-slide-id="slide-021" data-slide-title="Discussion · 2" aria-hidden="true">
+  <header class="slide-header">Discussion · 2</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Dans quelle direction l&#39;esprit s&#39;oriente-t-il spontanément?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">21 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-022" data-slide-id="slide-022" data-slide-title="Discussion · réponse · 2" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 2</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Dans quelle direction l&#39;esprit s&#39;oriente-t-il spontanément?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>L&#39;esprit s&#39;oriente naturellement vers la conscience illimitée, dans la direction de la croissance infinie.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">22 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-023" data-slide-id="slide-023" data-slide-title="Discussion · 3" aria-hidden="true">
+  <header class="slide-header">Discussion · 3</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Comment le principe du charme croissant soutient-il l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">23 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-024" data-slide-id="slide-024" data-slide-title="Discussion · réponse · 3" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 3</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Comment le principe du charme croissant soutient-il l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Un effet agréable est ressenti lorsque l&#39;esprit s&#39;enfonce profondément dans le champ pur de l&#39;Intelligence Créatrice.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">24 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-025" data-slide-id="slide-025" data-slide-title="Discussion · 4" aria-hidden="true">
+  <header class="slide-header">Discussion · 4</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Dans le processus de la plongée, pourquoi l&#39;esprit a-t-il besoin d&#39;un véhicule pour se mouvoir efficacement dans la direction qui offre une croissance maximale?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">25 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-026" data-slide-id="slide-026" data-slide-title="Discussion · réponse · 4" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 4</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Dans le processus de la plongée, pourquoi l&#39;esprit a-t-il besoin d&#39;un véhicule pour se mouvoir efficacement dans la direction qui offre une croissance maximale?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Un véhicule permet de prendre l&#39;angle correct et accroît la vitesse vers le but.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">26 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-027" data-slide-id="slide-027" data-slide-title="Discussion · 5" aria-hidden="true">
+  <header class="slide-header">Discussion · 5</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Quelle similitude voyez-vous entre le gène et le domaine infini de l&#39;Intelligence Créatrice à la source de la pensée?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">27 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-028" data-slide-id="slide-028" data-slide-title="Discussion · réponse · 5 et fin" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 5 et fin</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Quelle similitude voyez-vous entre le gène et le domaine infini de l&#39;Intelligence Créatrice à la source de la pensée?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Tous deux sont une source non active d&#39;intelligence et d&#39;énergie.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">28 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-029" data-slide-id="slide-029" data-slide-title="Place de la leçon · 1" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 1</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>Cette leçon établit le lien entre les lois de la nature tirées de l&#39;étude des organismes vivants et les principes de la Science de l&#39;Intelligence Créatrice décrivant le mouvement de l&#39;esprit vers la source de la pensée, vers le champ pur de l&#39;Intelligence Créatrice. La biologie est l&#39;étude du vivant. L&#39;activité de l&#39;esprit dans le processus de transcendance appartient également au registre du vivant. Aussi pouvons-nous trouver des parallèles naturels entre ces deux domaines de connaissance.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">29 of 30</span>
+  </footer>
+</article>
+<article class="slide" id="slide-030" data-slide-id="slide-030" data-slide-title="Place de la leçon · 2 et fin" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 2 et fin</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>Dans cette leçon, nous analysons plusieurs principes de la Science de l&#39;Intelligence Créatrice à l&#39;aide d&#39;exemples et d&#39;analogies tirées de la biologie. Nous remarquons que ces principes responsables du mouvement d&#39;intériorisation de l&#39;esprit vers l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice se retrouvent dans les mécanismes de l&#39;activité des systèmes biologiques. Nous en tirons la conclusion suivante: les lois de la nature qui sous-tendent l&#39;existence et l&#39;évolution, sont les mêmes, quelle que soit la discipline à partir de laquelle on les étudie.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 15</span>
+    <span class="global-pagination">30 of 30</span>
+  </footer>
+</article>
+
+  </main>
+  <div class="presenter-hint" aria-hidden="true">← → naviguer · F plein écran</div>
+  <script>
+(() => {
+  const stage = document.querySelector('.deck-stage');
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let index = 0;
+
+  const clamp = (value) => Math.max(0, Math.min(slides.length - 1, value));
+
+  const indexFromHash = () => {
+    const match = window.location.hash.match(/^#\/(\d+)$/);
+    return match ? clamp(Number(match[1]) - 1) : 0;
+  };
+
+  const scaleStage = () => {
+    const scale = Math.min(window.innerWidth / 1600, window.innerHeight / 1000);
+    stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+  };
+
+  const checkOverflow = () => {
+    const failures = [];
+    document.querySelectorAll('[data-overflow-check]').forEach((element) => {
+      const overflow = element.scrollHeight > element.clientHeight + 1 ||
+        element.scrollWidth > element.clientWidth + 1;
+      element.classList.toggle('overflow-warning', overflow);
+      if (overflow) failures.push(element.closest('.slide')?.dataset.slideId || 'unknown');
+    });
+    return failures;
+  };
+
+  const show = (nextIndex, updateHash = true) => {
+    index = clamp(nextIndex);
+    slides.forEach((slide, slideIndex) => {
+      const active = slideIndex === index;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+    });
+    if (updateHash) history.replaceState(null, '', `#/${index + 1}`);
+    document.title = `${slides[index].dataset.slideTitle} — ${index + 1}/${slides.length}`;
+  };
+
+  const toggleFullscreen = async () => {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+    } else {
+      await document.documentElement.requestFullscreen();
+    }
+  };
+
+  window.addEventListener('resize', scaleStage);
+  window.addEventListener('hashchange', () => show(indexFromHash(), false));
+  window.addEventListener('keydown', (event) => {
+    if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(event.key)) {
+      event.preventDefault();
+      show(index + 1);
+    } else if (['ArrowLeft', 'ArrowUp', 'Backspace', 'PageUp'].includes(event.key)) {
+      event.preventDefault();
+      show(index - 1);
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      show(0);
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      show(slides.length - 1);
+    } else if (event.key.toLowerCase() === 'f') {
+      event.preventDefault();
+      toggleFullscreen();
+    }
+  });
+
+  window.deckQA = {
+    slideCount: slides.length,
+    currentSlide: () => index + 1,
+    overflows: checkOverflow,
+    show: (slideNumber) => show(slideNumber - 1)
+  };
+
+  scaleStage();
+  show(indexFromHash(), false);
+  document.fonts.ready.then(checkOverflow);
+})();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "lesson": {
+    "number": 9,
+    "course": "Science de l'Intelligence Créatrice",
+    "title": "L'Intelligence Créatrice est la base de toute connaissance",
+    "language": "fr"
+  },
+  "aspect_ratio": "16:10",
+  "source_content_sha256": "3fd8bfaee57566ddcb08761c2d9809ad1c976ca7b00ef72edd70cd733ed4aee0",
+  "scope": "points_principaux",
+  "slide_count": 3,
+  "section_slide_counts": {
+    "points_principaux": 2
+  },
+  "slides": [
+    {
+      "number": 1,
+      "id": "slide-001",
+      "role": "cover",
+      "section": null,
+      "section_index": null,
+      "final": false,
+      "title": "L'Intelligence Créatrice est la base de toute connaissance",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 2,
+      "id": "slide-002",
+      "role": "points",
+      "section": "points_principaux",
+      "section_index": 1,
+      "final": false,
+      "title": "Points principaux · 1",
+      "item_count": 3,
+      "character_count": 289
+    },
+    {
+      "number": 3,
+      "id": "slide-003",
+      "role": "points",
+      "section": "points_principaux",
+      "section_index": 2,
+      "final": true,
+      "title": "Points principaux · 2 et fin",
+      "item_count": 2,
+      "character_count": 343
+    }
+  ]
+}

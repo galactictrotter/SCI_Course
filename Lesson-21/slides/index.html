@@ -1,0 +1,1406 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="generator" content="sci-course-slides/1.0.0">
+  <meta name="content-sha256" content="9de34ad3d86962584a26dffc6de7787f30f588dc8b55afacd9abe559e9703d5f">
+  <title>La SIC et la solution à tous les problèmes</title>
+  <style>
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("assets/fonts/barlow-condensed-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("assets/fonts/barlow-condensed-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("assets/fonts/lora-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("assets/fonts/lora-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --canvas-width: 1600px;
+  --canvas-height: 1000px;
+  --background: #F7F5F0;
+  --text: #141414;
+  --red: #C94C3B;
+  --muted: #776F68;
+  --stage: #141414;
+  --margin-x: 104px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--stage);
+  color: var(--text);
+}
+
+body {
+  font-family: "Lora", serif;
+}
+
+.deck-stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--canvas-width);
+  height: var(--canvas-height);
+  transform-origin: center center;
+  background: var(--background);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  width: var(--canvas-width);
+  height: var(--canvas-height);
+  padding: 0 var(--margin-x);
+  overflow: hidden;
+  background: var(--background);
+}
+
+.slide.is-active {
+  display: block;
+}
+
+.slide-header {
+  position: absolute;
+  top: 62px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  height: 44px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--red);
+}
+
+.lesson-title {
+  position: absolute;
+  top: 150px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1.04;
+  color: var(--text);
+  height: 86px;
+  overflow: hidden;
+  white-space: normal;
+}
+
+.lesson-title--long {
+  font-size: 39px;
+  line-height: 1;
+}
+
+.slide-content {
+  position: absolute;
+  top: 242px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  height: 690px;
+  overflow: hidden;
+  font-family: "Lora", serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.34;
+}
+
+.slide-content.compact {
+  font-size: 27px;
+  line-height: 1.31;
+}
+
+.numbered-item {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 4px;
+  margin: 0 0 26px;
+}
+
+.numbered-item:last-child {
+  margin-bottom: 0;
+}
+
+.item-number {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.9em;
+  line-height: 1.45;
+  color: var(--red);
+}
+
+.continuation-label {
+  display: block;
+  margin-top: -2px;
+  font-size: 0.55em;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.item-body p {
+  margin: 0;
+}
+
+.item-body ul {
+  margin: 10px 0 0 1.08em;
+  padding: 0;
+}
+
+.item-body li {
+  margin: 3px 0;
+  padding-left: 0.22em;
+}
+
+.question-layout {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.question-number {
+  padding-top: 4px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 38px;
+  color: var(--red);
+}
+
+.question-text {
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.14;
+}
+
+.answer {
+  margin: 38px 0 0 78px;
+  padding-top: 28px;
+  border-top: 2px solid rgba(201, 76, 59, 0.32);
+  font-size: 30px;
+  line-height: 1.36;
+}
+
+.answer-label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.slide-footer {
+  position: absolute;
+  top: 926px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.course-footer {
+  color: var(--red);
+}
+
+.global-pagination {
+  color: var(--muted);
+}
+
+.cover-title {
+  position: absolute;
+  top: 252px;
+  left: var(--margin-x);
+  right: 250px;
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 76px;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.018em;
+}
+
+.cover-rule {
+  position: absolute;
+  left: var(--margin-x);
+  top: 190px;
+  width: 154px;
+  height: 6px;
+  background: var(--red);
+}
+
+.overflow-warning {
+  outline: 8px solid #ff00cc;
+  outline-offset: -8px;
+}
+
+.presenter-hint {
+  position: fixed;
+  right: 16px;
+  bottom: 12px;
+  z-index: 20;
+  font-family: sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+body:hover .presenter-hint {
+  opacity: 1;
+}
+
+@media print {
+  @page {
+    size: 16in 10in;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: auto;
+    height: auto;
+    overflow: visible;
+    background: #fff;
+  }
+
+  .deck-stage {
+    position: static;
+    width: auto;
+    height: auto;
+    transform: none !important;
+    box-shadow: none;
+  }
+
+  .slide,
+  .slide.is-active {
+    position: relative;
+    display: block;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .presenter-hint {
+    display: none;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <main class="deck-stage" aria-label="Cours de SIC — Leçon 21">
+<article class="slide is-active" id="slide-001" data-slide-id="slide-001" data-slide-title="La SIC et la solution à tous les problèmes" aria-hidden="false">
+  <div class="cover-rule" aria-hidden="true"></div>
+<h1 class="cover-title">La SIC et la solution à tous les problèmes</h1>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">1 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-002" data-slide-id="slide-002" data-slide-title="Points principaux · 1" aria-hidden="true">
+  <header class="slide-header">Points principaux · 1</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>Les problèmes proviennent de la faiblesse - la faiblesse individuelle, en d&#39;autres termes: une conscience étroite et restreinte.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>La base de la force, c&#39;est un esprit pleinement développé.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>Tout individu peut prendre contact avec cette source de force, profondément en lui-même.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">2 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-003" data-slide-id="slide-003" data-slide-title="Points principaux · 2 et fin" aria-hidden="true">
+  <header class="slide-header">Points principaux · 2 et fin</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">4.</div>
+  <div class="item-body"><p>La SIC offre une formule permettant de développer le plein potentiel de l&#39;esprit; elle fournit ainsi une solution unique à tout problème.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">5.</div>
+  <div class="item-body"><p>Dans le processus de développement de l&#39;IC, les résistances au succès s&#39;éliminent d&#39;elles-mêmes et un environnement plus favorable se crée spontanément.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">6.</div>
+  <div class="item-body"><p>On doit maintenant partager cette connaissance, afin que la souffrance puisse disparaître dès cette génération.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">3 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-004" data-slide-id="slide-004" data-slide-title="Résumé long · 1" aria-hidden="true">
+  <header class="slide-header">Résumé long · 1</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>Problème signifie faiblesse, ce qui veut dire que tous les problèmes ont leur base dans la faiblesse, ils proviennent de la faiblesse et se développent dans la faiblesse. Ceci vaut pour tout problème dans n&#39;importe quel domaine: social, politique, technologique, scientifique, individuel, national.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>Nous avons vu que toute faiblesse, dans la vie, peut se ramener à une faiblesse de la conscience individuelle. Si l&#39;esprit est faible, les aspirations, les efforts, les accomplissements et les satisfactions sont également faibles. Cet état sous-développé de l&#39;esprit constitue un terrain fertile pour le foisonnement des problèmes.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">4 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-005" data-slide-id="slide-005" data-slide-title="Résumé long · 2" aria-hidden="true">
+  <header class="slide-header">Résumé long · 2</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>La SIC donne la connaissance du potentiel infini de l&#39;esprit, et elle fournit aussi une technique grâce à laquelle tout individu peut développer son esprit sans effort et naturellement. Par le total développement de l&#39;IC dans l&#39;esprit de l&#39;individu, la base de tout problème - la faiblesse individuelle - peut s&#39;éliminer et faire place à la force individuelle, laquelle contribuera à une vie libre de tout problème.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">5 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-006" data-slide-id="slide-006" data-slide-title="Résumé long · 3" aria-hidden="true">
+  <header class="slide-header">Résumé long · 3</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">4.</div>
+  <div class="item-body"><p>Puisque la faiblesse individuelle - bouillon de culture de tout problème - consiste en une conscience étroite et restreinte, il apparaît donc comme immédiatement nécessaire d&#39;élargir notre état d&#39;esprit, d&#39;agrandir la conscience en permettant simplement à l&#39;IC de se développer en nous, ceci afin de surmonter tout problème. Celui qui a une vision large saisit un horizon étendu et résout les problèmes avant même qu&#39;ils ne se manifestent comme tels. La vision s&#39;élargit, l&#39;esprit se dilate grâce à l&#39;expérience du contact conscient avec le réservoir infini de l&#39;IC, situé à la source de la pensée.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">6 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-007" data-slide-id="slide-007" data-slide-title="Résumé long · 4" aria-hidden="true">
+  <header class="slide-header">Résumé long · 4</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">5.</div>
+  <div class="item-body"><p>Un esprit élargi est un esprit plus fort; un esprit plus fort nous fait d&#39;abord voir la futilité des problèmes, ensuite un chemin facile pour en sortir. En conséquence, nous devenons plus pratiques, nous réussissons davantage, et nous acquérons une plus grande vigilance, une plus grande compréhension. Telle est l&#39;expérience de milliers de personnes pratiquant la MT dans le monde entier. Nous ne nous sentons plus bloqués ou crispés, tandis que des horizons de plus en plus larges s&#39;ouvrent à nous, et nous nous sentons portés par la vie.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">7 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-008" data-slide-id="slide-008" data-slide-title="Résumé long · 5" aria-hidden="true">
+  <header class="slide-header">Résumé long · 5</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">6.</div>
+  <div class="item-body"><p>Tandis que l&#39;IC devient plus ample et plus abondante, les résistances au succès s&#39;éliminent d&#39;elles-mêmes et un environnement plus favorable se crée
+
+spontanément. Cette solution à tous les problèmes, donnée par la pratique régulière de la MT, ressemble au fait d&#39;arroser seulement la racine, et enrichir des milliers de feuilles et de pétales. Par l&#39;efficacité de cette unique opération, tous les domaines de la vie sont libérés des problèmes et des contraintes. Nous n&#39;avons pas le temps de nous attarder sur chaque feuille. Mais, en arrosant la racine, c&#39;est-à-dire en opérant au niveau causal de la vie, on peut éliminer tous les effets et symptômes de la faiblesse, et réaliser ainsi le bien-être de toute la plante, c&#39;est-à-dire de la totalité de la vie, de façon naturelle.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">8 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-009" data-slide-id="slide-009" data-slide-title="Résumé long · 6" aria-hidden="true">
+  <header class="slide-header">Résumé long · 6</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">7.</div>
+  <div class="item-body"><p>Si l&#39;on éprouve quelque sentiment de se trouver dans les problèmes à quelque niveau que ce soit - individu, société, nation, monde, univers - ce sentiment provient d&#39;une faiblesse individuelle. Et puisque l&#39;IC imprègne toute chose, chaque individu peut ainsi contacter ce domaine de toute force, profondément en lui-même, et renforcer spontanément le développement de l&#39;IC dans ces domaines. La technique de MT, aspect pratique de la SIC, constitue un moyen naturel, simple, spontané et aisé pour acquérir la force intérieure; grâce à cette force-là, nous pouvons nous débarrasser de tout problème.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">9 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-010" data-slide-id="slide-010" data-slide-title="Résumé long · 7" aria-hidden="true">
+  <header class="slide-header">Résumé long · 7</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">8.</div>
+  <div class="item-body"><p>Les ténèbres disparaissent dès qu&#39;il y a de la lumière. Ce principe doit être appliqué à la question des problèmes. Les problèmes s&#39;évanouissent dès que l&#39;IC se développe. C&#39;est dans la SIC que nous trouvons cette règle d&#39;or permettant de créer des individus pleinement développés: et c&#39;est grâce à leur conscience élargie que des problèmes vieux comme le monde, de délinquance, de crime, de mésentente, de conflits et de guerres pourront disparaître. Viendront alors une société, des nations et un monde où les problèmes n&#39;existeront plus.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">10 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-011" data-slide-id="slide-011" data-slide-title="Résumé long · 8" aria-hidden="true">
+  <header class="slide-header">Résumé long · 8</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">8.<span class="continuation-label">suite</span></div>
+  <div class="item-body"><p>Dans l&#39;âge scientifique et hautement technologique où nous vivons, nous avons besoin d&#39;hommes forts, c&#39;est-à-dire capables de mettre fin à cette histoire chaotique du passé: en effet, maintenant dans cette génération-ci, chacun dispose d&#39;un procédé aisé et universel lui permettant de mettre fin à toute faiblesse en ouvrant sa propre conscience au champ abondant de l&#39;IC. Et les résultats scientifiques constituent une garantie de l&#39;efficacité de cette formule.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">11 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-012" data-slide-id="slide-012" data-slide-title="Résumé long · 9" aria-hidden="true">
+  <header class="slide-header">Résumé long · 9</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">9.</div>
+  <div class="item-body"><p>Grâce au Plan Mondial, il est possible d&#39;avoir partout un nombre suffisant de professeurs de SIC; cette connaissance pourra ainsi être donnée à chacun, de telle sorte que chaque individu, chaque société, chaque nation croisse jusqu&#39;à son plein potentiel, éliminant du même coup tout problème de la vie. Même si les ténèbres dues au crime et à tous les problèmes chroniques de l&#39;humanité ont perduré si longtemps, l&#39;aube doit venir et répandre partout la lumière. La croyance, vieille comme le monde, selon
+
+laquelle la vie est une lutte s&#39;évanouira dans cette lumière. Ce malentendu concernant la nature de la vie doit maintenant cesser, même s&#39;il s&#39;est maintenu souvent au nom de Dieu et de la religion.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">12 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-013" data-slide-id="slide-013" data-slide-title="Résumé long · 10" aria-hidden="true">
+  <header class="slide-header">Résumé long · 10</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">9.<span class="continuation-label">suite</span></div>
+  <div class="item-body"><p>Précisément dans cet âge scientifique, on a développé une technologie naturelle permettant d&#39;utiliser la nature même de la vie pour l&#39;amener à son plein épanouissement, et ceci grâce à une technique parfaite par laquelle on agit de moins en moins tout en accomplissant davantage et davantage.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">13 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-014" data-slide-id="slide-014" data-slide-title="Résumé long · 11" aria-hidden="true">
+  <header class="slide-header">Résumé long · 11</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">10.</div>
+  <div class="item-body"><p>Une technique - comme celle du levier, par exemple - est un moyen de faire quelque chose qui semblait, auparavant, impossible. C&#39;est la connaissance mise en application dans la pratique. Voici une technique: la Méditation Transcendantale, et voici une connaissance: la connaissance systématique de l&#39;IC. En nous servant des deux à la fois, nous pouvons automatiquement ouvrir notre conscience à l&#39;IC illimitée, et ainsi nous sentir chaque jour en meilleure santé et plus calme. La pensée et le sentiment que cela est impossible disparaissent, maintenant tout nous devient possible. Ainsi, d&#39;énormes possibilités s&#39;ouvrent à chaque individu, comme celles discutées dans la leçon: Vision des possibilités offertes par la pratique de la SIC.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">14 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-015" data-slide-id="slide-015" data-slide-title="Résumé long · 12" aria-hidden="true">
+  <header class="slide-header">Résumé long · 12</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">11.</div>
+  <div class="item-body"><p>La connaissance doit être maintenant partagée, ainsi la souffrance finira-t-elle dans cette génération. Les gouvernements sont tout-puissants: ils font les lois, imposent des punitions aussi extrêmes que la mort, fournissent des environnements et un système d&#39;éducation particulier, car ils disposent de
+
+l&#39;assentiment de la nation et contrôlent ses ressources. Quel que soit le parti auquel il appartient, le dirigeant d&#39;une nation se verra penser, au moins dans ses moments les plus tranquilles, « Que puis-je faire de plus pour mon peuple? ». Il en est ainsi parce que dans ce moment précieux, lorsque son esprit est frais, il a conscience de sa responsabilité envers son peuple. Cette aspiration, qui est celle de tout chef de famille, de société, de nation, peut être à présent pleinement satisfaite par la connaissance de la SIC.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">15 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-016" data-slide-id="slide-016" data-slide-title="Résumé long · 13" aria-hidden="true">
+  <header class="slide-header">Résumé long · 13</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">12.</div>
+  <div class="item-body"><p>La bonne volonté des Nations Unies et des chefs d&#39;état se dissipe à cause de conflits qui s&#39;élèvent sans cesse dans tous les coins du monde. Il suffit pourtant de faire une seule chose: déraciner la cause commune de toutes ces infections; autrement, cette tradition des infections continuera. On ne peut laisser à des esprits non cultivés la responsabilité de questions aussi importantes que la paix sur la terre. Cela coûte trop cher. Il y a une condition initiale malsaine et, à moins qu&#39;on ne fasse quelque chose de radical, elle se manifestera n&#39;importe quand, à l&#39;improviste. Le Plan Mondial est ce quelque chose de radical qui atteint la racine même de ces infections, ces mésententes.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">16 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-017" data-slide-id="slide-017" data-slide-title="Résumé long · 14" aria-hidden="true">
+  <header class="slide-header">Résumé long · 14</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">12.<span class="continuation-label">suite</span></div>
+  <div class="item-body"><p>Depuis la chaire de la SIC, nous apprécions
+
+chaleureusement les efforts de tous ceux qui tentent de développer la force de l&#39;individu dans la société; avec assurance, nous leur présentons ce procédé naturel qui permet de liquider tous les problèmes, qu&#39;il s&#39;agisse de la santé, de questions nationales ou internationales, de l&#39;éducation, de l&#39;économie, ou de quoi que ce soit d&#39;autre. Le développement d&#39;individus solides se fera sentir à tous les niveaux de la société et dans le monde entier.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">17 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-018" data-slide-id="slide-018" data-slide-title="Résumé long · 15" aria-hidden="true">
+  <header class="slide-header">Résumé long · 15</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">13.</div>
+  <div class="item-body"><p>Peu importe qu&#39;une nation soit dans l&#39;affluence, ou en voie de développement, car où que nous tournions notre attention, il y a de la souffrance. Cela nous montre en tout cas que l&#39;économie actuelle se résume en une faillite complète. Riches ou pauvres, tous les pays ont à faire face à quelque genre de souffrance. Des hommes intelligents perdent leur temps à déplorer la situation écologique, l&#39;éducation, la politique; dans tous les domaines, ils évaluent l&#39;étendue de la faillite, et ceci au moment même de l&#39;histoire où la SIC nous est donnée pour amener l&#39;humanité de la souffrance au bonheur total. Grâce à cette connaissance, cette génération murmurera la force à tous ceux qui suivront.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">18 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-019" data-slide-id="slide-019" data-slide-title="Résumé long · 16" aria-hidden="true">
+  <header class="slide-header">Résumé long · 16</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">13.<span class="continuation-label">suite</span></div>
+  <div class="item-body"><p>Murmurer la force, cela veut dire éliminer la racine des problèmes, au lieu de perdre du temps à les analyser; cela veut dire faire de la lumière au lieu d&#39;étudier les ténèbres. Ces conférences mondiales et ces professeurs d&#39;université doivent savoir qu&#39;il existe un enseignement et une technique permettant d&#39;éliminer la racine même de tout problème: il faut en effet reconnaître qu&#39;il y a là des gens puissants, très bien intentionnés, de grands esprits qui ont passé leur temps à étudier des problèmes d&#39;écologie, d&#39;éducation. de santé, de religion. bref, des problèmes de toute sorte. Il n&#39;est plus besoin pour eux de déplorer tel problème, d&#39;en calculer l&#39;ampleur, etc., car il y a maintenant une solution.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">19 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-020" data-slide-id="slide-020" data-slide-title="Résumé long · 17 et fin" aria-hidden="true">
+  <header class="slide-header">Résumé long · 17 et fin</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">13.<span class="continuation-label">suite</span></div>
+  <div class="item-body"><p>Il suffit d&#39;allumer la lumière de la SIC et de développer ainsi, systématiquement, la force de chacun grâce à sa pratique, la MT, et tous les problèmes s&#39;évanouiront.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">20 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-021" data-slide-id="slide-021" data-slide-title="Questions · 1" aria-hidden="true">
+  <header class="slide-header">Questions · 1</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Dans quelles conditions les problèmes existent-ils?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">21 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-022" data-slide-id="slide-022" data-slide-title="Questions · 2" aria-hidden="true">
+  <header class="slide-header">Questions · 2</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Qu&#39;est qui rend l&#39;individu faible?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">22 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-023" data-slide-id="slide-023" data-slide-title="Questions · 3" aria-hidden="true">
+  <header class="slide-header">Questions · 3</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Quelle est la base de Ja force?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">23 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-024" data-slide-id="slide-024" data-slide-title="Questions · 4" aria-hidden="true">
+  <header class="slide-header">Questions · 4</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Quelle est la base de la solution à tout problème?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">24 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-025" data-slide-id="slide-025" data-slide-title="Questions · 5" aria-hidden="true">
+  <header class="slide-header">Questions · 5</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Que devrait faire une personne qui se sent faible?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">25 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-026" data-slide-id="slide-026" data-slide-title="Questions · 6" aria-hidden="true">
+  <header class="slide-header">Questions · 6</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Donner un exemple du principe dit du second élément.</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">26 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-027" data-slide-id="slide-027" data-slide-title="Questions · 7" aria-hidden="true">
+  <header class="slide-header">Questions · 7</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">Dans quel but le Plan Mondial a-t-il été créé?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">27 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-028" data-slide-id="slide-028" data-slide-title="Questions · 8" aria-hidden="true">
+  <header class="slide-header">Questions · 8</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">8.</div>
+    <p class="question-text">Quel est le but d&#39;une technique?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">28 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-029" data-slide-id="slide-029" data-slide-title="Questions · 9" aria-hidden="true">
+  <header class="slide-header">Questions · 9</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">9.</div>
+    <p class="question-text">Quel est le résultat de l&#39;utilisation combinée de la connaissance et de la technique de la SIC?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">29 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-030" data-slide-id="slide-030" data-slide-title="Questions · 10" aria-hidden="true">
+  <header class="slide-header">Questions · 10</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">10.</div>
+    <p class="question-text">Comment un chef de famille, de communauté, de nation peut-il accomplir le maximum pour ceux dont il est responsable?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">30 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-031" data-slide-id="slide-031" data-slide-title="Questions · 11 et fin" aria-hidden="true">
+  <header class="slide-header">Questions · 11 et fin</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">11.</div>
+    <p class="question-text">Pourquoi, jusqu&#39;à présent, les efforts d&#39;hommes puissants et de bonne volonté n&#39;ont-ils pas réussi à alléger la souffrance de l&#39;humanité?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">31 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-032" data-slide-id="slide-032" data-slide-title="Discussion · 1" aria-hidden="true">
+  <header class="slide-header">Discussion · 1</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Dans quelles conditions les problèmes existent-ils?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">32 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-033" data-slide-id="slide-033" data-slide-title="Discussion · réponse · 1" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 1</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Dans quelles conditions les problèmes existent-ils?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Les problèmes s&#39;élèvent dans la faiblesse.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">33 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-034" data-slide-id="slide-034" data-slide-title="Discussion · 2" aria-hidden="true">
+  <header class="slide-header">Discussion · 2</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Qu&#39;est qui rend l&#39;individu faible?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">34 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-035" data-slide-id="slide-035" data-slide-title="Discussion · réponse · 2" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 2</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Qu&#39;est qui rend l&#39;individu faible?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Les limites de l&#39;esprit, l&#39;étroitesse et les restrictions de l&#39;esprit individuel.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">35 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-036" data-slide-id="slide-036" data-slide-title="Discussion · 3" aria-hidden="true">
+  <header class="slide-header">Discussion · 3</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Quelle est la base de Ja force?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">36 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-037" data-slide-id="slide-037" data-slide-title="Discussion · réponse · 3" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 3</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">Quelle est la base de Ja force?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>La base de la force, c&#39;est l&#39;IC qui se développe, un esprit développé, une conscience élargie, un état d&#39;esprit très ouvert.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">37 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-038" data-slide-id="slide-038" data-slide-title="Discussion · 4" aria-hidden="true">
+  <header class="slide-header">Discussion · 4</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Quelle est la base de la solution à tout problème?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">38 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-039" data-slide-id="slide-039" data-slide-title="Discussion · réponse · 4" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 4</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Quelle est la base de la solution à tout problème?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Tout problème plonge ses racines dans la faiblesse. Mais toutes les faiblesses disparaissent lorsque l&#39;esprit s&#39;élargit, et lorsque l&#39;IC se développe de plus en plus grâce à la pratique de la MT°</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">39 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-040" data-slide-id="slide-040" data-slide-title="Discussion · 5" aria-hidden="true">
+  <header class="slide-header">Discussion · 5</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Que devrait faire une personne qui se sent faible?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">40 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-041" data-slide-id="slide-041" data-slide-title="Discussion · réponse · 5" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 5</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Que devrait faire une personne qui se sent faible?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Toute personne qur se sent faible devrait immédiatement contacter le réservoir de l&#39;IC.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">41 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-042" data-slide-id="slide-042" data-slide-title="Discussion · 6" aria-hidden="true">
+  <header class="slide-header">Discussion · 6</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Donner un exemple du principe dit du second élément.</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">42 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-043" data-slide-id="slide-043" data-slide-title="Discussion · réponse · 6" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 6</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Donner un exemple du principe dit du second élément.</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Si nous sommes dans les ténèbres, faites de la lumière.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">43 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-044" data-slide-id="slide-044" data-slide-title="Discussion · 7" aria-hidden="true">
+  <header class="slide-header">Discussion · 7</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">Dans quel but le Plan Mondial a-t-il été créé?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">44 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-045" data-slide-id="slide-045" data-slide-title="Discussion · réponse · 7" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 7</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">Dans quel but le Plan Mondial a-t-il été créé?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Le Plan Mondial a pour but d&#39;éliminer tous les problèmes à tous les niveaux de la vie - individuel, social, national, international - et d&#39;en finir avec les problèmes du crime, de la délinquance, etc.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">45 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-046" data-slide-id="slide-046" data-slide-title="Discussion · 8" aria-hidden="true">
+  <header class="slide-header">Discussion · 8</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">8.</div>
+    <p class="question-text">Quel est le but d&#39;une technique?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">46 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-047" data-slide-id="slide-047" data-slide-title="Discussion · réponse · 8" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 8</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">8.</div>
+    <p class="question-text">Quel est le but d&#39;une technique?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>faire moins et accomplir plus.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">47 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-048" data-slide-id="slide-048" data-slide-title="Discussion · 9" aria-hidden="true">
+  <header class="slide-header">Discussion · 9</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">9.</div>
+    <p class="question-text">Quel est le résultat de l&#39;utilisation combinée de la connaissance et de la technique de la SIC?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">48 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-049" data-slide-id="slide-049" data-slide-title="Discussion · réponse · 9" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 9</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">9.</div>
+    <p class="question-text">Quel est le résultat de l&#39;utilisation combinée de la connaissance et de la technique de la SIC?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Tous les problèmes tels que crime, délinquance disparaissent lorsque chacun gagne en force grâce au développement de l&#39;IC. On accomplit ce but grâce au procédé spontané, sans effort par la connaissance de la SIC.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">49 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-050" data-slide-id="slide-050" data-slide-title="Discussion · 10" aria-hidden="true">
+  <header class="slide-header">Discussion · 10</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">10.</div>
+    <p class="question-text">Comment un chef de famille, de communauté, de nation peut-il accomplir le maximum pour ceux dont il est responsable?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">50 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-051" data-slide-id="slide-051" data-slide-title="Discussion · réponse · 10" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 10</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">10.</div>
+    <p class="question-text">Comment un chef de famille, de communauté, de nation peut-il accomplir le maximum pour ceux dont il est responsable?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Il peut leur apporter la plénitude en leur faisant connaitre la connaissance et la pratique de la SIC.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">51 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-052" data-slide-id="slide-052" data-slide-title="Discussion · 11" aria-hidden="true">
+  <header class="slide-header">Discussion · 11</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">11.</div>
+    <p class="question-text">Pourquoi, jusqu&#39;à présent, les efforts d&#39;hommes puissants et de bonne volonté n&#39;ont-ils pas réussi à alléger la souffrance de l&#39;humanité?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">52 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-053" data-slide-id="slide-053" data-slide-title="Discussion · réponse · 11 et fin" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 11 et fin</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">11.</div>
+    <p class="question-text">Pourquoi, jusqu&#39;à présent, les efforts d&#39;hommes puissants et de bonne volonté n&#39;ont-ils pas réussi à alléger la souffrance de l&#39;humanité?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Parce que leurs efforts traiter les symptômes de la souffrance au lieu d&#39;en attaquer la véritable cause, à savoir: la faiblesse individuelle.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">53 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-054" data-slide-id="slide-054" data-slide-title="Place de la leçon · 1" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 1</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>Comme nous l&#39;avons vu dans les leçons précédentes, le progrès vers une plénitude plus grande obtenue grâce à la pratique régulière de la MT dépend de ceci: que l&#39;esprit fasse l&#39;expérience de sa propre nature essentielle. L&#39;esprit, sur la base de cette nature, est capable de refléter l&#39;illimité de l&#39;IC en alternant l&#39;expérience des limites et de l&#39;illimité grâce à cette pratique. Cette alternance d&#39;expérience élargit la vision, agrandit et renforce l&#39;esprit en contactant le réservoir infini de l&#39;IC qui réside en chaque individu.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>L&#39;individu est l&#39;unité de base de la société. Toute qualité possédée par l&#39;individu se reflète sur une plus large échelle au sein de la société. Ainsi, en renforçant l&#39;individu, par la connaissance et la pratique de la SIC, nous prenons le chemin direct pour renforcer la communauté, la nation et le monde.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">54 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-055" data-slide-id="slide-055" data-slide-title="Place de la leçon · 2" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 2</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>Les problèmes proviennent de la faiblesse. Ils se développent dans la faiblesse. Ceci s&#39;applique à tous les genres de problèmes: sociaux, politiques, individuels, et nationaux. Si l&#39;individu est faible, cette faiblesse se reflétera dans tout son environnement. La force, également, se reflète dans toutes les directions à la fois. Comme nous l&#39;avons vu dans cette leçon, l&#39;IC pleinement développée constitue la base de la force. Un homme ayant cette conscience élargie saisit un horizon plus vaste et résout les problèmes dans l&#39;œil, c&#39;est-à-dire en les éliminant avant même qu&#39;ils n&#39;aient eu le temps d&#39;apparaître.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">4.</div>
+  <div class="item-body"><p>Puisque la connaissance et la pratique de la SIC développent l&#39;IC jusqu&#39;à sa plénitude, il en découle que la SIC constitue une solution immédiate à tous les problèmes de la vie.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">55 of 56</span>
+  </footer>
+</article>
+<article class="slide" id="slide-056" data-slide-id="slide-056" data-slide-title="Place de la leçon · 3 et fin" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 3 et fin</header>
+<h1 class="lesson-title" data-overflow-check>La SIC et la solution à tous les problèmes</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">5.</div>
+  <div class="item-body"><p>Le but même de l&#39;étude de l&#39;IC - sous forme scientifique - consiste à développer la capacité d&#39;utiliser spontanément la pleine valeur de l&#39;IC, lorsque c&#39;est possible. Cette leçon, mettant en lumière la pure valeur de l&#39;IC, sous-jacente à tous les processus évolutifs, cette valeur de l&#39;IC dans notre conscience. Elle annonce une seule solution à tous les problèmes de la vie. Elle réalise ainsi le but du cours tout entier. La chaleur de la connaissance de cette leçon anime l&#39;esprit du cours tout entier.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 21</span>
+    <span class="global-pagination">56 of 56</span>
+  </footer>
+</article>
+
+  </main>
+  <div class="presenter-hint" aria-hidden="true">← → naviguer · F plein écran</div>
+  <script>
+(() => {
+  const stage = document.querySelector('.deck-stage');
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let index = 0;
+
+  const clamp = (value) => Math.max(0, Math.min(slides.length - 1, value));
+
+  const indexFromHash = () => {
+    const match = window.location.hash.match(/^#\/(\d+)$/);
+    return match ? clamp(Number(match[1]) - 1) : 0;
+  };
+
+  const scaleStage = () => {
+    const scale = Math.min(window.innerWidth / 1600, window.innerHeight / 1000);
+    stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+  };
+
+  const checkOverflow = () => {
+    const failures = [];
+    document.querySelectorAll('[data-overflow-check]').forEach((element) => {
+      const overflow = element.scrollHeight > element.clientHeight + 1 ||
+        element.scrollWidth > element.clientWidth + 1;
+      element.classList.toggle('overflow-warning', overflow);
+      if (overflow) failures.push(element.closest('.slide')?.dataset.slideId || 'unknown');
+    });
+    return failures;
+  };
+
+  const show = (nextIndex, updateHash = true) => {
+    index = clamp(nextIndex);
+    slides.forEach((slide, slideIndex) => {
+      const active = slideIndex === index;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+    });
+    if (updateHash) history.replaceState(null, '', `#/${index + 1}`);
+    document.title = `${slides[index].dataset.slideTitle} — ${index + 1}/${slides.length}`;
+  };
+
+  const toggleFullscreen = async () => {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+    } else {
+      await document.documentElement.requestFullscreen();
+    }
+  };
+
+  window.addEventListener('resize', scaleStage);
+  window.addEventListener('hashchange', () => show(indexFromHash(), false));
+  window.addEventListener('keydown', (event) => {
+    if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(event.key)) {
+      event.preventDefault();
+      show(index + 1);
+    } else if (['ArrowLeft', 'ArrowUp', 'Backspace', 'PageUp'].includes(event.key)) {
+      event.preventDefault();
+      show(index - 1);
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      show(0);
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      show(slides.length - 1);
+    } else if (event.key.toLowerCase() === 'f') {
+      event.preventDefault();
+      toggleFullscreen();
+    }
+  });
+
+  window.deckQA = {
+    slideCount: slides.length,
+    currentSlide: () => index + 1,
+    overflows: checkOverflow,
+    show: (slideNumber) => show(slideNumber - 1)
+  };
+
+  scaleStage();
+  show(indexFromHash(), false);
+  document.fonts.ready.then(checkOverflow);
+})();
+
+  </script>
+</body>
+</html>

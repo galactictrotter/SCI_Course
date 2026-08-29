@@ -1,0 +1,484 @@
+{
+  "schema_version": 1,
+  "lesson": {
+    "number": 26,
+    "course": "Science de l'Intelligence Créatrice",
+    "title": "La SIC et l'idéal de l'éducation",
+    "language": "fr"
+  },
+  "aspect_ratio": "16:10",
+  "content_sha256": "85bb5a5b114a4b526f1d5fb62fe701d8bfb19ad704722fae085fff075adcad4a",
+  "pagination_policy": {
+    "final_marker": "et fin",
+    "global_format": "%{current} of %{total}",
+    "content_sections": {
+      "max_items": 3,
+      "max_characters": 850
+    },
+    "exceptions": {
+      "questions": "one_question_per_slide",
+      "discussion": "one_question_state_then_one_answer_state"
+    }
+  },
+  "slide_count": 41,
+  "section_slide_counts": {
+    "points_principaux": 1,
+    "resume_long": 12,
+    "questions": 8,
+    "discussion": 16,
+    "place_de_la_lecon": 3
+  },
+  "slides": [
+    {
+      "number": 1,
+      "id": "slide-001",
+      "role": "cover",
+      "section": null,
+      "section_index": null,
+      "final": false,
+      "title": "La SIC et l'idéal de l'éducation",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 2,
+      "id": "slide-002",
+      "role": "points",
+      "section": "points_principaux",
+      "section_index": 1,
+      "final": true,
+      "title": "Points principaux · 1 et fin",
+      "item_count": 3,
+      "character_count": 589
+    },
+    {
+      "number": 3,
+      "id": "slide-003",
+      "role": "resume",
+      "section": "resume_long",
+      "section_index": 1,
+      "final": false,
+      "title": "Résumé long · 1",
+      "item_count": 1,
+      "character_count": 683
+    },
+    {
+      "number": 4,
+      "id": "slide-004",
+      "role": "resume",
+      "section": "resume_long",
+      "section_index": 2,
+      "final": false,
+      "title": "Résumé long · 2",
+      "item_count": 2,
+      "character_count": 674
+    },
+    {
+      "number": 5,
+      "id": "slide-005",
+      "role": "resume",
+      "section": "resume_long",
+      "section_index": 3,
+      "final": false,
+      "title": "Résumé long · 3",
+      "item_count": 1,
+      "character_count": 494
+    },
+    {
+      "number": 6,
+      "id": "slide-006",
+      "role": "resume",
+      "section": "resume_long",
+      "section_index": 4,
+      "final": false,
+      "title": "Résumé long · 4",
+      "item_count": 1,
+      "character_count": 469
+    },
+    {
+      "number": 7,
+      "id": "slide-007",
+      "role": "resume",
+      "section": "resume_long",
+      "section_index": 5,
+      "final": false,
+      "title": "Résumé long · 5",
+      "item_count": 1,
+      "character_count": 649
+    },
+    {
+      "number": 8,
+      "id": "slide-008",
+      "role": "resume",
+      "section": "resume_long",
+      "section_index": 6,
+      "final": false,
+      "title": "Résumé long · 6",
+      "item_count": 1,
+      "character_count": 684
+    },
+    {
+      "number": 9,
+      "id": "slide-009",
+      "role": "resume",
+      "section": "resume_long",
+      "section_index": 7,
+      "final": false,
+      "title": "Résumé long · 7",
+      "item_count": 1,
+      "character_count": 268
+    },
+    {
+      "number": 10,
+      "id": "slide-010",
+      "role": "resume",
+      "section": "resume_long",
+      "section_index": 8,
+      "final": false,
+      "title": "Résumé long · 8",
+      "item_count": 1,
+      "character_count": 661
+    },
+    {
+      "number": 11,
+      "id": "slide-011",
+      "role": "resume",
+      "section": "resume_long",
+      "section_index": 9,
+      "final": false,
+      "title": "Résumé long · 9",
+      "item_count": 1,
+      "character_count": 624
+    },
+    {
+      "number": 12,
+      "id": "slide-012",
+      "role": "resume",
+      "section": "resume_long",
+      "section_index": 10,
+      "final": false,
+      "title": "Résumé long · 10",
+      "item_count": 1,
+      "character_count": 345
+    },
+    {
+      "number": 13,
+      "id": "slide-013",
+      "role": "resume",
+      "section": "resume_long",
+      "section_index": 11,
+      "final": false,
+      "title": "Résumé long · 11",
+      "item_count": 1,
+      "character_count": 570
+    },
+    {
+      "number": 14,
+      "id": "slide-014",
+      "role": "resume",
+      "section": "resume_long",
+      "section_index": 12,
+      "final": true,
+      "title": "Résumé long · 12 et fin",
+      "item_count": 1,
+      "character_count": 695
+    },
+    {
+      "number": 15,
+      "id": "slide-015",
+      "role": "question",
+      "section": "questions",
+      "section_index": 1,
+      "final": false,
+      "title": "Questions · 1",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 16,
+      "id": "slide-016",
+      "role": "question",
+      "section": "questions",
+      "section_index": 2,
+      "final": false,
+      "title": "Questions · 2",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 17,
+      "id": "slide-017",
+      "role": "question",
+      "section": "questions",
+      "section_index": 3,
+      "final": false,
+      "title": "Questions · 3",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 18,
+      "id": "slide-018",
+      "role": "question",
+      "section": "questions",
+      "section_index": 4,
+      "final": false,
+      "title": "Questions · 4",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 19,
+      "id": "slide-019",
+      "role": "question",
+      "section": "questions",
+      "section_index": 5,
+      "final": false,
+      "title": "Questions · 5",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 20,
+      "id": "slide-020",
+      "role": "question",
+      "section": "questions",
+      "section_index": 6,
+      "final": false,
+      "title": "Questions · 6",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 21,
+      "id": "slide-021",
+      "role": "question",
+      "section": "questions",
+      "section_index": 7,
+      "final": false,
+      "title": "Questions · 7",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 22,
+      "id": "slide-022",
+      "role": "question",
+      "section": "questions",
+      "section_index": 8,
+      "final": true,
+      "title": "Questions · 8 et fin",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 23,
+      "id": "slide-023",
+      "role": "discussion_question",
+      "section": "discussion",
+      "section_index": 1,
+      "final": false,
+      "title": "Discussion · 1",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 24,
+      "id": "slide-024",
+      "role": "discussion_answer",
+      "section": "discussion",
+      "section_index": 1,
+      "final": false,
+      "title": "Discussion · réponse · 1",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 25,
+      "id": "slide-025",
+      "role": "discussion_question",
+      "section": "discussion",
+      "section_index": 2,
+      "final": false,
+      "title": "Discussion · 2",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 26,
+      "id": "slide-026",
+      "role": "discussion_answer",
+      "section": "discussion",
+      "section_index": 2,
+      "final": false,
+      "title": "Discussion · réponse · 2",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 27,
+      "id": "slide-027",
+      "role": "discussion_question",
+      "section": "discussion",
+      "section_index": 3,
+      "final": false,
+      "title": "Discussion · 3",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 28,
+      "id": "slide-028",
+      "role": "discussion_answer",
+      "section": "discussion",
+      "section_index": 3,
+      "final": false,
+      "title": "Discussion · réponse · 3",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 29,
+      "id": "slide-029",
+      "role": "discussion_question",
+      "section": "discussion",
+      "section_index": 4,
+      "final": false,
+      "title": "Discussion · 4",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 30,
+      "id": "slide-030",
+      "role": "discussion_answer",
+      "section": "discussion",
+      "section_index": 4,
+      "final": false,
+      "title": "Discussion · réponse · 4",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 31,
+      "id": "slide-031",
+      "role": "discussion_question",
+      "section": "discussion",
+      "section_index": 5,
+      "final": false,
+      "title": "Discussion · 5",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 32,
+      "id": "slide-032",
+      "role": "discussion_answer",
+      "section": "discussion",
+      "section_index": 5,
+      "final": false,
+      "title": "Discussion · réponse · 5",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 33,
+      "id": "slide-033",
+      "role": "discussion_question",
+      "section": "discussion",
+      "section_index": 6,
+      "final": false,
+      "title": "Discussion · 6",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 34,
+      "id": "slide-034",
+      "role": "discussion_answer",
+      "section": "discussion",
+      "section_index": 6,
+      "final": false,
+      "title": "Discussion · réponse · 6",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 35,
+      "id": "slide-035",
+      "role": "discussion_question",
+      "section": "discussion",
+      "section_index": 7,
+      "final": false,
+      "title": "Discussion · 7",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 36,
+      "id": "slide-036",
+      "role": "discussion_answer",
+      "section": "discussion",
+      "section_index": 7,
+      "final": false,
+      "title": "Discussion · réponse · 7",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 37,
+      "id": "slide-037",
+      "role": "discussion_question",
+      "section": "discussion",
+      "section_index": 8,
+      "final": false,
+      "title": "Discussion · 8",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 38,
+      "id": "slide-038",
+      "role": "discussion_answer",
+      "section": "discussion",
+      "section_index": 8,
+      "final": true,
+      "title": "Discussion · réponse · 8 et fin",
+      "item_count": null,
+      "character_count": null
+    },
+    {
+      "number": 39,
+      "id": "slide-039",
+      "role": "place",
+      "section": "place_de_la_lecon",
+      "section_index": 1,
+      "final": false,
+      "title": "Place de la leçon · 1",
+      "item_count": 3,
+      "character_count": 824
+    },
+    {
+      "number": 40,
+      "id": "slide-040",
+      "role": "place",
+      "section": "place_de_la_lecon",
+      "section_index": 2,
+      "final": false,
+      "title": "Place de la leçon · 2",
+      "item_count": 2,
+      "character_count": 705
+    },
+    {
+      "number": 41,
+      "id": "slide-041",
+      "role": "place",
+      "section": "place_de_la_lecon",
+      "section_index": 3,
+      "final": true,
+      "title": "Place de la leçon · 3 et fin",
+      "item_count": 3,
+      "character_count": 681
+    }
+  ]
+}

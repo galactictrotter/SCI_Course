@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="generator" content="sci-course-slides/1.0.0">
+  <meta name="content-sha256" content="<%= content_sha %>">
+  <title><%= h.call(lesson.fetch("title")) %></title>
+  <style>
+<%= css %>
+  </style>
+</head>
+<body>
+  <main class="deck-stage" aria-label="Cours de SIC — Leçon <%= lesson.fetch("number") %>">
+<%= slides_html %>
+  </main>
+  <div class="presenter-hint" aria-hidden="true">← → naviguer · F plein écran</div>
+  <script>
+<%= javascript %>
+  </script>
+</body>
+</html>

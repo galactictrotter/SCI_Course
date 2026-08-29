@@ -1,0 +1,1444 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="generator" content="sci-course-slides/1.0.0">
+  <meta name="content-sha256" content="5da8114136306d78a2073c4f365b3f23b1d99d816cb4da52b5b42c40548ab441">
+  <title>La SIC et la Plénitude de la vie, génération après génération</title>
+  <style>
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("assets/fonts/barlow-condensed-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("assets/fonts/barlow-condensed-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("assets/fonts/eb-garamond-700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("assets/fonts/lora-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Lora";
+  src: url("assets/fonts/lora-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --canvas-width: 1600px;
+  --canvas-height: 1000px;
+  --background: #F7F5F0;
+  --text: #141414;
+  --red: #C94C3B;
+  --muted: #776F68;
+  --stage: #141414;
+  --margin-x: 104px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--stage);
+  color: var(--text);
+}
+
+body {
+  font-family: "Lora", serif;
+}
+
+.deck-stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--canvas-width);
+  height: var(--canvas-height);
+  transform-origin: center center;
+  background: var(--background);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  width: var(--canvas-width);
+  height: var(--canvas-height);
+  padding: 0 var(--margin-x);
+  overflow: hidden;
+  background: var(--background);
+}
+
+.slide.is-active {
+  display: block;
+}
+
+.slide-header {
+  position: absolute;
+  top: 62px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  height: 44px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--red);
+}
+
+.lesson-title {
+  position: absolute;
+  top: 150px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1.04;
+  color: var(--text);
+  height: 86px;
+  overflow: hidden;
+  white-space: normal;
+}
+
+.lesson-title--long {
+  font-size: 39px;
+  line-height: 1;
+}
+
+.slide-content {
+  position: absolute;
+  top: 242px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  height: 690px;
+  overflow: hidden;
+  font-family: "Lora", serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.34;
+}
+
+.slide-content.compact {
+  font-size: 27px;
+  line-height: 1.31;
+}
+
+.numbered-item {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 4px;
+  margin: 0 0 26px;
+}
+
+.numbered-item:last-child {
+  margin-bottom: 0;
+}
+
+.item-number {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 0.9em;
+  line-height: 1.45;
+  color: var(--red);
+}
+
+.continuation-label {
+  display: block;
+  margin-top: -2px;
+  font-size: 0.55em;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.item-body p {
+  margin: 0;
+}
+
+.item-body ul {
+  margin: 10px 0 0 1.08em;
+  padding: 0;
+}
+
+.item-body li {
+  margin: 3px 0;
+  padding-left: 0.22em;
+}
+
+.question-layout {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.question-number {
+  padding-top: 4px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 38px;
+  color: var(--red);
+}
+
+.question-text {
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.14;
+}
+
+.answer {
+  margin: 38px 0 0 78px;
+  padding-top: 28px;
+  border-top: 2px solid rgba(201, 76, 59, 0.32);
+  font-size: 30px;
+  line-height: 1.36;
+}
+
+.answer-label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.slide-footer {
+  position: absolute;
+  top: 926px;
+  left: var(--margin-x);
+  right: var(--margin-x);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.course-footer {
+  color: var(--red);
+}
+
+.global-pagination {
+  color: var(--muted);
+}
+
+.cover-title {
+  position: absolute;
+  top: 252px;
+  left: var(--margin-x);
+  right: 250px;
+  margin: 0;
+  font-family: "EB Garamond", serif;
+  font-size: 76px;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.018em;
+}
+
+.cover-rule {
+  position: absolute;
+  left: var(--margin-x);
+  top: 190px;
+  width: 154px;
+  height: 6px;
+  background: var(--red);
+}
+
+.overflow-warning {
+  outline: 8px solid #ff00cc;
+  outline-offset: -8px;
+}
+
+.presenter-hint {
+  position: fixed;
+  right: 16px;
+  bottom: 12px;
+  z-index: 20;
+  font-family: sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+body:hover .presenter-hint {
+  opacity: 1;
+}
+
+@media print {
+  @page {
+    size: 16in 10in;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: auto;
+    height: auto;
+    overflow: visible;
+    background: #fff;
+  }
+
+  .deck-stage {
+    position: static;
+    width: auto;
+    height: auto;
+    transform: none !important;
+    box-shadow: none;
+  }
+
+  .slide,
+  .slide.is-active {
+    position: relative;
+    display: block;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .presenter-hint {
+    display: none;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <main class="deck-stage" aria-label="Cours de SIC — Leçon 33">
+<article class="slide is-active" id="slide-001" data-slide-id="slide-001" data-slide-title="La SIC et la Plénitude de la vie, génération après génération" aria-hidden="false">
+  <div class="cover-rule" aria-hidden="true"></div>
+<h1 class="cover-title">La SIC et la Plénitude de la vie, génération après génération</h1>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">1 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-002" data-slide-id="slide-002" data-slide-title="Points principaux · 1 et fin" aria-hidden="true">
+  <header class="slide-header">Points principaux · 1 et fin</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>Une génération vivant dans la plénitude établira les fondations pour la
+
+plénitude de toutes les générations à venir.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>Le professeur de Science de l&#39;Intelligence Créatrice structure la plénitude pour toutes les générations:</p><ul><li>en vivant et en rayonnant la pleine valeur de la vie</li><li>en murmurant la connaissance suprême de la vie</li><li>en maintenant la pureté et la vitalité de la connaissance</li><li>en animant en chaque homme la pleine valeur de l&#39;Intelligence Créatrice</li></ul></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>Le Plan Mondial a été structuré pour apporter cette plénitude à toutes les générations.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">2 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-003" data-slide-id="slide-003" data-slide-title="Résumé long · 1" aria-hidden="true">
+  <header class="slide-header">Résumé long · 1</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>Après avoir examiné tous les aspects différents de la Science de l&#39;Intelligence Créatrice, nous désirons maintenant voir comment les immenses possibilités qu&#39;elle nous offre peuvent être acquises par tous, et en tout temps. Une seule génération d&#39;individus pleinement développés est suffisante pour que toutes les générations à venir soient pleinement développées, et une seule génération demeurant dans l&#39;ignorance de cette connaissance suprême suffirait à maintenir toutes les générations futures dans l&#39;ignorance. En maintenant la pureté et la vitalité de l&#39;enseignement, génération après génération, les professeurs de Science de l&#39;Intelligence Créatrice assureront la vie dans la plénitude, génération après génération.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">3 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-004" data-slide-id="slide-004" data-slide-title="Résumé long · 2" aria-hidden="true">
+  <header class="slide-header">Résumé long · 2</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>Il semble que cette génération soit la première dans la longue histoire de la race humaine qui grandisse dans la connaissance de la Science de l&#39;Intelligence Créatrice. La nature de la Science de l&#39;Intelligence Créatrice est telle qu&#39;elle ouvre à chaque coeur et à chaque esprit la pleine valeur de cette connaissance suprême qui, dans le processus même de son développement, cultive tous les aspects de la vie, en sorte que la plénitude de la vie soit spontanément vécue par chacun en tout temps et en tout lieu. Si telle est la nature et l&#39;influence de la connaissance de la Science de l&#39;Intelligence Créatrice, il sera seulement nécessaire de la partager avec tous les peuples de cette génération afin d&#39;établir de solides fondations pour un système d&#39;enseignement qui maintiendra la pureté de la connaissance pour toutes les générations à venir.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">4 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-005" data-slide-id="slide-005" data-slide-title="Résumé long · 3" aria-hidden="true">
+  <header class="slide-header">Résumé long · 3</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">3.</div>
+  <div class="item-body"><p>Avec l&#39;établissement de M.I.U. dans toutes les parties du monde, l&#39;enseignement de la Science de l&#39;Intelligence Créatrice sera maintenu dans sa pureté, et sa pureté lui gardera sa force afin que les effets de la connaissance suprême puissent être apportés à chaque coeur et à chaque esprit. Avec la révélation de la connaissance de la Science de l&#39;Intelligence Créatrice et parce que cette connaissance est par nature progressive et auto-évoluante, un organisme s&#39;est manifesté pour maintenir sa pureté et sa plénitude et un plan est né qui rendra efficace cette organisation pour chaque homme dans le monde.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">5 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-006" data-slide-id="slide-006" data-slide-title="Résumé long · 4" aria-hidden="true">
+  <header class="slide-header">Résumé long · 4</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">4.</div>
+  <div class="item-body"><p>Dès que nous acquérons la connaissance de la Science de l&#39;Intelligence Créatrice, nous désirons immédiatement la partager avec les autres. Dès l&#39;instant où nous faisons l&#39;expérience de la valeur illimitée de la vie, nous prenons conscience que d&#39;autres continueront à souffrir inutilement de génération en génération, et nous désirons que tout le monde sache qu&#39;il
+
+existe un domaine illimité d&#39;Intelligence Créatrice, profondément à l&#39;intérieur de nous, qui peut être développé de façon systématique en utilisant la nature même de l&#39;esprit. Sachant par expérience combien il est facile d&#39;ouvrir notre conscience à ce domaine fondamental de la vie, nous désirons que chacun puisse faire cette expérience, afin que tous les aspects de la vie soient enrichis.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">6 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-007" data-slide-id="slide-007" data-slide-title="Résumé long · 5" aria-hidden="true">
+  <header class="slide-header">Résumé long · 5</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">5.</div>
+  <div class="item-body"><p>Seule l&#39;ignorance des possibilités infinies qui résident au sein même de la nature de la vie, l&#39;ignorance de la manière simple et naturelle de développer ces possibilités par la pratique de la Science de l&#39;Intelligence Créatrice, cela seul a maintenu les gens dans la souffrance. À présent cette connaissance, demeurée longtemps cachée, est disponible pour chaque homme, connaissance suprême par nature, suprême par sa valeur et par ses effets. À mesure que la connaissance se développe, la vie évolue, à mesure que l&#39;on acquiert davantage la connaissance de la Science de l&#39;Intelligence Créatrice, les valeurs les plus élevées de la vie se développent spontanément. Cette connaissance suprême structure spontanément la vie dans ses valeurs croissantes jusqu&#39;à ce que la pleine évolution soit atteinte.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">7 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-008" data-slide-id="slide-008" data-slide-title="Résumé long · 6" aria-hidden="true">
+  <header class="slide-header">Résumé long · 6</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">6.</div>
+  <div class="item-body"><p>Pleine évolution, cela signifie que nous sommes pleinement évolués et que nous possédons la capacité de murmurer la façon d&#39;obtenir la pleine évolution à n&#39;importe qui. Le professeur de la Science de l&#39;Intelligence Créatrice n&#39;est pas seulement le &quot;connaisseur&quot;, mais aussi l&#39; &quot;exposant&quot; de la pleine valeur de la vie. Il enseigne par l&#39;exemple, par son silence. La qualité pleinement développée de l&#39;aptitude à enseigner est comme un signal de la pleine valeur de l&#39;évolution. On est professeur dans la mesure où l&#39;on irradie l&#39;harmonie totale qui est la valeur infinie de l&#39;Intelligence Créatrice. Le professeur est comme une coupe pleine qui déborde dans toutes les directions du goût somptueux et merveilleux de l&#39;infini.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">8 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-009" data-slide-id="slide-009" data-slide-title="Résumé long · 7" aria-hidden="true">
+  <header class="slide-header">Résumé long · 7</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">7.</div>
+  <div class="item-body"><p>Dans l&#39;enseignement de la Science de l&#39;Intelligence Créatrice, le plein développement de la personnalité, qui est le signe du plein développement de l&#39;Intelligence Créatrice, ne veut pas seulement dire, utiliser notre plein potentiel - vivre en bonne santé, une vie normale, en pleine conscience, et agir spontanément de la façon la plus juste et la plus efficace - mais aussi, utiliser nos capacités pour apporter cet état de plénitude aux autres. Le professeur de la Science de l&#39;Intelligence Créatrice connaît et vit la pleine valeur de la vie et irradie cette connaissance dans tous les aspects de la vie. L&#39;évolution se réjouit en lui, et par lui la connaissance de l&#39;évolution rapide est transmise aux autres.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">9 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-010" data-slide-id="slide-010" data-slide-title="Résumé long · 8" aria-hidden="true">
+  <header class="slide-header">Résumé long · 8</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">7.<span class="continuation-label">suite</span></div>
+  <div class="item-body"><p>Dans cette qualité pleinement développée de l&#39;aptitude à enseigner, réside l&#39;efficacité de la Science de l&#39;Intelligence Créatrice, pour maintenir la vie dans la plénitude, génération après génération.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">10 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-011" data-slide-id="slide-011" data-slide-title="Résumé long · 9" aria-hidden="true">
+  <header class="slide-header">Résumé long · 9</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">8.</div>
+  <div class="item-body"><p>Parce que la connaissance de la Science de l&#39;Intelligence Créatrice est tellement complète et spontanément utile pour établir la vie dans le but du progrès, il est très simple et naturel, pour un professeur développé de la Science de l&#39;Intelligence Créatrice, d&#39;en apporter la lumière aux autres. Toute souffrance et défaut de plénitude dans la vie appartiennent au domaine de l&#39;ignorance, et la lumière de la Science de l&#39;Intelligence Créatrice élimine l&#39;obscurité de l&#39;ignorance. L&#39;illumination est une situation naturelle dans laquelle la vie est vécue, et par conséquent il est naturel pour quelqu&#39;un qui vit dans la lumière de la vie, dans sa plénitude, de rayonner les étincelles de la vie et porter la lumière au coeur de ceux qui l&#39;entourent.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">11 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-012" data-slide-id="slide-012" data-slide-title="Résumé long · 10" aria-hidden="true">
+  <header class="slide-header">Résumé long · 10</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">9.</div>
+  <div class="item-body"><p>Le Plan Mondial est né de la nature progressive et auto-régénératrice de l&#39;Intelligence Créatrice. Lorsque de nombreuses personnes, dans toutes les parties du monde, eurent expérimenté que la Science de l&#39;Intelligence Créatrice peut apporter la pureté, le progrès et la plénitude à la vie, il était naturel qu&#39;une organisation formule un Plan afin de former des professeurs de la Science de l&#39;Intelligence Créatrice pour toutes les parties du monde. De cette façon, la connaissance suprême a trouvé sa propre solution pour apporter ses bénédictions à tous et partout.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">12 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-013" data-slide-id="slide-013" data-slide-title="Résumé long · 11" aria-hidden="true">
+  <header class="slide-header">Résumé long · 11</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">10.</div>
+  <div class="item-body"><p>Grâce au Plan Mondial, chaque groupe d&#39;un million de personnes disposera d&#39;un Centre de formation de professeurs de Science de l&#39;Intelligence Créatrice et chaque Centre formera mille professeurs de Science de l&#39;Intelligence Créatrice. Ceci donnera partout un professeur de Science de l&#39;Intelligence Créatrice pour une population de mille personnes. Dans peu de temps cette connaissance suprême sera partagée par tous les hommes et toutes les femmes de cette génération, ainsi s&#39;élèvera l&#39;aube de l&#39;espoir d&#39;une vie accomplie, génération après génération.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">13 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-014" data-slide-id="slide-014" data-slide-title="Résumé long · 12" aria-hidden="true">
+  <header class="slide-header">Résumé long · 12</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">11.</div>
+  <div class="item-body"><p>Le Plan Mondial sera facile à réaliser parce que le centre de la connaissance de la Science de l&#39;Intelligence Créatrice est déjà présent, déjà vivant, et fonctionne dans la conscience de chacun d&#39;entre nous. Il suffit de le stimuler pour qu&#39;il s&#39;élève à sa pleine valeur, et ceci se réalisera par la pratique de la Science de l&#39;Intelligence Créatrice.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">14 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-015" data-slide-id="slide-015" data-slide-title="Résumé long · 13" aria-hidden="true">
+  <header class="slide-header">Résumé long · 13</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">12.</div>
+  <div class="item-body"><p>Une vie de plénitude pour toutes les générations, cela dépend de la vitalité des professeurs de Science de l&#39;Intelligence Créatrice: aussi longtemps qu&#39;ils seront tous en fonction, qu&#39;ils agiront harmonieusement et maintiendront la pureté de l&#39;enseignement en suivant les mêmes principes et les mêmes processus, la vitalité et la force de l&#39;enseignement se maintiendront. Le mélange des valeurs s&#39;accroît très rapidement dans le monde entier, aussi, afin de préserver la pureté et la vitalité de l&#39;enseignement de la Science de l&#39;Intelligence Créatrice, il est essentiel que chaque professeur s&#39;en tienne aux
+
+principes qui lui ont été prescrits pour enseigner.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">15 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-016" data-slide-id="slide-016" data-slide-title="Résumé long · 14" aria-hidden="true">
+  <header class="slide-header">Résumé long · 14</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">12.<span class="continuation-label">suite</span></div>
+  <div class="item-body"><p>De cette façon, chaque professeur de Science de l&#39;Intelligence Créatrice profitera de la force de trois mille six cent professeurs dans le monde et dans deux ou trois ans, chaque professeur profitera de la force de trois millions six cent mille professeurs dans toutes les parties du monde.</p></div>
+</div>
+<div class="numbered-item">
+  <div class="item-number">13.</div>
+  <div class="item-body"><p>Aussi longtemps que l&#39;unité de l&#39;enseignement sera maintenue dans toutes les parties du monde, sa pureté et sa force seront maintenues, et ceci renforcera les coeurs et les esprits de tous et en tout lieu. L&#39;ennemi de la connaissance, l&#39;ignorance, qui a voilé la vie de tous les peuples pendant des générations dans le passé, tremblera d&#39;entendre progresser les pas de la connaissance répandue par les professeurs de la Science de l&#39;Intelligence Créatrice dans toutes les parties du monde.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">16 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-017" data-slide-id="slide-017" data-slide-title="Résumé long · 15 et fin" aria-hidden="true">
+  <header class="slide-header">Résumé long · 15 et fin</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">14.</div>
+  <div class="item-body"><p>Il faut qu&#39;il y ait un processus et des étapes échelonnées pour parvenir à la connaissance, et un effort de coopération pour maintenir l&#39;uniformité des leçons dans toutes les générations afin que toutes les populations du monde aient la liberté d&#39;acquérir la même plénitude de sagesse de la Science de l&#39;Intelligence Créatrice, où que l&#39;on soit, aujourd&#39;hui ou demain. Le Plan Mondial permet à chaque homme d&#39;acquérir facilement la même connaissance suprême où qu&#39;il se trouve. Il est donc vital que les professeurs de la Science de l&#39;Intelligence Créatrice maintiennent la pureté de cette connaissance, génération après génération, afin d&#39;assurer une vie de plénitude, de génération en génération.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">17 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-018" data-slide-id="slide-018" data-slide-title="Questions · 1" aria-hidden="true">
+  <header class="slide-header">Questions · 1</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Ayant compris et expérimenté ce qu&#39;est la Science de l&#39;Intelligence Créatrice, où devons-nous maintenant porter notre action?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">18 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-019" data-slide-id="slide-019" data-slide-title="Questions · 2" aria-hidden="true">
+  <header class="slide-header">Questions · 2</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Pourquoi avons-nous étudie en profondeur dans les leçons précédentes la valeur suprême de la connaissance?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">19 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-020" data-slide-id="slide-020" data-slide-title="Questions · 3" aria-hidden="true">
+  <header class="slide-header">Questions · 3</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">En considérant la Science de l&#39;Intelligence Créatrice à la lumière de ses effets sur la connaissance, quel effet spontané ont cette connaissance et cette science sur la vie de chacun?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">20 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-021" data-slide-id="slide-021" data-slide-title="Questions · 4" aria-hidden="true">
+  <header class="slide-header">Questions · 4</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Dites en quelques mots et simplement ce qu&#39;il faut faire pour établir une fondation solide à un système d&#39;enseignement de telle sorte que cette connaissance se perpétue intégralement de génération en génération?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">21 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-022" data-slide-id="slide-022" data-slide-title="Questions · 5" aria-hidden="true">
+  <header class="slide-header">Questions · 5</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Sur le plan pratique de l&#39;organisation, comment cette connaissance sera-t-elle transmise aux générations futures?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">22 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-023" data-slide-id="slide-023" data-slide-title="Questions · 6" aria-hidden="true">
+  <header class="slide-header">Questions · 6</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Quel est le seul facteur extérieur nécessaire pour faire usage de l&#39;Intelligence Créatrice?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">23 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-024" data-slide-id="slide-024" data-slide-title="Questions · 7" aria-hidden="true">
+  <header class="slide-header">Questions · 7</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">Outre le fait qu&#39;il connait la Science de l&#39;Intelligence Créatrice, quel est l&#39;autre attribut du professeur de Science de l&#39;Intelligence Créatrice?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">24 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-025" data-slide-id="slide-025" data-slide-title="Questions · 8" aria-hidden="true">
+  <header class="slide-header">Questions · 8</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">8.</div>
+    <p class="question-text">Quelle promesse pour le futur le professeur de Science de l&#39;Intelligence Créatrice tient-il?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">25 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-026" data-slide-id="slide-026" data-slide-title="Questions · 9" aria-hidden="true">
+  <header class="slide-header">Questions · 9</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">9.</div>
+    <p class="question-text">Quelles sont les deux qualités de l&#39;Intelligence Créatrice à l&#39;origine du plan mondial?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">26 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-027" data-slide-id="slide-027" data-slide-title="Questions · 10" aria-hidden="true">
+  <header class="slide-header">Questions · 10</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">10.</div>
+    <p class="question-text">En termes de population, quelle est la structure de base du Plan Mondial?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">27 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-028" data-slide-id="slide-028" data-slide-title="Questions · 11" aria-hidden="true">
+  <header class="slide-header">Questions · 11</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">11.</div>
+    <p class="question-text">Une fois que les professeurs de Science de l&#39;Intelligence Créatrice seront établis, combien faudra-t-il de temps pour que la connaissance suprême soit partagée par tous?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">28 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-029" data-slide-id="slide-029" data-slide-title="Questions · 12" aria-hidden="true">
+  <header class="slide-header">Questions · 12</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">12.</div>
+    <p class="question-text">Qu&#39;est-ce qui va garder force et vitalité à la Science de l&#39;Intelligence Créatrice partout, maintenant et dans toutes les générations à venir?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">29 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-030" data-slide-id="slide-030" data-slide-title="Questions · 13 et fin" aria-hidden="true">
+  <header class="slide-header">Questions · 13 et fin</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">13.</div>
+    <p class="question-text">Comment sont reliés le Plan Mondial et la Connaissance Suprême?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">30 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-031" data-slide-id="slide-031" data-slide-title="Discussion · 1" aria-hidden="true">
+  <header class="slide-header">Discussion · 1</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Ayant compris et expérimenté ce qu&#39;est la Science de l&#39;Intelligence Créatrice, où devons-nous maintenant porter notre action?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">31 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-032" data-slide-id="slide-032" data-slide-title="Discussion · réponse · 1" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 1</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">1.</div>
+    <p class="question-text">Ayant compris et expérimenté ce qu&#39;est la Science de l&#39;Intelligence Créatrice, où devons-nous maintenant porter notre action?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Il est logique d&#39;examiner si toutes ces possibilités gigantesques, illimitées que nous ouvre la Science de l&#39;Intelligence Créatrice pourront toujours être acquises par tous et en tout temps.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">32 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-033" data-slide-id="slide-033" data-slide-title="Discussion · 2" aria-hidden="true">
+  <header class="slide-header">Discussion · 2</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Pourquoi avons-nous étudie en profondeur dans les leçons précédentes la valeur suprême de la connaissance?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">33 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-034" data-slide-id="slide-034" data-slide-title="Discussion · réponse · 2" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 2</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">2.</div>
+    <p class="question-text">Pourquoi avons-nous étudie en profondeur dans les leçons précédentes la valeur suprême de la connaissance?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Dans ces leçons, nous avons étudié en détail la qualité de la connaissance et la valeur suprême de cette connaissance afin d&#39;étendre à l&#39;infini l&#39;éventail des possibilités de chacun dans la vie.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">34 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-035" data-slide-id="slide-035" data-slide-title="Discussion · 3" aria-hidden="true">
+  <header class="slide-header">Discussion · 3</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">En considérant la Science de l&#39;Intelligence Créatrice à la lumière de ses effets sur la connaissance, quel effet spontané ont cette connaissance et cette science sur la vie de chacun?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">35 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-036" data-slide-id="slide-036" data-slide-title="Discussion · réponse · 3" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 3</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">3.</div>
+    <p class="question-text">En considérant la Science de l&#39;Intelligence Créatrice à la lumière de ses effets sur la connaissance, quel effet spontané ont cette connaissance et cette science sur la vie de chacun?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>La nature même de la Science de l&#39;Intelligence Créatrice est telle qu&#39;elle ouvre chaque cœur et chaque esprit à la pleine valeur de la connaissance, et il devient possible à chacun, en tout lieu et en tout temps, de vivre la plénitude de la vie.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">36 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-037" data-slide-id="slide-037" data-slide-title="Discussion · 4" aria-hidden="true">
+  <header class="slide-header">Discussion · 4</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Dites en quelques mots et simplement ce qu&#39;il faut faire pour établir une fondation solide à un système d&#39;enseignement de telle sorte que cette connaissance se perpétue intégralement de génération en génération?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">37 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-038" data-slide-id="slide-038" data-slide-title="Discussion · réponse · 4" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 4</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">4.</div>
+    <p class="question-text">Dites en quelques mots et simplement ce qu&#39;il faut faire pour établir une fondation solide à un système d&#39;enseignement de telle sorte que cette connaissance se perpétue intégralement de génération en génération?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Il faut simplement que cette connaissance soit partagée par tous.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">38 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-039" data-slide-id="slide-039" data-slide-title="Discussion · 5" aria-hidden="true">
+  <header class="slide-header">Discussion · 5</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Sur le plan pratique de l&#39;organisation, comment cette connaissance sera-t-elle transmise aux générations futures?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">39 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-040" data-slide-id="slide-040" data-slide-title="Discussion · réponse · 5" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 5</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">5.</div>
+    <p class="question-text">Sur le plan pratique de l&#39;organisation, comment cette connaissance sera-t-elle transmise aux générations futures?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>On a dit de la Science de l&#39;Intelligence Créatrice qu&#39;elle se régénérait et se perpétuait d&#39;elle-même. Par l&#39;établissement de M.I.U. dans toutes les parties du monde, la pureté de l&#39;enseignement de la Science de l&#39;Intelligence Créatrice sera spontanément préservée.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">40 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-041" data-slide-id="slide-041" data-slide-title="Discussion · 6" aria-hidden="true">
+  <header class="slide-header">Discussion · 6</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Quel est le seul facteur extérieur nécessaire pour faire usage de l&#39;Intelligence Créatrice?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">41 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-042" data-slide-id="slide-042" data-slide-title="Discussion · réponse · 6" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 6</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">6.</div>
+    <p class="question-text">Quel est le seul facteur extérieur nécessaire pour faire usage de l&#39;Intelligence Créatrice?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Aucun facteur extérieur n&#39;est nécessaire, mais l&#39;on doit savoir comment utiliser la nature interne de l&#39;Intelligence Créatrice.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">42 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-043" data-slide-id="slide-043" data-slide-title="Discussion · 7" aria-hidden="true">
+  <header class="slide-header">Discussion · 7</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">Outre le fait qu&#39;il connait la Science de l&#39;Intelligence Créatrice, quel est l&#39;autre attribut du professeur de Science de l&#39;Intelligence Créatrice?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">43 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-044" data-slide-id="slide-044" data-slide-title="Discussion · réponse · 7" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 7</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">7.</div>
+    <p class="question-text">Outre le fait qu&#39;il connait la Science de l&#39;Intelligence Créatrice, quel est l&#39;autre attribut du professeur de Science de l&#39;Intelligence Créatrice?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>I n&#39;est pas simplement le connaisseur, mais aussi le porte-parole de la pleine valeur de la vie. La qualité totalement développée d&#39;enseignant est la marque de la pleine valeur de l&#39;évolution.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">44 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-045" data-slide-id="slide-045" data-slide-title="Discussion · 8" aria-hidden="true">
+  <header class="slide-header">Discussion · 8</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">8.</div>
+    <p class="question-text">Quelle promesse pour le futur le professeur de Science de l&#39;Intelligence Créatrice tient-il?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">45 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-046" data-slide-id="slide-046" data-slide-title="Discussion · réponse · 8" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 8</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">8.</div>
+    <p class="question-text">Quelle promesse pour le futur le professeur de Science de l&#39;Intelligence Créatrice tient-il?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Le professeur de Science de l&#39;Intelligence Créatrice remplit la promesse d&#39;une vie vécue dans la plénitude, de génération en génération.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">46 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-047" data-slide-id="slide-047" data-slide-title="Discussion · 9" aria-hidden="true">
+  <header class="slide-header">Discussion · 9</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">9.</div>
+    <p class="question-text">Quelles sont les deux qualités de l&#39;Intelligence Créatrice à l&#39;origine du plan mondial?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">47 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-048" data-slide-id="slide-048" data-slide-title="Discussion · réponse · 9" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 9</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">9.</div>
+    <p class="question-text">Quelles sont les deux qualités de l&#39;Intelligence Créatrice à l&#39;origine du plan mondial?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Le plan mondial est né de la nature progressive et auto-évolutive de l&#39;Intelligence Créatrice.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">48 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-049" data-slide-id="slide-049" data-slide-title="Discussion · 10" aria-hidden="true">
+  <header class="slide-header">Discussion · 10</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">10.</div>
+    <p class="question-text">En termes de population, quelle est la structure de base du Plan Mondial?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">49 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-050" data-slide-id="slide-050" data-slide-title="Discussion · réponse · 10" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 10</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">10.</div>
+    <p class="question-text">En termes de population, quelle est la structure de base du Plan Mondial?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Chaque groupe d&#39;un million d&#39;habitants aura un centre de formation de professeurs de Science de l&#39;Intelligence Créatrice et chaque Centre formera mille professeurs de Science de l&#39;Intelligence Créatrice.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">50 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-051" data-slide-id="slide-051" data-slide-title="Discussion · 11" aria-hidden="true">
+  <header class="slide-header">Discussion · 11</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">11.</div>
+    <p class="question-text">Une fois que les professeurs de Science de l&#39;Intelligence Créatrice seront établis, combien faudra-t-il de temps pour que la connaissance suprême soit partagée par tous?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">51 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-052" data-slide-id="slide-052" data-slide-title="Discussion · réponse · 11" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 11</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">11.</div>
+    <p class="question-text">Une fois que les professeurs de Science de l&#39;Intelligence Créatrice seront établis, combien faudra-t-il de temps pour que la connaissance suprême soit partagée par tous?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Dès qu&#39;une société aura un professeur de Science de l&#39;Intelligence Créatrice pour mille habitants, alors en six mois ou un an, la valeur de la connaissance sera partagée par tous les hommes et toutes les femmes de cette génération.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">52 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-053" data-slide-id="slide-053" data-slide-title="Discussion · 12" aria-hidden="true">
+  <header class="slide-header">Discussion · 12</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">12.</div>
+    <p class="question-text">Qu&#39;est-ce qui va garder force et vitalité à la Science de l&#39;Intelligence Créatrice partout, maintenant et dans toutes les générations à venir?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">53 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-054" data-slide-id="slide-054" data-slide-title="Discussion · réponse · 12" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 12</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">12.</div>
+    <p class="question-text">Qu&#39;est-ce qui va garder force et vitalité à la Science de l&#39;Intelligence Créatrice partout, maintenant et dans toutes les générations à venir?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Aussi longtemps que les professeurs de Science de l&#39;Intelligence Créatrice exerceront leur fonction harmonieusement; aussi longtemps que chaque professeur maintiendra dans son secteur la pureté de l&#39;enseignement; aussi longtemps que chaque professeur maintiendra dans son secteur la même forme et les mêmes principes d&#39;enseignement, alors l&#39;enseignement restera vivant et solide. Aussi longtemps que l&#39;enseignement sera identique dans toutes les parties du monde, la pureté de l&#39;enseignement sera préservée et, dans chaque région, la force de l&#39;enseignement renforcera la psychologie et les sentiments des individus partout dans le monde.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">54 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-055" data-slide-id="slide-055" data-slide-title="Discussion · 13" aria-hidden="true">
+  <header class="slide-header">Discussion · 13</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">13.</div>
+    <p class="question-text">Comment sont reliés le Plan Mondial et la Connaissance Suprême?</p>
+  </div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">55 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-056" data-slide-id="slide-056" data-slide-title="Discussion · réponse · 13 et fin" aria-hidden="true">
+  <header class="slide-header">Discussion · réponse · 13 et fin</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content" data-overflow-check>
+  <div class="question-layout">
+    <div class="question-number">13.</div>
+    <p class="question-text">Comment sont reliés le Plan Mondial et la Connaissance Suprême?</p>
+  </div>
+  <div class="answer">
+  <span class="answer-label">Réponse</span>
+  <p>Dans le monde entier le Plan Mondial apporte à chaque homme, indépendamment du lieu où il se trouve, la possibilité d&#39;acquérir la même connaissance suprême.</p>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">56 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-057" data-slide-id="slide-057" data-slide-title="Place de la leçon · 1" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 1</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.</div>
+  <div class="item-body"><p>Tout au long du cours, et par notre propre observation, nous avons vu que la Science de l&#39;Intelligence Créatrice est un domaine d&#39;étude valable et nécessaire - connaissance suprême pour toute l&#39;humanité. Ce que nous avons trouvé dans ces leçons, ce n&#39;est pas une connaissance nouvelle, mais la connaissance d&#39;un horizon nouveau pour tout homme dans le monde - la connaissance qui anime la conscience et y développe la demeure de toute connaissance. Dans cette leçon, il devient clair que la connaissance de l&#39;Intelligence Créatrice évolue par elle-même, se perpétue elle-même et se régénère elle-même; elle se suffit donc tout à fait à elle-même - c&#39;est sans effort qu&#39;elle obtient résidence dans le coeur et l&#39;esprit de chacun.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">57 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-058" data-slide-id="slide-058" data-slide-title="Place de la leçon · 2" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 2</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">1.<span class="continuation-label">suite</span></div>
+  <div class="item-body"><p>La beauté de cette connaissance tient en ceci: dès qu&#39;un homme la possède, il peut difficilement contenir le désir de la répandre autour de lui. L&#39;être tout entier du professeur de Science de l&#39;Intelligence Créatrice irradie la vérité de la vie, la connaissance suprême de la Science de l&#39;Intelligence Créatrice. Comme le désir de répandre l&#39;enseignement émerge spontanément avec la pratique de la MT, l&#39;organisation permettant de diffuser l&#39;enseignement et de le garder pur, elle aussi, apparaît spontanément. Avec cette organisation, un plan est né, le Plan Mondial, dans le but de transmettre la connaissance à toutes les générations à venir.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">58 of 59</span>
+  </footer>
+</article>
+<article class="slide" id="slide-059" data-slide-id="slide-059" data-slide-title="Place de la leçon · 3 et fin" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 3 et fin</header>
+<h1 class="lesson-title lesson-title--long" data-overflow-check>La SIC et la Plénitude de la vie, génération après génération</h1>
+<section class="slide-content compact" data-overflow-check>
+  <div class="numbered-item">
+  <div class="item-number">2.</div>
+  <div class="item-body"><p>Cette leçon constitue un pont indestructible que n&#39;importe quel homme peut franchir, pour quitter les champs dévastés de la souffrance vers les contrées fertiles de la vie béatifique. Grâce au Plan Mondial, on peut facilement diffuser la connaissance de la Science de l&#39;Intelligence Créatrice pour tous et en tout temps. Et grâce à M.I.U., la pureté et la dignité de l&#39;enseignement se maintiendront de génération en génération.</p></div>
+</div>
+
+</section>
+
+  <footer class="slide-footer">
+    <span class="course-footer">Cours de SIC - Leçon 33</span>
+    <span class="global-pagination">59 of 59</span>
+  </footer>
+</article>
+
+  </main>
+  <div class="presenter-hint" aria-hidden="true">← → naviguer · F plein écran</div>
+  <script>
+(() => {
+  const stage = document.querySelector('.deck-stage');
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let index = 0;
+
+  const clamp = (value) => Math.max(0, Math.min(slides.length - 1, value));
+
+  const indexFromHash = () => {
+    const match = window.location.hash.match(/^#\/(\d+)$/);
+    return match ? clamp(Number(match[1]) - 1) : 0;
+  };
+
+  const scaleStage = () => {
+    const scale = Math.min(window.innerWidth / 1600, window.innerHeight / 1000);
+    stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+  };
+
+  const checkOverflow = () => {
+    const failures = [];
+    document.querySelectorAll('[data-overflow-check]').forEach((element) => {
+      const overflow = element.scrollHeight > element.clientHeight + 1 ||
+        element.scrollWidth > element.clientWidth + 1;
+      element.classList.toggle('overflow-warning', overflow);
+      if (overflow) failures.push(element.closest('.slide')?.dataset.slideId || 'unknown');
+    });
+    return failures;
+  };
+
+  const show = (nextIndex, updateHash = true) => {
+    index = clamp(nextIndex);
+    slides.forEach((slide, slideIndex) => {
+      const active = slideIndex === index;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+    });
+    if (updateHash) history.replaceState(null, '', `#/${index + 1}`);
+    document.title = `${slides[index].dataset.slideTitle} — ${index + 1}/${slides.length}`;
+  };
+
+  const toggleFullscreen = async () => {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+    } else {
+      await document.documentElement.requestFullscreen();
+    }
+  };
+
+  window.addEventListener('resize', scaleStage);
+  window.addEventListener('hashchange', () => show(indexFromHash(), false));
+  window.addEventListener('keydown', (event) => {
+    if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(event.key)) {
+      event.preventDefault();
+      show(index + 1);
+    } else if (['ArrowLeft', 'ArrowUp', 'Backspace', 'PageUp'].includes(event.key)) {
+      event.preventDefault();
+      show(index - 1);
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      show(0);
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      show(slides.length - 1);
+    } else if (event.key.toLowerCase() === 'f') {
+      event.preventDefault();
+      toggleFullscreen();
+    }
+  });
+
+  window.deckQA = {
+    slideCount: slides.length,
+    currentSlide: () => index + 1,
+    overflows: checkOverflow,
+    show: (slideNumber) => show(slideNumber - 1)
+  };
+
+  scaleStage();
+  show(indexFromHash(), false);
+  document.fonts.ready.then(checkOverflow);
+})();
+
+  </script>
+</body>
+</html>

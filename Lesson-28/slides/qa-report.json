@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-08-29T07:20:31.466Z",
+  "viewport": {
+    "width": 1600,
+    "height": 1000
+  },
+  "slide_count": 66,
+  "fonts": {
+    "body": true,
+    "interface": true,
+    "title": true
+  },
+  "overflow_slides": [],
+  "navigation": {
+    "arrow_right": 2,
+    "end": 66,
+    "home": 1
+  },
+  "failures": []
+}

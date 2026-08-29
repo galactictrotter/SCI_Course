@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cours de SIC lesson content",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "lesson",
+    "points_principaux",
+    "resume_long",
+    "questions",
+    "place_de_la_lecon"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "lesson": {
+      "type": "object",
+      "required": ["number", "course", "title", "language"],
+      "properties": {
+        "number": { "type": "integer", "minimum": 1 },
+        "course": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "language": { "const": "fr" }
+      },
+      "additionalProperties": false
+    },
+    "points_principaux": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "resume_long": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["question", "answer"],
+        "properties": {
+          "question": { "type": "string", "minLength": 1 },
+          "answer": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "place_de_la_lecon": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "additionalProperties": false
+}
