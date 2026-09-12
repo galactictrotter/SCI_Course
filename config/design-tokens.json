@@ -30,14 +30,18 @@
     "header_y": 62,
     "content_y": 150,
     "footer_y": 926,
-    "content_height": 690
+    "content_height": 690,
+    "reading_height": 650
   },
   "pagination": {
     "final_marker": "et fin",
     "global_format": "%{current} of %{total}",
     "content_sections": {
-      "max_items": 3,
-      "max_characters": 850
+      "strategy": "browser_measured_whole_points",
+      "font_size": 32,
+      "min_single_point_font_size": 24,
+      "font_step": 2,
+      "bottom_safety_px": 8
     },
     "exceptions": {
       "questions": "one_question_per_slide",

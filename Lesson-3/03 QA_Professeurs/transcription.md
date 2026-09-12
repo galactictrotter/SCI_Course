@@ -7,7 +7,7 @@
 5. Comment l’activité mentale dans la MT se distingue-t-elle de ce qui se passe dans la concentration ?
 6. Que transcende-t-on dans la MT ?
 7. Quelles sont les trois qualités du mantra requises par la technique de MT ?
-8. Quel Dev occupe une place centrale dans l’enseignement de la MT. Pourquoi ?
+8. Guru Dev occupe une place centrale dans l’enseignement de la MT. Pourquoi ?
 9. Quel avantage notre connaissance de la MT tire-t-elle du lien avec la Tradition des Maîtres Védiques ?
 10. Pourquoi accomplit-on une très courte cérémonie avant d’enseigner la pratique de la MT ?
 11. Quelle est l’attitude du nouveau méditant face à cette cérémonie ?

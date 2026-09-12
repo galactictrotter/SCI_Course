@@ -1,5 +1,7 @@
 # Shared pagination policy and teaching-flow exceptions
 
+> Superseded by the [whole-point read-aloud policy](2026-09-05-whole-point-pagination.md). The 850-character ceiling now applies only to combinations of points; a single point is never split.
+
 Date: 2026-08-01
 
 ## Decision

@@ -6,7 +6,8 @@
   "scripts": {
     "lesson": "ruby src/build_slides.rb",
     "validate": "ruby src/validate_slides.rb",
-    "qa": "node src/browser_qa.mjs"
+    "qa": "node src/browser_qa.mjs",
+    "test": "node --test tests/*.test.mjs"
   },
   "devDependencies": {
     "playwright": "1.61.1"

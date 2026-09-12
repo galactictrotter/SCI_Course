@@ -158,16 +158,17 @@ body {
   line-height: 1.34;
 }
 
-.slide-content.compact {
-  font-size: 27px;
-  line-height: 1.31;
+.slide-content.reading-content {
+  font-size: 32px;
+  line-height: 1.35;
+  height: 650px;
 }
 
 .numbered-item {
   display: grid;
-  grid-template-columns: 58px minmax(0, 1fr);
-  gap: 4px;
-  margin: 0 0 26px;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 14px;
+  margin: 0 0 32px;
 }
 
 .numbered-item:last-child {
@@ -176,8 +177,9 @@ body {
 
 .item-number {
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 0.9em;
-  line-height: 1.45;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.35;
   color: var(--red);
 }
 
@@ -266,6 +268,83 @@ body {
   color: var(--muted);
 }
 
+/* One persistent control group, centered between the two slide footer labels. */
+.deck-navigation {
+  position: absolute;
+  top: 914px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  font-family: "Barlow Condensed", sans-serif;
+  color: var(--muted);
+}
+
+.nav-icon, #section-select {
+  height: 44px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: var(--background);
+  color: inherit;
+  cursor: pointer;
+}
+
+.nav-icon {
+  width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.nav-icon svg { width: 24px; height: 24px; }
+.nav-icon:hover, .nav-icon[aria-expanded="true"], #section-select:hover {
+  color: var(--red);
+  background: #eee9e1;
+}
+.nav-icon:disabled { opacity: 0.35; cursor: default; }
+.nav-icon:focus-visible, #section-select:focus-visible, .lesson-menu a:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+.nav-divider { height: 22px; border-left: 1px solid #d8d1c7; margin: 0 4px; }
+#section-select { width: 230px; padding: 0 10px; font: 400 22px "Barlow Condensed", sans-serif; }
+
+.lesson-menu {
+  position: absolute;
+  bottom: 58px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  padding: 20px;
+  border: 1px solid #d8d1c7;
+  border-radius: 10px;
+  background: var(--background);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+}
+.lesson-menu[hidden] { display: none; }
+.lesson-menu h2 { margin: 0 10px 12px; font-size: 26px; font-weight: 600; color: var(--red); }
+.lesson-menu ul { list-style: none; margin: 0; padding: 0 8px 0 0; max-height: 610px; overflow-y: scroll; overscroll-behavior: contain; scrollbar-color: #c8bfb4 transparent; scrollbar-width: thin; }
+.lesson-menu a, .lesson-unavailable {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 4px 12px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 24px;
+  line-height: 1.2;
+  text-decoration: none;
+  color: var(--text);
+}
+.lesson-menu a:hover, .lesson-menu a:focus-visible { background: #eee9e1; }
+.lesson-menu a[aria-current="page"] { background: #eee9e1; color: var(--red); font-weight: 600; }
+.lesson-menu-number { color: var(--red); font-weight: 600; }
+.lesson-unavailable, .lesson-unavailable .lesson-menu-number { color: var(--muted); }
+.lesson-unavailable small { grid-column: 2; font-size: 18px; }
+
 .cover-title {
   position: absolute;
   top: 252px;
@@ -339,7 +418,8 @@ body:hover .presenter-hint {
     page-break-after: always;
   }
 
-  .presenter-hint {
+  .presenter-hint,
+  .deck-navigation {
     display: none;
   }
 }
@@ -354,13 +434,13 @@ body:hover .presenter-hint {
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">1 of 38</span>
+    <span class="global-pagination">1 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-002" data-slide-id="slide-002" data-slide-title="Points principaux · 1" aria-hidden="true">
-  <header class="slide-header">Points principaux · 1</header>
+<article class="slide" id="slide-002" data-slide-id="slide-002" data-slide-title="Points principaux · 1 et fin" aria-hidden="true">
+  <header class="slide-header">Points principaux · 1 et fin</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
-<section class="slide-content compact" data-overflow-check>
+<section class="slide-content reading-content" style="font-size: 32px" data-overflow-check>
   <div class="numbered-item">
   <div class="item-number">1.</div>
   <div class="item-body"><p>Qualités spécifiques: quatrième état: illimité, intelligence pure, repos vigilant, conscience transcendantale. Cinquième état: activité ou repos avec le quatrième état. Sixième état: cinquième état glorifié, une conscience qui perçoit le relatif suprême avec la conscience du soi absolu. Septième état: conscience unifiée qui perçoit toute chose en termes du soi absolu.</p></div>
@@ -369,19 +449,7 @@ body:hover .presenter-hint {
   <div class="item-number">2.</div>
   <div class="item-body"><p>Comment la conscience se développe du quatrième au septième état: le cinquième: en alternant l&#39;expérience du quatrième état avec l&#39;activité (MT et activité). Le sixième: en accomplissant des activités d&#39;une qualité plus fine, partant d&#39;une impulsion du coeur. Le septième: la valeur relative suprême de la perception, dans le sixième état, s&#39;élève spontanément à la valeur infinie.</p></div>
 </div>
-
-</section>
-
-  <footer class="slide-footer">
-    <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">2 of 38</span>
-  </footer>
-</article>
-<article class="slide" id="slide-003" data-slide-id="slide-003" data-slide-title="Points principaux · 2 et fin" aria-hidden="true">
-  <header class="slide-header">Points principaux · 2 et fin</header>
-<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
-<section class="slide-content" data-overflow-check>
-  <div class="numbered-item">
+<div class="numbered-item">
   <div class="item-number">3.</div>
   <div class="item-body"><p>Tout homme peut, grâce à la SIC, s&#39;élever jusqu&#39;au septième état de conscience et jouir ainsi de la valeur infinie de la vie.</p></div>
 </div>
@@ -390,13 +458,13 @@ body:hover .presenter-hint {
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">3 of 38</span>
+    <span class="global-pagination">2 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-004" data-slide-id="slide-004" data-slide-title="Résumé long · 1" aria-hidden="true">
+<article class="slide" id="slide-003" data-slide-id="slide-003" data-slide-title="Résumé long · 1" aria-hidden="true">
   <header class="slide-header">Résumé long · 1</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
-<section class="slide-content compact" data-overflow-check>
+<section class="slide-content reading-content" style="font-size: 32px" data-overflow-check>
   <div class="numbered-item">
   <div class="item-number">1.</div>
   <div class="item-body"><p>Maintenant que nous avons établi le quatrième état de conscience, il sera
@@ -408,47 +476,31 @@ intéressant de voir s&#39;il est possible de vivre d&#39;autres états de consc
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">4 of 38</span>
+    <span class="global-pagination">3 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-005" data-slide-id="slide-005" data-slide-title="Résumé long · 2" aria-hidden="true">
+<article class="slide" id="slide-004" data-slide-id="slide-004" data-slide-title="Résumé long · 2" aria-hidden="true">
   <header class="slide-header">Résumé long · 2</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
-<section class="slide-content compact" data-overflow-check>
+<section class="slide-content reading-content" style="font-size: 32px" data-overflow-check>
   <div class="numbered-item">
   <div class="item-number">2.</div>
   <div class="item-body"><p>Nous savons par expérience que la conscience pure est la nature du
 
-quatrième état. Nous avons vu qu&#39;elle est non-manifestée, c&#39;est-à-dire qu&#39;elle n&#39;a pas de limite; c&#39;est une conscience non-limitée. La conscience objective du monde des limites caractérise l&#39;état de veille; ainsi lorsque le quatrième état l&#39;accompagne, la conscience des limites et l&#39;illimité coexistent. La conscience de l&#39;illimité et la conscience des limites, le premier plan de la conscience illimitée soutenant la perception des objets, la conscience pure faisant l&#39;expérience de la rose: telle est la nature de la coexistence du quatrième état et de l&#39;état de veille de la conscience.</p></div>
+quatrième état. Nous avons vu qu&#39;elle est non-manifestée, c&#39;est-à-dire qu&#39;elle n&#39;a pas de limite; c&#39;est une conscience non-limitée. La conscience objective du monde des limites caractérise l&#39;état de veille; ainsi lorsque le quatrième état l&#39;accompagne, la conscience des limites et l&#39;illimité coexistent. La conscience de l&#39;illimité et la conscience des limites, le premier plan de la conscience illimitée soutenant la perception des objets, la conscience pure faisant l&#39;expérience de la rose: telle est la nature de la coexistence du quatrième état et de l&#39;état de veille de la conscience. Avant que nous ne commencions à méditer, la conscience pure était voilée sous l&#39;influence de l&#39;état de veille; mais lorsqu&#39;elle se maintient dans l&#39;esprit alors que celui-ci fait l&#39;expérience des limites du monde objectif, un cinquième état de conscience apparaît naturellement et spontanément, et il est complètement différent des quatre autres. On développe ce cinquième état par l&#39;alternance du quatrième avec l&#39;état de veille. Le cinquième état de conscience consiste en la coexistence du quatrième état avec la veille, le rêve ou le sommeil,</p></div>
 </div>
 
 </section>
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">5 of 38</span>
+    <span class="global-pagination">4 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-006" data-slide-id="slide-006" data-slide-title="Résumé long · 3" aria-hidden="true">
+<article class="slide" id="slide-005" data-slide-id="slide-005" data-slide-title="Résumé long · 3" aria-hidden="true">
   <header class="slide-header">Résumé long · 3</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
-<section class="slide-content compact" data-overflow-check>
-  <div class="numbered-item">
-  <div class="item-number">2.<span class="continuation-label">suite</span></div>
-  <div class="item-body"><p>Avant que nous ne commencions à méditer, la conscience pure était voilée sous l&#39;influence de l&#39;état de veille; mais lorsqu&#39;elle se maintient dans l&#39;esprit alors que celui-ci fait l&#39;expérience des limites du monde objectif, un cinquième état de conscience apparaît naturellement et spontanément, et il est complètement différent des quatre autres. On développe ce cinquième état par l&#39;alternance du quatrième avec l&#39;état de veille. Le cinquième état de conscience consiste en la coexistence du quatrième état avec la veille, le rêve ou le sommeil,</p></div>
-</div>
-
-</section>
-
-  <footer class="slide-footer">
-    <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">6 of 38</span>
-  </footer>
-</article>
-<article class="slide" id="slide-007" data-slide-id="slide-007" data-slide-title="Résumé long · 4" aria-hidden="true">
-  <header class="slide-header">Résumé long · 4</header>
-<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
-<section class="slide-content compact" data-overflow-check>
+<section class="slide-content reading-content" style="font-size: 32px" data-overflow-check>
   <div class="numbered-item">
   <div class="item-number">3.</div>
   <div class="item-body"><p>La physique a montré que la réalité matérielle se présente en couches. Chaque couche (molécules, atomes, particules, etc.) se trouve à l&#39;intérieur d&#39;une autre et possède sa propre nature spécifique, ses propres lois. Chaque couche possède son propre niveau d&#39;intelligence et de conscience.
@@ -462,45 +514,29 @@ l&#39;intérieur que vers l&#39;extérieur, aux deux niveaux vertical et horizon
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">7 of 38</span>
+    <span class="global-pagination">5 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-008" data-slide-id="slide-008" data-slide-title="Résumé long · 5" aria-hidden="true">
-  <header class="slide-header">Résumé long · 5</header>
+<article class="slide" id="slide-006" data-slide-id="slide-006" data-slide-title="Résumé long · 4" aria-hidden="true">
+  <header class="slide-header">Résumé long · 4</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
-<section class="slide-content compact" data-overflow-check>
+<section class="slide-content reading-content" style="font-size: 30px" data-overflow-check>
   <div class="numbered-item">
   <div class="item-number">4.</div>
-  <div class="item-body"><p>Une conscience non restreinte et illimitée, telle qu&#39;elle apparaît dans le cinquième état de conscience, peut atteindre des valeurs de perception beaucoup plus profondes et plus fines. et ceci jusqu&#39;à ce que la valeur relative la plus fine de l&#39;objet soit incluse dans la perception. Ces niveaux plus fins sont caches à la vue qui ne voit que la valeur de surface des objets. Une telle vision ne saisit que la surface des choses et ne dévoile des qualités de l&#39;objet que celles qui le distinguent de tout son environnement; par conséquent, ces limites de l&#39;objet restent rigides. bien définies et spécifiques.</p></div>
+  <div class="item-body"><p>Une conscience non restreinte et illimitée, telle qu&#39;elle apparaît dans le cinquième état de conscience, peut atteindre des valeurs de perception beaucoup plus profondes et plus fines. et ceci jusqu&#39;à ce que la valeur relative la plus fine de l&#39;objet soit incluse dans la perception. Ces niveaux plus fins sont caches à la vue qui ne voit que la valeur de surface des objets. Une telle vision ne saisit que la surface des choses et ne dévoile des qualités de l&#39;objet que celles qui le distinguent de tout son environnement; par conséquent, ces limites de l&#39;objet restent rigides. bien définies et spécifiques. Une fois que l&#39;on a stabilisé le cinquième état, la conscience illimitée étant établie au niveau de l&#39;esprit conscient, la perception commence graduellement à s&#39;approfondir jusqu&#39;à ce qu&#39;elle pénètre la valeur relative la plus fine des objets. Ce sera une valeur distincte de perception où l&#39;aspect relatif le plus fin sera perçu spontanément à la surface même du relatif grossier. La sève dépourvue de couleur qui demeure cachée sous la surface des couleurs de la fleur est maintenant connue comme ce qui structure tout élément de couleur que manifeste la fleur. La sève incolore est perçue réalisée - à la surface de la fleur, mais, comme elle est transparente, elle demeure là sans cacher la couleur et lui permet de garder le premier plan, sans pour autant que ladite couleur fasse ombrage à la sève incolore.</p></div>
 </div>
 
 </section>
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">8 of 38</span>
+    <span class="global-pagination">6 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-009" data-slide-id="slide-009" data-slide-title="Résumé long · 6" aria-hidden="true">
-  <header class="slide-header">Résumé long · 6</header>
+<article class="slide" id="slide-007" data-slide-id="slide-007" data-slide-title="Résumé long · 5" aria-hidden="true">
+  <header class="slide-header">Résumé long · 5</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
-<section class="slide-content compact" data-overflow-check>
-  <div class="numbered-item">
-  <div class="item-number">4.<span class="continuation-label">suite</span></div>
-  <div class="item-body"><p>Une fois que l&#39;on a stabilisé le cinquième état, la conscience illimitée étant établie au niveau de l&#39;esprit conscient, la perception commence graduellement à s&#39;approfondir jusqu&#39;à ce qu&#39;elle pénètre la valeur relative la plus fine des objets. Ce sera une valeur distincte de perception où l&#39;aspect relatif le plus fin sera perçu spontanément à la surface même du relatif grossier. La sève dépourvue de couleur qui demeure cachée sous la surface des couleurs de la fleur est maintenant connue comme ce qui structure tout élément de couleur que manifeste la fleur. La sève incolore est perçue réalisée - à la surface de la fleur, mais, comme elle est transparente, elle demeure là sans cacher la couleur et lui permet de garder le premier plan, sans pour autant que ladite couleur fasse ombrage à la sève incolore.</p></div>
-</div>
-
-</section>
-
-  <footer class="slide-footer">
-    <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">9 of 38</span>
-  </footer>
-</article>
-<article class="slide" id="slide-010" data-slide-id="slide-010" data-slide-title="Résumé long · 7" aria-hidden="true">
-  <header class="slide-header">Résumé long · 7</header>
-<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
-<section class="slide-content compact" data-overflow-check>
+<section class="slide-content reading-content" style="font-size: 32px" data-overflow-check>
   <div class="numbered-item">
   <div class="item-number">5.</div>
   <div class="item-body"><p>Dans le cinquième état de conscience, où le quatrième coexiste avec la veille, on perçoit la valeur de surface des objets. Lorsque la perception devient si raffinée qu&#39;elle saisit le relatif le plus fin à la surface du relatif grossier, alors nous sommes en présence d&#39;un nouvel état de conscience distinct du cinquième. C&#39;est pourquoi nous l&#39;appelons le sixième. H se développe grâce à l&#39;alternance de l&#39;expérience du quatrième avec une activité plus raffinée guidée par l&#39;impulsion du coeur: l&#39;activité est davantage dirigée par le sentiment. Son caractère spécifique consiste en une perception tellement raffinée qu&#39;elle est capable de saisir la valeur relative La plus fine à la surface de tout objet de perception.</p></div>
@@ -510,94 +546,50 @@ l&#39;intérieur que vers l&#39;extérieur, aux deux niveaux vertical et horizon
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">10 of 38</span>
+    <span class="global-pagination">7 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-011" data-slide-id="slide-011" data-slide-title="Résumé long · 8" aria-hidden="true">
-  <header class="slide-header">Résumé long · 8</header>
+<article class="slide" id="slide-008" data-slide-id="slide-008" data-slide-title="Résumé long · 6" aria-hidden="true">
+  <header class="slide-header">Résumé long · 6</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
-<section class="slide-content compact" data-overflow-check>
+<section class="slide-content reading-content" style="font-size: 24px" data-overflow-check>
   <div class="numbered-item">
   <div class="item-number">6.</div>
   <div class="item-body"><p>Dans les cinquième et sixième états de conscience, la conscience illimitée est établie de façon permanente pendant la veille, le rêve et le sommeil. Dans le sixième état, nous pouvons en plus percevoir l&#39;aspect le plus fin de l&#39;existence relative; il semble ainsi qu&#39;aucune évolution ne soit encore possible en terme de perception. Cependant, dans notre examen du quatrième état de conscience, nous avons découvert que c&#39;est une réalité transcendantale et absolue. Cela veut dire qu&#39;il est non relatif, et qu&#39;on peut en faire l&#39;expérience. Nous pouvons donc nous demander s&#39;il serait possible
 
-de faire l&#39;expérience de la réalité transcendantale située au-delà du relatif le plus fin, au plan de la cognition, tout en restant établi dans le quatrième état au plan de la conscience.</p></div>
+de faire l&#39;expérience de la réalité transcendantale située au-delà du relatif le plus fin, au plan de la cognition, tout en restant établi dans le quatrième état au plan de la conscience.
+
+La perception ne peut atteindre cet état, car elle implique qu&#39;il y ait un objet de perception aussi bien qu&#39;un sujet qui perçoive, et comme la valeur absolue de la vie est non manifestée, elle est donc non perceptible. Cependant, lorsque la conscience illimitée, non manifestée, est devenue la nature même de l&#39;esprit conscient (cinquième état), et lorsque cet esprit conscient saisit lui-même le relatif le plus fin (sixième état), alors la valeur non manifestée qui imprègne le relatif le plus fin sera animée. Cette animation de la valeur transcendantale de l&#39;objectivité n&#39;est pas autre chose que l&#39;animation de l&#39;esprit conscient dans sa valeur illimitée. Cette similitude, ou identité, anime les objets de perception de telle sorte que leur valeur non-manifestée, jusque là diffuse et fermée à la conscience, commence à respirer la vie.
+
+L&#39;état de la cognition prend soudain un caractère différent de celui qui saisit le relatif le plus fin. Ce nouvel état de cognition s&#39;anime dans l&#39;absolu infini, éternel. Tout ceci n&#39;est possible que lorsque l&#39;esprit conscient vibre avec cette valeur infinie jusqu&#39;au point où la perception s&#39;élève à sa valeur infinie, qu&#39;elle s&#39;anime transcendantalement, l&#39;esprit saisissant l&#39;aspect relatif le plus fin de l&#39;existence. Ceci mérite de s&#39;appeler le septième état de conscience. Au-delà, il ne semble pas y avoir d&#39;autres possibilité de développement. Nous pouvons parler de l&#39;état unifié de la conscience.</p></div>
 </div>
 
 </section>
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">11 of 38</span>
+    <span class="global-pagination">8 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-012" data-slide-id="slide-012" data-slide-title="Résumé long · 9" aria-hidden="true">
-  <header class="slide-header">Résumé long · 9</header>
+<article class="slide" id="slide-009" data-slide-id="slide-009" data-slide-title="Résumé long · 7 et fin" aria-hidden="true">
+  <header class="slide-header">Résumé long · 7 et fin</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
-<section class="slide-content compact" data-overflow-check>
-  <div class="numbered-item">
-  <div class="item-number">6.<span class="continuation-label">suite</span></div>
-  <div class="item-body"><p>La perception ne peut atteindre cet état, car elle implique qu&#39;il y ait un objet de perception aussi bien qu&#39;un sujet qui perçoive, et comme la valeur absolue de la vie est non manifestée, elle est donc non perceptible. Cependant, lorsque la conscience illimitée, non manifestée, est devenue la nature même de l&#39;esprit conscient (cinquième état), et lorsque cet esprit conscient saisit lui-même le relatif le plus fin (sixième état), alors la valeur non manifestée qui imprègne le relatif le plus fin sera animée. Cette animation de la valeur transcendantale de l&#39;objectivité n&#39;est pas autre chose que l&#39;animation de l&#39;esprit conscient dans sa valeur illimitée. Cette similitude, ou identité, anime les objets de perception de telle sorte que leur valeur non-manifestée, jusque là diffuse et fermée à la conscience, commence à respirer la vie.</p></div>
-</div>
-
-</section>
-
-  <footer class="slide-footer">
-    <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">12 of 38</span>
-  </footer>
-</article>
-<article class="slide" id="slide-013" data-slide-id="slide-013" data-slide-title="Résumé long · 10" aria-hidden="true">
-  <header class="slide-header">Résumé long · 10</header>
-<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
-<section class="slide-content compact" data-overflow-check>
-  <div class="numbered-item">
-  <div class="item-number">6.<span class="continuation-label">suite</span></div>
-  <div class="item-body"><p>L&#39;état de la cognition prend soudain un caractère différent de celui qui saisit le relatif le plus fin. Ce nouvel état de cognition s&#39;anime dans l&#39;absolu infini, éternel. Tout ceci n&#39;est possible que lorsque l&#39;esprit conscient vibre avec cette valeur infinie jusqu&#39;au point où la perception s&#39;élève à sa valeur infinie, qu&#39;elle s&#39;anime transcendantalement, l&#39;esprit saisissant l&#39;aspect relatif le plus fin de l&#39;existence. Ceci mérite de s&#39;appeler le septième état de conscience. Au-delà, il ne semble pas y avoir d&#39;autres possibilité de développement. Nous pouvons parler de l&#39;état unifié de la conscience.</p></div>
-</div>
-
-</section>
-
-  <footer class="slide-footer">
-    <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">13 of 38</span>
-  </footer>
-</article>
-<article class="slide" id="slide-014" data-slide-id="slide-014" data-slide-title="Résumé long · 11" aria-hidden="true">
-  <header class="slide-header">Résumé long · 11</header>
-<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
-<section class="slide-content compact" data-overflow-check>
+<section class="slide-content reading-content" style="font-size: 30px" data-overflow-check>
   <div class="numbered-item">
   <div class="item-number">7.</div>
   <div class="item-body"><p>Dans ce septième état, la valeur ultime, non-manifestée, infinie de l&#39;objectivité s&#39;anime et devient connue en termes de la pure valeur subjective de la conscience illimitée, non-manifestée. Elle est en effet ultime parce que les expériences, l&#39;objectivité, la perception et l&#39;action ont toutes été élevées au même niveau d&#39;illimité, La connaissance a établi un pont entre le sujet connaissant et l&#39;objet connu. L&#39;objet est saisi dans sa réalité totale lorsque son caractère infini, caché jusqu&#39;alors, est apprécié en surface.
 
-Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devient totale; celui qui perçoit devient capable de saisir l&#39;objet dans sa complétion, et l&#39;on acquiert ainsi la pleine valeur de la connaissance.</p></div>
+Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devient totale; celui qui perçoit devient capable de saisir l&#39;objet dans sa complétion, et l&#39;on acquiert ainsi la pleine valeur de la connaissance. La connaissance est pleine, la réalité infinie structure chaque petit élément du fini, et la perception pénètre jusqu&#39;à la profondeur illimitée de la vérité, évaluant chaque objet en termes d&#39;infini Cet état de conscience, le plus élevé, devient réalité vivante grâce au processus qui ouvre l&#39;esprit conscient au quatrième état, puis, le combinant à l&#39;activité, l&#39;élève au cinquième, au sixième, jusqu&#39;à atteindre cet accomplissement ultime du septième état. Vivre cet état suprême de vie, telle est la perspective ouverte par la connaissance et la pratique de la SIC.</p></div>
 </div>
 
 </section>
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">14 of 38</span>
+    <span class="global-pagination">9 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-015" data-slide-id="slide-015" data-slide-title="Résumé long · 12 et fin" aria-hidden="true">
-  <header class="slide-header">Résumé long · 12 et fin</header>
-<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
-<section class="slide-content compact" data-overflow-check>
-  <div class="numbered-item">
-  <div class="item-number">7.<span class="continuation-label">suite</span></div>
-  <div class="item-body"><p>La connaissance est pleine, la réalité infinie structure chaque petit élément du fini, et la perception pénètre jusqu&#39;à la profondeur illimitée de la vérité, évaluant chaque objet en termes d&#39;infini Cet état de conscience, le plus élevé, devient réalité vivante grâce au processus qui ouvre l&#39;esprit conscient au quatrième état, puis, le combinant à l&#39;activité, l&#39;élève au cinquième, au sixième, jusqu&#39;à atteindre cet accomplissement ultime du septième état. Vivre cet état suprême de vie, telle est la perspective ouverte par la connaissance et la pratique de la SIC.</p></div>
-</div>
-
-</section>
-
-  <footer class="slide-footer">
-    <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">15 of 38</span>
-  </footer>
-</article>
-<article class="slide" id="slide-016" data-slide-id="slide-016" data-slide-title="Questions · 1" aria-hidden="true">
+<article class="slide" id="slide-010" data-slide-id="slide-010" data-slide-title="Questions · 1" aria-hidden="true">
   <header class="slide-header">Questions · 1</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -610,10 +602,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">16 of 38</span>
+    <span class="global-pagination">10 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-017" data-slide-id="slide-017" data-slide-title="Questions · 2" aria-hidden="true">
+<article class="slide" id="slide-011" data-slide-id="slide-011" data-slide-title="Questions · 2" aria-hidden="true">
   <header class="slide-header">Questions · 2</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -626,10 +618,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">17 of 38</span>
+    <span class="global-pagination">11 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-018" data-slide-id="slide-018" data-slide-title="Questions · 3" aria-hidden="true">
+<article class="slide" id="slide-012" data-slide-id="slide-012" data-slide-title="Questions · 3" aria-hidden="true">
   <header class="slide-header">Questions · 3</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -642,10 +634,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">18 of 38</span>
+    <span class="global-pagination">12 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-019" data-slide-id="slide-019" data-slide-title="Questions · 4" aria-hidden="true">
+<article class="slide" id="slide-013" data-slide-id="slide-013" data-slide-title="Questions · 4" aria-hidden="true">
   <header class="slide-header">Questions · 4</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -658,10 +650,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">19 of 38</span>
+    <span class="global-pagination">13 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-020" data-slide-id="slide-020" data-slide-title="Questions · 5" aria-hidden="true">
+<article class="slide" id="slide-014" data-slide-id="slide-014" data-slide-title="Questions · 5" aria-hidden="true">
   <header class="slide-header">Questions · 5</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -674,10 +666,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">20 of 38</span>
+    <span class="global-pagination">14 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-021" data-slide-id="slide-021" data-slide-title="Questions · 6" aria-hidden="true">
+<article class="slide" id="slide-015" data-slide-id="slide-015" data-slide-title="Questions · 6" aria-hidden="true">
   <header class="slide-header">Questions · 6</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -690,10 +682,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">21 of 38</span>
+    <span class="global-pagination">15 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-022" data-slide-id="slide-022" data-slide-title="Questions · 7 et fin" aria-hidden="true">
+<article class="slide" id="slide-016" data-slide-id="slide-016" data-slide-title="Questions · 7 et fin" aria-hidden="true">
   <header class="slide-header">Questions · 7 et fin</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -706,10 +698,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">22 of 38</span>
+    <span class="global-pagination">16 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-023" data-slide-id="slide-023" data-slide-title="Discussion · 1" aria-hidden="true">
+<article class="slide" id="slide-017" data-slide-id="slide-017" data-slide-title="Discussion · 1" aria-hidden="true">
   <header class="slide-header">Discussion · 1</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -722,10 +714,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">23 of 38</span>
+    <span class="global-pagination">17 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-024" data-slide-id="slide-024" data-slide-title="Discussion · réponse · 1" aria-hidden="true">
+<article class="slide" id="slide-018" data-slide-id="slide-018" data-slide-title="Discussion · réponse · 1" aria-hidden="true">
   <header class="slide-header">Discussion · réponse · 1</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -742,10 +734,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">24 of 38</span>
+    <span class="global-pagination">18 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-025" data-slide-id="slide-025" data-slide-title="Discussion · 2" aria-hidden="true">
+<article class="slide" id="slide-019" data-slide-id="slide-019" data-slide-title="Discussion · 2" aria-hidden="true">
   <header class="slide-header">Discussion · 2</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -758,10 +750,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">25 of 38</span>
+    <span class="global-pagination">19 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-026" data-slide-id="slide-026" data-slide-title="Discussion · réponse · 2" aria-hidden="true">
+<article class="slide" id="slide-020" data-slide-id="slide-020" data-slide-title="Discussion · réponse · 2" aria-hidden="true">
   <header class="slide-header">Discussion · réponse · 2</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -778,10 +770,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">26 of 38</span>
+    <span class="global-pagination">20 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-027" data-slide-id="slide-027" data-slide-title="Discussion · 3" aria-hidden="true">
+<article class="slide" id="slide-021" data-slide-id="slide-021" data-slide-title="Discussion · 3" aria-hidden="true">
   <header class="slide-header">Discussion · 3</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -794,10 +786,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">27 of 38</span>
+    <span class="global-pagination">21 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-028" data-slide-id="slide-028" data-slide-title="Discussion · réponse · 3" aria-hidden="true">
+<article class="slide" id="slide-022" data-slide-id="slide-022" data-slide-title="Discussion · réponse · 3" aria-hidden="true">
   <header class="slide-header">Discussion · réponse · 3</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -814,10 +806,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">28 of 38</span>
+    <span class="global-pagination">22 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-029" data-slide-id="slide-029" data-slide-title="Discussion · 4" aria-hidden="true">
+<article class="slide" id="slide-023" data-slide-id="slide-023" data-slide-title="Discussion · 4" aria-hidden="true">
   <header class="slide-header">Discussion · 4</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -830,10 +822,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">29 of 38</span>
+    <span class="global-pagination">23 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-030" data-slide-id="slide-030" data-slide-title="Discussion · réponse · 4" aria-hidden="true">
+<article class="slide" id="slide-024" data-slide-id="slide-024" data-slide-title="Discussion · réponse · 4" aria-hidden="true">
   <header class="slide-header">Discussion · réponse · 4</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -850,10 +842,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">30 of 38</span>
+    <span class="global-pagination">24 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-031" data-slide-id="slide-031" data-slide-title="Discussion · 5" aria-hidden="true">
+<article class="slide" id="slide-025" data-slide-id="slide-025" data-slide-title="Discussion · 5" aria-hidden="true">
   <header class="slide-header">Discussion · 5</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -866,10 +858,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">31 of 38</span>
+    <span class="global-pagination">25 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-032" data-slide-id="slide-032" data-slide-title="Discussion · réponse · 5" aria-hidden="true">
+<article class="slide" id="slide-026" data-slide-id="slide-026" data-slide-title="Discussion · réponse · 5" aria-hidden="true">
   <header class="slide-header">Discussion · réponse · 5</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -886,10 +878,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">32 of 38</span>
+    <span class="global-pagination">26 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-033" data-slide-id="slide-033" data-slide-title="Discussion · 6" aria-hidden="true">
+<article class="slide" id="slide-027" data-slide-id="slide-027" data-slide-title="Discussion · 6" aria-hidden="true">
   <header class="slide-header">Discussion · 6</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -902,10 +894,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">33 of 38</span>
+    <span class="global-pagination">27 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-034" data-slide-id="slide-034" data-slide-title="Discussion · réponse · 6" aria-hidden="true">
+<article class="slide" id="slide-028" data-slide-id="slide-028" data-slide-title="Discussion · réponse · 6" aria-hidden="true">
   <header class="slide-header">Discussion · réponse · 6</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -922,10 +914,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">34 of 38</span>
+    <span class="global-pagination">28 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-035" data-slide-id="slide-035" data-slide-title="Discussion · 7" aria-hidden="true">
+<article class="slide" id="slide-029" data-slide-id="slide-029" data-slide-title="Discussion · 7" aria-hidden="true">
   <header class="slide-header">Discussion · 7</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -938,10 +930,10 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">35 of 38</span>
+    <span class="global-pagination">29 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-036" data-slide-id="slide-036" data-slide-title="Discussion · réponse · 7 et fin" aria-hidden="true">
+<article class="slide" id="slide-030" data-slide-id="slide-030" data-slide-title="Discussion · réponse · 7 et fin" aria-hidden="true">
   <header class="slide-header">Discussion · réponse · 7 et fin</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
 <section class="slide-content" data-overflow-check>
@@ -958,30 +950,18 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">36 of 38</span>
+    <span class="global-pagination">30 of 31</span>
   </footer>
 </article>
-<article class="slide" id="slide-037" data-slide-id="slide-037" data-slide-title="Place de la leçon · 1" aria-hidden="true">
-  <header class="slide-header">Place de la leçon · 1</header>
+<article class="slide" id="slide-031" data-slide-id="slide-031" data-slide-title="Place de la leçon · 1 et fin" aria-hidden="true">
+  <header class="slide-header">Place de la leçon · 1 et fin</header>
 <h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
-<section class="slide-content compact" data-overflow-check>
+<section class="slide-content reading-content" style="font-size: 32px" data-overflow-check>
   <div class="numbered-item">
   <div class="item-number">1.</div>
   <div class="item-body"><p>A ce point du cours, nous avons établi la nature, l&#39;étendue et les moyens de développement de l&#39;IC. La leçon 23 met en lumière toutes les valeurs possibles de la conscience et révèle aussi l&#39;aspect pratique de l&#39;épanouissement de la valeur suprême de l&#39;IC au niveau de notre propre conscience.</p></div>
 </div>
-
-</section>
-
-  <footer class="slide-footer">
-    <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">37 of 38</span>
-  </footer>
-</article>
-<article class="slide" id="slide-038" data-slide-id="slide-038" data-slide-title="Place de la leçon · 2 et fin" aria-hidden="true">
-  <header class="slide-header">Place de la leçon · 2 et fin</header>
-<h1 class="lesson-title" data-overflow-check>Les Sept États de Conscience</h1>
-<section class="slide-content compact" data-overflow-check>
-  <div class="numbered-item">
+<div class="numbered-item">
   <div class="item-number">2.</div>
   <div class="item-body"><p>Cette leçon nous fait connaître les mécanismes par lesquels la demeure de toute connaissance se structure au sein de notre conscience; elle nous montre donc comment tout individu peut s&#39;élever à un niveau d&#39;existence où tout aspect de la vie recevra un soutien spontané, direct et complet de la part de la valeur infinie de l&#39;IC. On peut évidemment dire que cette leçon incarne la vie du cours tout entier, puisqu&#39;elle étudie systématiquement, et contribue scientifiquement au développement de la conscience, à partir des limites des états relatifs jusqu&#39;à l&#39;illimité de la conscience suprême, ceci grâce à la connaissance et la pratique de la Science de l&#39;Intelligence Créatrice.</p></div>
 </div>
@@ -990,9 +970,60 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 
   <footer class="slide-footer">
     <span class="course-footer">Cours de SIC - Leçon 23</span>
-    <span class="global-pagination">38 of 38</span>
+    <span class="global-pagination">31 of 31</span>
   </footer>
 </article>
+
+<nav class="deck-navigation" aria-label="Navigation du cours">
+  <button type="button" id="lesson-menu-toggle" class="nav-icon" aria-label="Choisir une leçon" title="Choisir une leçon" aria-expanded="false" aria-controls="lesson-menu"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg></button>
+  <div id="lesson-menu" class="lesson-menu" hidden>
+    <h2>Les leçons · 01–33</h2>
+    <ul aria-label="Leçons 01 à 33"><li><span class="lesson-unavailable" aria-disabled="true"><span class="lesson-menu-number">01</span><span>Titre à confirmer</span><small>Indisponible</small></span></li>
+<li><span class="lesson-unavailable" aria-disabled="true"><span class="lesson-menu-number">02</span><span>Une vision des possibilités offertes par la pratique de la SIC.</span><small>Indisponible</small></span></li>
+<li><span class="lesson-unavailable" aria-disabled="true"><span class="lesson-menu-number">03</span><span>Titre à confirmer</span><small>Indisponible</small></span></li>
+<li><a href="../../Lesson-4/slides/index.html#/1"><span class="lesson-menu-number">04</span><span>Connaissance de la SIC par l’expérience personnelle</span></a></li>
+<li><a href="../../Lesson-5/slides/index.html#/1"><span class="lesson-menu-number">05</span><span>Les Qualités de l&#39;Intelligence Créatrice</span></a></li>
+<li><a href="../../Lesson-6/slides/index.html#/1"><span class="lesson-menu-number">06</span><span>Introduction à la Science de l&#39;Intelligence Créatrice</span></a></li>
+<li><a href="../../Lesson-7/slides/index.html#/1"><span class="lesson-menu-number">07</span><span>L&#39;étendue de l&#39;Intelligence Créatrice</span></a></li>
+<li><a href="../../Lesson-08/slides/index.html#/1"><span class="lesson-menu-number">08</span><span>L&#39;Intelligence Créatrice et la conscience</span></a></li>
+<li><a href="../../Lesson-09/slides/index.html#/1"><span class="lesson-menu-number">09</span><span>L&#39;Intelligence Créatrice est la base de toute connaissance</span></a></li>
+<li><a href="../../Lesson-10/slides/index.html#/1"><span class="lesson-menu-number">10</span><span>Applications de l&#39;Intelligence Créatrice à la vie individuelle</span></a></li>
+<li><a href="../../Lesson-11/slides/index.html#/1"><span class="lesson-menu-number">11</span><span>Application de l&#39;Intelligence Créatrice à la société</span></a></li>
+<li><a href="../../Lesson-12/slides/index.html#/1"><span class="lesson-menu-number">12</span><span>Vision des possibilités offertes par la Science de l&#39;Intelligence Créatrice</span></a></li>
+<li><a href="../../Lesson-13/slides/index.html#/1"><span class="lesson-menu-number">13</span><span>Les principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</span></a></li>
+<li><a href="../../Lesson-14/slides/index.html#/1"><span class="lesson-menu-number">14</span><span>Vérification par la Physique des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</span></a></li>
+<li><a href="../../Lesson-15/slides/index.html#/1"><span class="lesson-menu-number">15</span><span>Vérification par la biologie des principes qui sous-tendent l&#39;expérience de la pure nature de l&#39;Intelligence Créatrice</span></a></li>
+<li><a href="../../Lesson-16/slides/index.html#/1"><span class="lesson-menu-number">16</span><span>Les principes qui sous-tendent le développement de l&#39;Intelligence Créatrice</span></a></li>
+<li><a href="../../Lesson-17/slides/index.html#/1"><span class="lesson-menu-number">17</span><span>La Science de l&#39;Intelligence Créatrice et la recherche scientifique</span></a></li>
+<li><a href="../../Lesson-18/slides/index.html#/1"><span class="lesson-menu-number">18</span><span>Considération des autres systèmes</span></a></li>
+<li><a href="../../Lesson-19/slides/index.html#/1"><span class="lesson-menu-number">19</span><span>La nature de l&#39;esprit telle que révélée par la pratique de la Science de l&#39;Intelligence Créatrice</span></a></li>
+<li><a href="../../Lesson-20/slides/index.html#/1"><span class="lesson-menu-number">20</span><span>La SIC, l&#39;Évolution et l&#39;Environnement</span></a></li>
+<li><a href="../../Lesson-21/slides/index.html#/1"><span class="lesson-menu-number">21</span><span>La SIC et la solution à tous les problèmes</span></a></li>
+<li><a href="../../Lesson-22/slides/index.html#/1"><span class="lesson-menu-number">22</span><span>La SIC et le quatrième état de conscience</span></a></li>
+<li><a href="../../Lesson-23/slides/index.html#/1" aria-current="page"><span class="lesson-menu-number">23</span><span>Les Sept États de Conscience</span></a></li>
+<li><a href="../../Lesson-24/slides/index.html#/1"><span class="lesson-menu-number">24</span><span>La SIC et les moyens d&#39;acquérir la connaissance</span></a></li>
+<li><a href="../../Lesson-25/slides/index.html#/1"><span class="lesson-menu-number">25</span><span>La SIC et la parole</span></a></li>
+<li><a href="../../Lesson-26/slides/index.html#/1"><span class="lesson-menu-number">26</span><span>La SIC et l&#39;idéal de l&#39;éducation</span></a></li>
+<li><a href="../../Lesson-27/slides/index.html#/1"><span class="lesson-menu-number">27</span><span>La SIC : l&#39;artiste et le scientifique</span></a></li>
+<li><a href="../../Lesson-28/slides/index.html#/1"><span class="lesson-menu-number">28</span><span>La SIC et les études interdisciplinaires</span></a></li>
+<li><a href="../../Lesson-29/slides/index.html#/1"><span class="lesson-menu-number">29</span><span>La SIC et les approches verticales et horizontales de la connaissance</span></a></li>
+<li><a href="../../Lesson-30/slides/index.html#/1"><span class="lesson-menu-number">30</span><span>La SIC et le rôle du professeur</span></a></li>
+<li><a href="../../Lesson-31/slides/index.html#/1"><span class="lesson-menu-number">31</span><span>La SIC, M.I.U. et l&#39;étude de l&#39;intelligence</span></a></li>
+<li><a href="../../Lesson-32/slides/index.html#/1"><span class="lesson-menu-number">32</span><span>La SIC en tant que connaissance suprême</span></a></li>
+<li><a href="../../Lesson-33/slides/index.html#/1"><span class="lesson-menu-number">33</span><span>La SIC et la Plénitude de la vie, génération après génération</span></a></li></ul>
+  </div>
+  <span class="nav-divider" aria-hidden="true"></span>
+  <button type="button" id="first-slide" class="nav-icon" aria-label="Première diapositive" title="Première diapositive"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left-to-line"><path d="M3 19V5"/><path d="m13 6-6 6 6 6"/><path d="M7 12h14"/></svg></button>
+  <button type="button" id="previous-slide" class="nav-icon" aria-label="Diapositive précédente" title="Diapositive précédente"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></button>
+  <select id="section-select" aria-label="Aller à une section"><option value="1">Titre de la leçon</option>
+<option value="2">Points principaux</option>
+<option value="3">Résumé long</option>
+<option value="10">Questions</option>
+<option value="17">Discussion</option>
+<option value="31">Place de la leçon</option></select>
+  <button type="button" id="next-slide" class="nav-icon" aria-label="Diapositive suivante" title="Diapositive suivante"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+  <button type="button" id="last-slide" class="nav-icon" aria-label="Dernière diapositive" title="Dernière diapositive"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-to-line"><path d="M17 12H3"/><path d="m11 18 6-6-6-6"/><path d="M21 5v14"/></svg></button>
+</nav>
 
   </main>
   <div class="presenter-hint" aria-hidden="true">← → naviguer · F plein écran</div>
@@ -1000,7 +1031,22 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
 (() => {
   const stage = document.querySelector('.deck-stage');
   const slides = Array.from(document.querySelectorAll('.slide'));
+  const navigation = document.querySelector('.deck-navigation');
+  const menuToggle = document.querySelector('#lesson-menu-toggle');
+  const lessonMenu = document.querySelector('#lesson-menu');
+  const sectionSelect = document.querySelector('#section-select');
+  const firstSlide = document.querySelector('#first-slide');
+  const lastSlide = document.querySelector('#last-slide');
+  const previousSlide = document.querySelector('#previous-slide');
+  const nextSlide = document.querySelector('#next-slide');
+  const sectionStarts = Array.from(sectionSelect.options, option => Number(option.value));
   let index = 0;
+
+  const closeMenu = (restoreFocus = false) => {
+    lessonMenu.hidden = true;
+    menuToggle.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) menuToggle.focus();
+  };
 
   const clamp = (value) => Math.max(0, Math.min(slides.length - 1, value));
 
@@ -1026,7 +1072,11 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
   };
 
   const show = (nextIndex, updateHash = true) => {
+    closeMenu();
     index = clamp(nextIndex);
+    sectionSelect.value = String(sectionStarts.filter(start => start <= index + 1).at(-1));
+    firstSlide.disabled = previousSlide.disabled = index === 0;
+    lastSlide.disabled = nextSlide.disabled = index === slides.length - 1;
     slides.forEach((slide, slideIndex) => {
       const active = slideIndex === index;
       slide.classList.toggle('is-active', active);
@@ -1044,9 +1094,64 @@ Lorsque La perception s&#39;ouvre à la valeur infinie de l&#39;objet, elle devi
     }
   };
 
+  menuToggle.addEventListener('click', () => {
+    const opening = lessonMenu.hidden;
+    closeMenu();
+    if (opening) {
+      lessonMenu.hidden = false;
+      menuToggle.setAttribute('aria-expanded', 'true');
+      const current = lessonMenu.querySelector('[aria-current="page"]') || lessonMenu.querySelector('a');
+      current?.focus({ preventScroll: true });
+      current?.scrollIntoView({ block: 'nearest' });
+    }
+  });
+  lessonMenu.addEventListener('click', event => {
+    const link = event.target.closest('a');
+    if (link?.getAttribute('aria-current') === 'page') {
+      event.preventDefault();
+      closeMenu(true);
+      show(0);
+    }
+  });
+  firstSlide.addEventListener('click', () => show(0));
+  lastSlide.addEventListener('click', () => show(slides.length - 1));
+  previousSlide.addEventListener('click', () => show(index - 1));
+  nextSlide.addEventListener('click', () => show(index + 1));
+  sectionSelect.addEventListener('change', () => show(Number(sectionSelect.value) - 1));
+  document.addEventListener('click', event => {
+    if (!navigation.contains(event.target)) closeMenu();
+  });
+  document.addEventListener('focusin', event => {
+    if (!navigation.contains(event.target)) closeMenu();
+  });
+  lessonMenu.addEventListener('keydown', event => {
+    const links = Array.from(lessonMenu.querySelectorAll('a'));
+    const current = links.indexOf(document.activeElement);
+    let next;
+    if (event.key === 'ArrowDown') next = Math.min(current + 1, links.length - 1);
+    if (event.key === 'ArrowUp') next = Math.max(current - 1, 0);
+    if (event.key === 'Home') next = 0;
+    if (event.key === 'End') next = links.length - 1;
+    if (next !== undefined) {
+      event.preventDefault();
+      links[next]?.focus();
+    }
+  });
+
   window.addEventListener('resize', scaleStage);
   window.addEventListener('hashchange', () => show(indexFromHash(), false));
   window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !lessonMenu.hidden) {
+      event.preventDefault();
+      closeMenu(true);
+      return;
+    }
+    // Keep arrow navigation working when switching between clicks and the keyboard.
+    const slideArrow = ['ArrowLeft', 'ArrowRight'].includes(event.key) &&
+      event.target.closest('#first-slide, #previous-slide, #next-slide, #last-slide');
+    // Native dropdowns, links and other button keys keep their normal behavior.
+    if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey ||
+        (!slideArrow && event.target.closest('button, select, input, textarea, a, [contenteditable="true"]'))) return;
     if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(event.key)) {
       event.preventDefault();
       show(index + 1);

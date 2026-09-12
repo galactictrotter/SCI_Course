@@ -1,19 +1,25 @@
 {
-  "generated_at": "2026-08-01T12:55:45.846Z",
+  "generated_at": "2026-09-12T22:44:46.555Z",
   "viewport": {
     "width": 1600,
     "height": 1000
   },
-  "slide_count": 50,
+  "slide_count": 44,
   "fonts": {
     "title": true,
     "interface": true,
     "body": true
   },
   "overflow_slides": [],
+  "footer_navigation": {
+    "failures": [],
+    "section_count": 6,
+    "lesson_count": 33,
+    "linked_lessons": 30
+  },
   "navigation": {
     "arrow_right": 2,
-    "end": 50,
+    "end": 44,
     "home": 1
   },
   "failures": []

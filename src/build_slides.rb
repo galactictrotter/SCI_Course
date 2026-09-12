@@ -8,105 +8,11 @@ require "json"
 require "yaml"
 
 ROOT = File.expand_path("..", __dir__)
-FONT_FILES = %w[
-  barlow-condensed-400.ttf
-  barlow-condensed-600.ttf
-  eb-garamond-600.ttf
-  eb-garamond-700.ttf
-  lora-400.ttf
-  lora-600.ttf
-].freeze
+require_relative "content"
+require_relative "build_signature"
+require_relative "navigation"
 
-def abort_with(message)
-  warn "ERROR: #{message}"
-  exit 1
-end
-
-def present_string?(value)
-  value.is_a?(String) && !value.strip.empty?
-end
-
-def validate_content!(content)
-  abort_with("content root must be a mapping") unless content.is_a?(Hash)
-  abort_with("schema_version must be 1") unless content["schema_version"] == 1
-
-  lesson = content["lesson"]
-  abort_with("lesson must be a mapping") unless lesson.is_a?(Hash)
-  abort_with("lesson.number must be a positive integer") unless lesson["number"].is_a?(Integer) && lesson["number"].positive?
-  %w[course title language].each do |field|
-    abort_with("lesson.#{field} is required") unless present_string?(lesson[field])
-  end
-  abort_with("lesson.language must be fr") unless lesson["language"] == "fr"
-
-  %w[points_principaux resume_long place_de_la_lecon].each do |section|
-    items = content[section]
-    abort_with("#{section} must be a non-empty array") unless items.is_a?(Array) && !items.empty?
-    abort_with("#{section} contains an empty item") unless items.all? { |item| present_string?(item) }
-  end
-
-  questions = content["questions"]
-  abort_with("questions must be a non-empty array") unless questions.is_a?(Array) && !questions.empty?
-  questions.each_with_index do |item, index|
-    abort_with("questions[#{index}] must be a mapping") unless item.is_a?(Hash)
-    abort_with("questions[#{index}].question is required") unless present_string?(item["question"])
-    abort_with("questions[#{index}].answer is required") unless present_string?(item["answer"])
-  end
-end
-
-def split_text(text, max_chars)
-  remaining = text.strip
-  chunks = []
-
-  while remaining.length > max_chars
-    window = remaining[0, max_chars]
-    sentence_cut = nil
-    window.to_enum(:scan, /[.!?][»”"']?(?:\s+|\z)/).each do
-      sentence_cut = Regexp.last_match.end(0)
-    end
-    whitespace_cut = window.rindex(/\s/)
-    cut = if sentence_cut && sentence_cut >= (max_chars * 0.55)
-      sentence_cut
-    else
-      whitespace_cut
-    end
-    abort_with("unable to split an overlong content item") unless cut && cut.positive?
-
-    chunks << remaining[0, cut].strip
-    remaining = remaining[cut..].strip
-  end
-  chunks << remaining unless remaining.empty?
-  chunks
-end
-
-def paginate(items, max_items:, max_chars:)
-  indexed = items.each_with_index.flat_map do |text, index|
-    split_text(text, max_chars).each_with_index.map do |segment, segment_index|
-      {
-        "number" => index + 1,
-        "text" => segment,
-        "continuation" => segment_index.positive?
-      }
-    end
-  end
-  pages = []
-  current = []
-  current_chars = 0
-
-  indexed.each do |item|
-    item_chars = item.fetch("text").length
-    abort_with("item #{item.fetch("number")} exceeds the #{max_chars}-character slide limit after splitting") if item_chars > max_chars
-    must_break = !current.empty? && (current.length >= max_items || current_chars + item_chars > max_chars)
-    if must_break
-      pages << current
-      current = []
-      current_chars = 0
-    end
-    current << item
-    current_chars += item_chars
-  end
-  pages << current unless current.empty?
-  pages
-end
+require_relative "pagination"
 
 def rich_text(text)
   lines = text.lines.map(&:strip).reject(&:empty?)
@@ -125,11 +31,7 @@ end
 
 def numbered_items_html(items)
   items.map do |item|
-    number_label = if item.fetch("continuation", false)
-      "#{item.fetch("number")}.<span class=\"continuation-label\">suite</span>"
-    else
-      "#{item.fetch("number")}."
-    end
+    number_label = "#{item.fetch("number")}."
     <<~HTML
       <div class="numbered-item">
         <div class="item-number">#{number_label}</div>
@@ -152,18 +54,23 @@ abort_with("lesson directory is outside the package root") unless lesson_dir.sta
 content_path = File.join(lesson_dir, "content.yaml")
 abort_with("missing #{content_path}") unless File.file?(content_path)
 
-content_source = File.read(content_path, encoding: "UTF-8")
-content = YAML.safe_load(content_source, permitted_classes: [], aliases: false)
-validate_content!(content)
+content_source, content = load_content(content_path)
 
 tokens = JSON.parse(File.read(File.join(ROOT, "config", "design-tokens.json"), encoding: "UTF-8"))
 lesson = content.fetch("lesson")
 lesson_title_class = lesson.fetch("title").length > 54 ? " lesson-title--long" : ""
 final_marker = tokens.fetch("pagination").fetch("final_marker")
 content_pagination = tokens.fetch("pagination").fetch("content_sections")
-content_max_items = content_pagination.fetch("max_items")
-content_max_characters = content_pagination.fetch("max_characters")
 course_footer = "Cours de SIC - Leçon #{lesson.fetch("number")}"
+
+colors = tokens.fetch("colors")
+layout = tokens.fetch("layout")
+type = tokens.fetch("type")
+canvas_width = tokens.fetch("canvas").fetch("width")
+canvas_height = tokens.fetch("canvas").fetch("height")
+css_template = ERB.new(File.read(File.join(ROOT, "templates", "slides.css.erb"), encoding: "UTF-8"), trim_mode: "-")
+css = css_template.result(binding)
+measurement = measured_pagination(content, css, tokens)
 
 slides = []
 slides << {
@@ -175,8 +82,9 @@ slides << {
   "content" => nil
 }
 
-point_pages = paginate(content.fetch("points_principaux"), max_items: content_max_items, max_chars: content_max_characters)
-point_pages.each_with_index do |items, index|
+point_pages = measurement.fetch("sections").fetch("points_principaux")
+point_pages.each_with_index do |page, index|
+  items = measured_items(content, "points_principaux", page)
   slides << {
     "role" => "points",
     "title" => section_header("Points principaux", index + 1, index == point_pages.length - 1, final_marker),
@@ -186,12 +94,13 @@ point_pages.each_with_index do |items, index|
     "content" => numbered_items_html(items),
     "item_count" => items.length,
     "character_count" => items.sum { |item| item.fetch("text").length },
-    "compact" => items.sum { |item| item.fetch("text").length } > 520
+    "measurement" => page
   }
 end
 
-resume_pages = paginate(content.fetch("resume_long"), max_items: content_max_items, max_chars: content_max_characters)
-resume_pages.each_with_index do |items, index|
+resume_pages = measurement.fetch("sections").fetch("resume_long")
+resume_pages.each_with_index do |page, index|
+  items = measured_items(content, "resume_long", page)
   slides << {
     "role" => "resume",
     "title" => section_header("Résumé long", index + 1, index == resume_pages.length - 1, final_marker),
@@ -201,7 +110,7 @@ resume_pages.each_with_index do |items, index|
     "content" => numbered_items_html(items),
     "item_count" => items.length,
     "character_count" => items.sum { |item| item.fetch("text").length },
-    "compact" => true
+    "measurement" => page
   }
 end
 
@@ -237,8 +146,9 @@ questions.each_with_index do |item, index|
   }
 end
 
-place_pages = paginate(content.fetch("place_de_la_lecon"), max_items: content_max_items, max_chars: content_max_characters)
-place_pages.each_with_index do |items, index|
+place_pages = measurement.fetch("sections").fetch("place_de_la_lecon")
+place_pages.each_with_index do |page, index|
+  items = measured_items(content, "place_de_la_lecon", page)
   slides << {
     "role" => "place",
     "title" => section_header("Place de la leçon", index + 1, index == place_pages.length - 1, final_marker),
@@ -248,7 +158,7 @@ place_pages.each_with_index do |items, index|
     "content" => numbered_items_html(items),
     "item_count" => items.length,
     "character_count" => items.sum { |item| item.fetch("text").length },
-    "compact" => true
+    "measurement" => page
   }
 end
 
@@ -288,11 +198,10 @@ slides_html = slides.each_with_index.map do |slide, index|
       </section>
     HTML
   else
-    compact_class = slide["compact"] ? " compact" : ""
     <<~HTML
       <header class="slide-header">#{CGI.escapeHTML(slide.fetch("title"))}</header>
       <h1 class="lesson-title#{lesson_title_class}" data-overflow-check>#{CGI.escapeHTML(lesson.fetch("title"))}</h1>
-      <section class="slide-content#{compact_class}" data-overflow-check>
+      <section class="slide-content reading-content" style="font-size: #{slide.fetch("measurement").fetch("font_size")}px" data-overflow-check>
         #{slide.fetch("content")}
       </section>
     HTML
@@ -309,18 +218,13 @@ slides_html = slides.each_with_index.map do |slide, index|
   HTML
 end.join
 
-colors = tokens.fetch("colors")
-layout = tokens.fetch("layout")
-type = tokens.fetch("type")
-canvas_width = tokens.fetch("canvas").fetch("width")
-canvas_height = tokens.fetch("canvas").fetch("height")
-css_template = ERB.new(File.read(File.join(ROOT, "templates", "slides.css.erb"), encoding: "UTF-8"), trim_mode: "-")
-css = css_template.result(binding)
+navigation = navigation_html(ROOT, lesson, slides)
+
 javascript = File.read(File.join(ROOT, "templates", "slides.js"), encoding: "UTF-8")
 content_sha = Digest::SHA256.hexdigest(content_source)
 h = ->(value) { CGI.escapeHTML(value.to_s) }
 html_template = ERB.new(File.read(File.join(ROOT, "templates", "slides.html.erb"), encoding: "UTF-8"), trim_mode: "-")
-html = html_template.result(binding)
+html = html_template.result(binding).gsub(/^[ \t]+$/, "")
 
 output_dir = File.join(lesson_dir, "slides")
 font_output_dir = File.join(output_dir, "assets", "fonts")
@@ -339,7 +243,9 @@ manifest = {
   "lesson" => lesson,
   "aspect_ratio" => tokens.fetch("canvas").fetch("ratio"),
   "content_sha256" => content_sha,
+  "build_sha256" => build_signature(ROOT),
   "pagination_policy" => tokens.fetch("pagination"),
+  "measurement_engine" => measurement.slice("browser", "playwright"),
   "slide_count" => total,
   "section_slide_counts" => section_counts,
   "slides" => slides.each_with_index.map do |slide, index|
@@ -352,7 +258,8 @@ manifest = {
       "final" => slide.fetch("final"),
       "title" => slide.fetch("title"),
       "item_count" => slide["item_count"],
-      "character_count" => slide["character_count"]
+      "character_count" => slide["character_count"],
+      "measurement" => slide["measurement"]
     }
   end
 }

@@ -30,7 +30,7 @@
 
 14. L’univers réagit à l’action individuelle. Chaque pensée, chaque mot, chaque action influence tout le reste de la création. L’effet peut être soit favorable, soit défavorable à la vie. L’effet physique du son choisi pour la pratique de la MT est favorable à la vie pour l’esprit, le corps, l’environnement et pour la création tout entière.
 
-15. Nous remarquerons que la puissance augmente, au fur et à mesure que l’on approche les niveaux plus fins de la création. Le niveau atomique, par exemple, contient beaucoup plus d’énergie que le niveau moléculaire. Ainsi, lorsqu’elle se raffine durant la MT, la pensée devient beaucoup plus puissante. C’est pourquoi il est d’autant plus important que le son choisi soit tout à fait approprié ; en effet, lorsqu’on en fait l’expérience dans ses états plus raffinés, il produit alors une influence d’autant plus favorable à la vie.
+15. Nous remarquons que la puissance augmente, au fur et à mesure que l’on approche les niveaux plus fins de la création. Le niveau atomique, par exemple, contient beaucoup plus d’énergie que le niveau moléculaire. Ainsi, lorsqu’elle se raffine durant la MT, la pensée devient beaucoup plus puissante. C’est pourquoi il est d’autant plus important que le son choisi soit tout à fait approprié ; en effet, lorsqu’on en fait l’expérience dans ses états plus raffinés, il produit alors une influence d’autant plus favorable à la vie.
 
 16. La très ancienne Tradition des Maîtres Védiques nous apprend quel son, quel mantra, conviendra à tel ou tel individu.
 

@@ -1,7 +1,22 @@
 (() => {
   const stage = document.querySelector('.deck-stage');
   const slides = Array.from(document.querySelectorAll('.slide'));
+  const navigation = document.querySelector('.deck-navigation');
+  const menuToggle = document.querySelector('#lesson-menu-toggle');
+  const lessonMenu = document.querySelector('#lesson-menu');
+  const sectionSelect = document.querySelector('#section-select');
+  const firstSlide = document.querySelector('#first-slide');
+  const lastSlide = document.querySelector('#last-slide');
+  const previousSlide = document.querySelector('#previous-slide');
+  const nextSlide = document.querySelector('#next-slide');
+  const sectionStarts = Array.from(sectionSelect.options, option => Number(option.value));
   let index = 0;
+
+  const closeMenu = (restoreFocus = false) => {
+    lessonMenu.hidden = true;
+    menuToggle.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) menuToggle.focus();
+  };
 
   const clamp = (value) => Math.max(0, Math.min(slides.length - 1, value));
 
@@ -27,7 +42,11 @@
   };
 
   const show = (nextIndex, updateHash = true) => {
+    closeMenu();
     index = clamp(nextIndex);
+    sectionSelect.value = String(sectionStarts.filter(start => start <= index + 1).at(-1));
+    firstSlide.disabled = previousSlide.disabled = index === 0;
+    lastSlide.disabled = nextSlide.disabled = index === slides.length - 1;
     slides.forEach((slide, slideIndex) => {
       const active = slideIndex === index;
       slide.classList.toggle('is-active', active);
@@ -45,9 +64,64 @@
     }
   };
 
+  menuToggle.addEventListener('click', () => {
+    const opening = lessonMenu.hidden;
+    closeMenu();
+    if (opening) {
+      lessonMenu.hidden = false;
+      menuToggle.setAttribute('aria-expanded', 'true');
+      const current = lessonMenu.querySelector('[aria-current="page"]') || lessonMenu.querySelector('a');
+      current?.focus({ preventScroll: true });
+      current?.scrollIntoView({ block: 'nearest' });
+    }
+  });
+  lessonMenu.addEventListener('click', event => {
+    const link = event.target.closest('a');
+    if (link?.getAttribute('aria-current') === 'page') {
+      event.preventDefault();
+      closeMenu(true);
+      show(0);
+    }
+  });
+  firstSlide.addEventListener('click', () => show(0));
+  lastSlide.addEventListener('click', () => show(slides.length - 1));
+  previousSlide.addEventListener('click', () => show(index - 1));
+  nextSlide.addEventListener('click', () => show(index + 1));
+  sectionSelect.addEventListener('change', () => show(Number(sectionSelect.value) - 1));
+  document.addEventListener('click', event => {
+    if (!navigation.contains(event.target)) closeMenu();
+  });
+  document.addEventListener('focusin', event => {
+    if (!navigation.contains(event.target)) closeMenu();
+  });
+  lessonMenu.addEventListener('keydown', event => {
+    const links = Array.from(lessonMenu.querySelectorAll('a'));
+    const current = links.indexOf(document.activeElement);
+    let next;
+    if (event.key === 'ArrowDown') next = Math.min(current + 1, links.length - 1);
+    if (event.key === 'ArrowUp') next = Math.max(current - 1, 0);
+    if (event.key === 'Home') next = 0;
+    if (event.key === 'End') next = links.length - 1;
+    if (next !== undefined) {
+      event.preventDefault();
+      links[next]?.focus();
+    }
+  });
+
   window.addEventListener('resize', scaleStage);
   window.addEventListener('hashchange', () => show(indexFromHash(), false));
   window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !lessonMenu.hidden) {
+      event.preventDefault();
+      closeMenu(true);
+      return;
+    }
+    // Keep arrow navigation working when switching between clicks and the keyboard.
+    const slideArrow = ['ArrowLeft', 'ArrowRight'].includes(event.key) &&
+      event.target.closest('#first-slide, #previous-slide, #next-slide, #last-slide');
+    // Native dropdowns, links and other button keys keep their normal behavior.
+    if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey ||
+        (!slideArrow && event.target.closest('button, select, input, textarea, a, [contenteditable="true"]'))) return;
     if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(event.key)) {
       event.preventDefault();
       show(index + 1);

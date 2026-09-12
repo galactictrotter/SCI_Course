@@ -8,25 +8,33 @@
   },
   "aspect_ratio": "16:10",
   "content_sha256": "8dd007428b4737f8fb7e31d8caa55d20ea5b8fd901d8f14c87205d863c672fdc",
+  "build_sha256": "2727ed06c05679c3e5d9ab570e693361052c7c7b22d42bda93aa3cbec1e2cf35",
   "pagination_policy": {
     "final_marker": "et fin",
     "global_format": "%{current} of %{total}",
     "content_sections": {
-      "max_items": 3,
-      "max_characters": 850
+      "strategy": "browser_measured_whole_points",
+      "font_size": 32,
+      "min_single_point_font_size": 24,
+      "font_step": 2,
+      "bottom_safety_px": 8
     },
     "exceptions": {
       "questions": "one_question_per_slide",
       "discussion": "one_question_state_then_one_answer_state"
     }
   },
-  "slide_count": 30,
+  "measurement_engine": {
+    "browser": "152.0.7977.83",
+    "playwright": "1.62.1"
+  },
+  "slide_count": 26,
   "section_slide_counts": {
     "points_principaux": 3,
-    "resume_long": 9,
+    "resume_long": 6,
     "questions": 5,
     "discussion": 10,
-    "place_de_la_lecon": 2
+    "place_de_la_lecon": 1
   },
   "slides": [
     {
@@ -38,7 +46,8 @@
       "final": false,
       "title": "Vérification par la biologie des principes qui sous-tendent l'expérience de la pure nature de l'Intelligence Créatrice",
       "item_count": null,
-      "character_count": null
+      "character_count": null,
+      "measurement": null
     },
     {
       "number": 2,
@@ -48,8 +57,15 @@
       "section_index": 1,
       "final": false,
       "title": "Points principaux · 1",
-      "item_count": 3,
-      "character_count": 660
+      "item_count": 2,
+      "character_count": 399,
+      "measurement": {
+        "start": 0,
+        "end": 1,
+        "font_size": 32,
+        "measured_height": 361,
+        "available_height": 642
+      }
     },
     {
       "number": 3,
@@ -60,7 +76,14 @@
       "final": false,
       "title": "Points principaux · 2",
       "item_count": 2,
-      "character_count": 643
+      "character_count": 548,
+      "measurement": {
+        "start": 2,
+        "end": 3,
+        "font_size": 32,
+        "measured_height": 447,
+        "available_height": 642
+      }
     },
     {
       "number": 4,
@@ -70,8 +93,15 @@
       "section_index": 3,
       "final": true,
       "title": "Points principaux · 3 et fin",
-      "item_count": 1,
-      "character_count": 302
+      "item_count": 2,
+      "character_count": 658,
+      "measurement": {
+        "start": 4,
+        "end": 5,
+        "font_size": 32,
+        "measured_height": 447,
+        "available_height": 642
+      }
     },
     {
       "number": 5,
@@ -81,8 +111,15 @@
       "section_index": 1,
       "final": false,
       "title": "Résumé long · 1",
-      "item_count": 1,
-      "character_count": 545
+      "item_count": 2,
+      "character_count": 1084,
+      "measurement": {
+        "start": 0,
+        "end": 1,
+        "font_size": 32,
+        "measured_height": 637,
+        "available_height": 642
+      }
     },
     {
       "number": 6,
@@ -92,8 +129,15 @@
       "section_index": 2,
       "final": false,
       "title": "Résumé long · 2",
-      "item_count": 1,
-      "character_count": 539
+      "item_count": 2,
+      "character_count": 922,
+      "measurement": {
+        "start": 2,
+        "end": 3,
+        "font_size": 32,
+        "measured_height": 564,
+        "available_height": 642
+      }
     },
     {
       "number": 7,
@@ -103,8 +147,15 @@
       "section_index": 3,
       "final": false,
       "title": "Résumé long · 3",
-      "item_count": 1,
-      "character_count": 539
+      "item_count": 2,
+      "character_count": 900,
+      "measurement": {
+        "start": 4,
+        "end": 5,
+        "font_size": 32,
+        "measured_height": 508,
+        "available_height": 642
+      }
     },
     {
       "number": 8,
@@ -115,7 +166,14 @@
       "final": false,
       "title": "Résumé long · 4",
       "item_count": 2,
-      "character_count": 810
+      "character_count": 878,
+      "measurement": {
+        "start": 6,
+        "end": 7,
+        "font_size": 32,
+        "measured_height": 508,
+        "available_height": 642
+      }
     },
     {
       "number": 9,
@@ -126,7 +184,14 @@
       "final": false,
       "title": "Résumé long · 5",
       "item_count": 2,
-      "character_count": 845
+      "character_count": 954,
+      "measurement": {
+        "start": 8,
+        "end": 9,
+        "font_size": 32,
+        "measured_height": 508,
+        "available_height": 642
+      }
     },
     {
       "number": 10,
@@ -134,230 +199,215 @@
       "role": "resume",
       "section": "resume_long",
       "section_index": 6,
-      "final": false,
-      "title": "Résumé long · 6",
-      "item_count": 1,
-      "character_count": 506
+      "final": true,
+      "title": "Résumé long · 6 et fin",
+      "item_count": 2,
+      "character_count": 769,
+      "measurement": {
+        "start": 10,
+        "end": 11,
+        "font_size": 32,
+        "measured_height": 421,
+        "available_height": 642
+      }
     },
     {
       "number": 11,
       "id": "slide-011",
-      "role": "resume",
-      "section": "resume_long",
-      "section_index": 7,
-      "final": false,
-      "title": "Résumé long · 7",
-      "item_count": 1,
-      "character_count": 367
-    },
-    {
-      "number": 12,
-      "id": "slide-012",
-      "role": "resume",
-      "section": "resume_long",
-      "section_index": 8,
-      "final": false,
-      "title": "Résumé long · 8",
-      "item_count": 1,
-      "character_count": 587
-    },
-    {
-      "number": 13,
-      "id": "slide-013",
-      "role": "resume",
-      "section": "resume_long",
-      "section_index": 9,
-      "final": true,
-      "title": "Résumé long · 9 et fin",
-      "item_count": 2,
-      "character_count": 769
-    },
-    {
-      "number": 14,
-      "id": "slide-014",
       "role": "question",
       "section": "questions",
       "section_index": 1,
       "final": false,
       "title": "Questions · 1",
       "item_count": null,
-      "character_count": null
+      "character_count": null,
+      "measurement": null
     },
     {
-      "number": 15,
-      "id": "slide-015",
+      "number": 12,
+      "id": "slide-012",
       "role": "question",
       "section": "questions",
       "section_index": 2,
       "final": false,
       "title": "Questions · 2",
       "item_count": null,
-      "character_count": null
+      "character_count": null,
+      "measurement": null
     },
     {
-      "number": 16,
-      "id": "slide-016",
+      "number": 13,
+      "id": "slide-013",
       "role": "question",
       "section": "questions",
       "section_index": 3,
       "final": false,
       "title": "Questions · 3",
       "item_count": null,
-      "character_count": null
+      "character_count": null,
+      "measurement": null
     },
     {
-      "number": 17,
-      "id": "slide-017",
+      "number": 14,
+      "id": "slide-014",
       "role": "question",
       "section": "questions",
       "section_index": 4,
       "final": false,
       "title": "Questions · 4",
       "item_count": null,
-      "character_count": null
+      "character_count": null,
+      "measurement": null
     },
     {
-      "number": 18,
-      "id": "slide-018",
+      "number": 15,
+      "id": "slide-015",
       "role": "question",
       "section": "questions",
       "section_index": 5,
       "final": true,
       "title": "Questions · 5 et fin",
       "item_count": null,
-      "character_count": null
+      "character_count": null,
+      "measurement": null
     },
     {
-      "number": 19,
-      "id": "slide-019",
+      "number": 16,
+      "id": "slide-016",
       "role": "discussion_question",
       "section": "discussion",
       "section_index": 1,
       "final": false,
       "title": "Discussion · 1",
       "item_count": null,
-      "character_count": null
+      "character_count": null,
+      "measurement": null
     },
     {
-      "number": 20,
-      "id": "slide-020",
+      "number": 17,
+      "id": "slide-017",
       "role": "discussion_answer",
       "section": "discussion",
       "section_index": 1,
       "final": false,
       "title": "Discussion · réponse · 1",
       "item_count": null,
-      "character_count": null
+      "character_count": null,
+      "measurement": null
     },
     {
-      "number": 21,
-      "id": "slide-021",
+      "number": 18,
+      "id": "slide-018",
       "role": "discussion_question",
       "section": "discussion",
       "section_index": 2,
       "final": false,
       "title": "Discussion · 2",
       "item_count": null,
-      "character_count": null
+      "character_count": null,
+      "measurement": null
     },
     {
-      "number": 22,
-      "id": "slide-022",
+      "number": 19,
+      "id": "slide-019",
       "role": "discussion_answer",
       "section": "discussion",
       "section_index": 2,
       "final": false,
       "title": "Discussion · réponse · 2",
       "item_count": null,
-      "character_count": null
+      "character_count": null,
+      "measurement": null
     },
     {
-      "number": 23,
-      "id": "slide-023",
+      "number": 20,
+      "id": "slide-020",
       "role": "discussion_question",
       "section": "discussion",
       "section_index": 3,
       "final": false,
       "title": "Discussion · 3",
       "item_count": null,
-      "character_count": null
+      "character_count": null,
+      "measurement": null
     },
     {
-      "number": 24,
-      "id": "slide-024",
+      "number": 21,
+      "id": "slide-021",
       "role": "discussion_answer",
       "section": "discussion",
       "section_index": 3,
       "final": false,
       "title": "Discussion · réponse · 3",
       "item_count": null,
-      "character_count": null
+      "character_count": null,
+      "measurement": null
     },
     {
-      "number": 25,
-      "id": "slide-025",
+      "number": 22,
+      "id": "slide-022",
       "role": "discussion_question",
       "section": "discussion",
       "section_index": 4,
       "final": false,
       "title": "Discussion · 4",
       "item_count": null,
-      "character_count": null
+      "character_count": null,
+      "measurement": null
     },
     {
-      "number": 26,
-      "id": "slide-026",
+      "number": 23,
+      "id": "slide-023",
       "role": "discussion_answer",
       "section": "discussion",
       "section_index": 4,
       "final": false,
       "title": "Discussion · réponse · 4",
       "item_count": null,
-      "character_count": null
+      "character_count": null,
+      "measurement": null
     },
     {
-      "number": 27,
-      "id": "slide-027",
+      "number": 24,
+      "id": "slide-024",
       "role": "discussion_question",
       "section": "discussion",
       "section_index": 5,
       "final": false,
       "title": "Discussion · 5",
       "item_count": null,
-      "character_count": null
+      "character_count": null,
+      "measurement": null
     },
     {
-      "number": 28,
-      "id": "slide-028",
+      "number": 25,
+      "id": "slide-025",
       "role": "discussion_answer",
       "section": "discussion",
       "section_index": 5,
       "final": true,
       "title": "Discussion · réponse · 5 et fin",
       "item_count": null,
-      "character_count": null
+      "character_count": null,
+      "measurement": null
     },
     {
-      "number": 29,
-      "id": "slide-029",
+      "number": 26,
+      "id": "slide-026",
       "role": "place",
       "section": "place_de_la_lecon",
       "section_index": 1,
-      "final": false,
-      "title": "Place de la leçon · 1",
-      "item_count": 1,
-      "character_count": 495
-    },
-    {
-      "number": 30,
-      "id": "slide-030",
-      "role": "place",
-      "section": "place_de_la_lecon",
-      "section_index": 2,
       "final": true,
-      "title": "Place de la leçon · 2 et fin",
-      "item_count": 1,
-      "character_count": 568
+      "title": "Place de la leçon · 1 et fin",
+      "item_count": 2,
+      "character_count": 1063,
+      "measurement": {
+        "start": 0,
+        "end": 1,
+        "font_size": 32,
+        "measured_height": 594,
+        "available_height": 642
+      }
     }
   ]
 }

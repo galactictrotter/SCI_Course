@@ -4,7 +4,7 @@
 
 **Question :** Quelles sont les étapes fondamentales du progrès dans la vie comme dans la nature ?
 
-**Réponse :** L'expansion et l'activité.
+**Réponse :** Le repos et l'activité.
 
 ## 2
 
